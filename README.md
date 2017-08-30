@@ -1,5 +1,5 @@
 # The RatPack (55) CS2340  
-We are The RatPack.
+We are The RatPack. 🐀
 
 Members
 ------
