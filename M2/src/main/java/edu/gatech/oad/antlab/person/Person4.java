@@ -1,5 +1,5 @@
 package edu.gatech.oad.antlab.person;
-
+//Aaron McDaniel's file
 /**
  *  A simple class for person 4
  *  returns their name and a
@@ -30,8 +30,13 @@ public class Person4 {
      * @return the modified string
      */
     private String calc(String input) {
+	
       //Person 4 put your implementation here
-      return null;
+	String output="";
+	for(int i=0;i<=input.length();i++){
+	    output=output+(input.charAt(i)+1);
+	}
+	return output;
     }
     
     /**
