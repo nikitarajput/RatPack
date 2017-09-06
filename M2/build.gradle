@@ -1,10 +1,11 @@
 defaultTasks   'jar'
 
 apply plugin: 'java'
+apply plugin: 'application'
+mainClassName='AntLabMain'
 
 //sourceCompatibility = 1.8
 version = '1.0'
-mainClassName='AntLabMain'
 
 jar  {
   manifest {
