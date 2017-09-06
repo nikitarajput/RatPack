@@ -10,9 +10,8 @@ defaultTasks   'task1', 'task2'
 //also used a lot is clean, which will delete all the files made by build
 //also available is assemble which will compile the code but not run the test
 //also available is check which will compile and run the tests
-apply plugin: 'java'
 
-apply plugin: 'findbugs'
+apply plugin: 'java'
 
 //Define a simple task ourselves
 task hello << {
@@ -53,15 +52,14 @@ jar  {
     }
 
    // destinationDir = file(".")
-   // archiveName = 'hello.jar'
+   // archiveName = 'resources.jar'
 }
 
 dependencies {
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.7.Final'
-	  testCompile group: 'junit', name: 'junit', version: '4.+'
+    compile files('lib/resources.jar')
 }
 
 //setup a location for repositories of any libraries that need to be downloaded
 repositories {
-   mavenCentral()
+   The-RatPack()
 }
