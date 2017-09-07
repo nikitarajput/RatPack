@@ -1,11 +1,9 @@
-defaultTasks   'compileJava', 'compileTest', 'javadoc', 'jar', 'run', 'clean'
+defaultTasks   'jar'
 
 apply plugin: 'java'
 apply plugin: 'application'
 mainClassName='edu.gatech.oad.antlab.pkg1.AntLabMain'
 version = '1.0'
-
-//test
 
 jar  {
   manifest {
@@ -13,12 +11,6 @@ jar  {
                  'Implementation-Version' : version,
                  'Main-Class' : mainClassName,
 		         'Class-Path' : '../../lib/resources.jar'
-    }
-}
-
-task run1 {
-    doLast {
-        println 'Default Running!'
     }
 }
 
