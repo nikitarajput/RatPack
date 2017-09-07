@@ -12,8 +12,7 @@ jar  {
      attributes  'Implementation-Title' : 'Gradle Quickstart' ,
                  'Implementation-Version' : version,
                  'Main-Class' : mainClassName,
-		 'Class-Path' : '../../lib/resources.jar'
-
+		         'Class-Path' : '../../lib/resources.jar'
     }
 }
 
@@ -31,4 +30,3 @@ repositories {
    mavenLocal()
    mavenCentral()
 }
-
