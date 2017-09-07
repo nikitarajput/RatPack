@@ -3,9 +3,11 @@ defaultTasks   'jar'
 apply plugin: 'java'
 apply plugin: 'application'
 mainClassName='edu.gatech.oad.antlab.pkg1.AntLabMain'
+<<<<<<< HEAD
 //classPath='lib.resources.jar'
+=======
+>>>>>>> 12d87dfc298ac1b22102ed03f71fb860e0e17e15
 
-//sourceCompatibility = 1.8
 version = '1.0'
 
 //test
@@ -15,7 +17,11 @@ jar  {
      attributes  'Implementation-Title' : 'Gradle Quickstart' ,
                  'Implementation-Version' : version,
                  'Main-Class' : mainClassName,
+<<<<<<< HEAD
 		 'Class-Path' : './lib/resources.jar'
+=======
+		         'Class-Path' : 'lib.resources.jar'
+>>>>>>> 12d87dfc298ac1b22102ed03f71fb860e0e17e15
 
     }
 }
