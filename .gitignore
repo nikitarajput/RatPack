@@ -1,4 +1,6 @@
 
 *.xml
 *.iml
+
+#ignoring macOS produced files
 .DS_Store
