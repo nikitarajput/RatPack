@@ -10,4 +10,12 @@ public class Login_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_);
     }
+
+    protected void onLogin(){
+        //comments in my code
+    }
+
+    protected void onToRegistration(){
+        //comments in my code
+    }
 }

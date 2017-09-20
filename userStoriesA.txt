@@ -6,3 +6,4 @@ For M4
 3) as a user i want to be able to be notified if my username/password is incorrect
 4) as a user i want to be able to exit the login page so i can clear my login info
 5) as a user i want to be able to log out so my account wont be accessed by others
+6) as a 
