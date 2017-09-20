@@ -38,4 +38,12 @@ public class Login_Activity extends AppCompatActivity {
     public void forgotPassword(View v)  {
         //future implementation
     }
+
+    protected void onLogin(){
+        //comments in my code
+    }
+
+    protected void onToRegistration(){
+        //comments in my code
+    }
 }
