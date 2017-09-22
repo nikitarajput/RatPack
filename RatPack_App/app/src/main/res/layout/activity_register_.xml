@@ -10,7 +10,7 @@
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/user_name"
         android:inputType="textPersonName" />
 
     <EditText
@@ -18,28 +18,29 @@
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Password"
-        android:inputType="textPersonName" />
+        android:hint="@string/pass_word"
+        android:inputType="textVisiblePassword" />
 
     <EditText
         android:id="@+id/confirm_password_editText"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Confirm Password"
-        android:inputType="textPersonName" />
+        android:hint="@string/button_confirm_password"
+        android:inputType="textVisiblePassword" />
 
     <Button
         android:id="@+id/register_button"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:onClick="register"
+        android:text="@string/button_register" />
 
     <Button
         android:id="@+id/to_login_button"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:onClick="toLoginActivity"
-        android:text="Login" />
+        android:text="@string/button_login" />
 
 </LinearLayout>

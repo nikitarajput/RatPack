@@ -32,7 +32,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="Logo"
+        android:contentDescription="@string/logo"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -62,12 +62,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:onClick="login"
         android:text="@string/button_login"
         app:layout_constraintBottom_toTopOf="@+id/forgot_password_button"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/to_register_button"
         app:layout_constraintTop_toBottomOf="@+id/password_editText"
-        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintVertical_bias="0.492" />
 
     <Button
@@ -88,7 +89,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:text="@string/button_forgotpassword"
+        android:text="@string/button_forgot_password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

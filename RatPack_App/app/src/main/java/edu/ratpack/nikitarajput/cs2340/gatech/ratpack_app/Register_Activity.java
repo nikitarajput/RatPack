@@ -14,6 +14,11 @@ public class Register_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_register_);
     }
 
+    public void register(View v){
+        //will need to add account info to library of usernames/passwords
+        startActivity(new Intent(Register_Activity.this, Home_Activity.class));
+    }
+
     public void toLoginActivity(View v){
         startActivity(new Intent(Register_Activity.this, Login_Activity.class));
     }

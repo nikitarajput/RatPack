@@ -3,10 +3,18 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:onClick="onLogout"
+        android:text="@string/button_logout" />
+
     <TextView
         android:id="@+id/textView"
-        android:layout_width="148dp"
-        android:layout_height="71dp"
-        android:text="YOU LOGGED IN"
+        android:layout_width="114dp"
+        android:layout_height="33dp"
+        android:text="@string/logged_in"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
 </LinearLayout>

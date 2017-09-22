@@ -13,4 +13,9 @@ public class Home_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_);
     }
+
+    public void onLogout(View v) {
+        //all that is needed for M4
+        startActivity(new Intent(Home_Activity.this,Login_Activity.class));
+    }
 }
