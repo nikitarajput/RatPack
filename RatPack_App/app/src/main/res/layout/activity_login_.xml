@@ -61,20 +61,20 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginTop="37dp"
-        android:text="Login"
+        android:text="@string/button_login"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/editText5"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/button_register"
         app:layout_constraintBaseline_toBaselineOf="@+id/button2"
         app:layout_constraintLeft_toRightOf="@+id/button2"
         app:layout_constraintRight_toRightOf="parent" />
@@ -87,7 +87,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:text="Forgot your password?"
+        android:text="@string/button_forgotpassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

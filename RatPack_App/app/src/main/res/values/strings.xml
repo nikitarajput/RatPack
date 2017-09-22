@@ -3,4 +3,7 @@
     <string name="user_name">Username</string>
     <string name="button_send">Send</string>
     <string name="pass_word">Password</string>
+    <string name="button_login">Login</string>
+    <string name="button_register">Register</string>
+    <string name="button_forgotpassword">Forgot your password?</string>
 </resources>
