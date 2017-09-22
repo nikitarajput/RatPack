@@ -8,7 +8,7 @@
     android:weightSum="1">
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/username_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -42,7 +42,7 @@
         android:layout_marginEnd="16dp" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/password_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -53,34 +53,35 @@
         android:inputType="textPassword"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4"
+        app:layout_constraintTop_toBottomOf="@+id/username_editText"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="37dp"
         android:text="@string/button_login"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/forgot_password_button"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/editText5"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintRight_toLeftOf="@+id/to_register_button"
+        app:layout_constraintTop_toBottomOf="@+id/password_editText"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintVertical_bias="0.492" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/to_register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="toRegisterActivity"
         android:text="@string/button_register"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button2"
-        app:layout_constraintLeft_toRightOf="@+id/button2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/login_button"
+        app:layout_constraintLeft_toRightOf="@+id/login_button"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/forgot_password_button"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

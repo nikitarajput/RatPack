@@ -1,8 +1,0 @@
-Aaron McDaniel
-For M4
-
-1) as a user i want to be able to login so i can interact with the system
-2) as a user i want to be able to register for an account so I can access the application
-3) as a user i want to be able to be notified if my username/password is incorrect
-4) as a user i want to be able to exit the login page so i can clear my login info
-5) as a user i want to be able to log out so my account wont be accessed by others
