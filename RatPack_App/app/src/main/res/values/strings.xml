@@ -11,6 +11,7 @@
     <string name="pass_word">Password</string>
     <string name="user_name">Username</string>
     <string name="button_cancel">Cancel</string>
+    <string name="text_welcome">Welcome</string>
 
 
 </resources>

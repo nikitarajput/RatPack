@@ -75,8 +75,8 @@
         android:id="@+id/to_register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="toRegisterActivity"
-        android:text="@string/button_register"
+        android:onClick="toWelcomeActivity"
+        android:text="@string/button_cancel"
         app:layout_constraintBaseline_toBaselineOf="@+id/login_button"
         app:layout_constraintLeft_toRightOf="@+id/login_button"
         app:layout_constraintRight_toRightOf="parent" />

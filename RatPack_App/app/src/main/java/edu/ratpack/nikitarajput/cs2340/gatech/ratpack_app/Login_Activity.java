@@ -32,8 +32,8 @@ public class Login_Activity extends AppCompatActivity {
         }
     }
 
-    public void toRegisterActivity(View v){
-        startActivity(new Intent(Login_Activity.this, Register_Activity.class));
+    public void toWelcomeActivity(View v){
+        startActivity(new Intent(Login_Activity.this, Welcome_Activity.class));
     }
 
     public void forgotPassword(View v)  {

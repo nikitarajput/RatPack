@@ -9,26 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Login_Activity">
+        <activity android:name=".Welcome_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Register_Activity"
-            android:parentActivityName=".Login_Activity" >
+        <activity
+            android:name=".Login_Activity"
+            android:parentActivityName=".Welcome_Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Login_Activity" />
-
+                android:value=".Welcome_Activity" />
         </activity>
-
         <activity
-            android:name=".Home_Activity">
+            android:name=".Register_Activity"
+            android:parentActivityName=".Welcome_Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Welcome_Activity" />
         </activity>
+        <activity android:name=".Home_Activity" />
+
     </application>
 
 </manifest>

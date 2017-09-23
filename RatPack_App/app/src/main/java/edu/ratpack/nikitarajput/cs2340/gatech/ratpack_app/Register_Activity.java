@@ -19,7 +19,7 @@ public class Register_Activity extends AppCompatActivity {
         startActivity(new Intent(Register_Activity.this, Home_Activity.class));
     }
 
-    public void toLoginActivity(View v){
-        startActivity(new Intent(Register_Activity.this, Login_Activity.class));
+    public void toWelcomeActivity(View v){
+        startActivity(new Intent(Register_Activity.this, Welcome_Activity.class));
     }
 }
