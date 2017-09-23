@@ -18,8 +18,12 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".Register_Activity">
+        <activity android:name=".Register_Activity"
+            android:parentActivityName=".Login_Activity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Login_Activity" />
+
         </activity>
 
         <activity

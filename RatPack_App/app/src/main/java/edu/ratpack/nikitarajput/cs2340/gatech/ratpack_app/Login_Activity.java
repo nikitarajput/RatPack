@@ -26,9 +26,9 @@ public class Login_Activity extends AppCompatActivity {
             startActivity(new Intent(Login_Activity.this, Home_Activity.class));
         } else {
             Toast.makeText(getApplicationContext(), "Incorrect username or password.",Toast.LENGTH_SHORT).show();
-            username.setText("");
+            //username.setText("");
             password.setText("");
-            username.requestFocus();
+            password.requestFocus();
         }
     }
 
