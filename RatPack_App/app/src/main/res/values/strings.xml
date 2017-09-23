@@ -10,7 +10,7 @@
     <string name="logo">Logo</string>
     <string name="pass_word">Password</string>
     <string name="user_name">Username</string>
-
+    <string name="button_cancel">Cancel</string>
 
 
 </resources>
