@@ -15,7 +15,6 @@ public class Home_Activity extends AppCompatActivity {
     }
 
     public void onLogout(View v) {
-        //all that is needed for M4
         startActivity(new Intent(Home_Activity.this,Welcome_Activity.class));
     }
 }

@@ -26,7 +26,6 @@ public class Login_Activity extends AppCompatActivity {
             startActivity(new Intent(Login_Activity.this, Home_Activity.class));
         } else {
             Toast.makeText(getApplicationContext(), "Incorrect username or password.",Toast.LENGTH_SHORT).show();
-            //username.setText("");
             password.setText("");
             password.requestFocus();
         }
@@ -37,6 +36,6 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     public void forgotPassword(View v)  {
-        //needs to be implemented later?
+        //future implementation
     }
 }
