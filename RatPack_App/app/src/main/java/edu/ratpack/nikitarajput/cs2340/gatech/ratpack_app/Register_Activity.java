@@ -3,11 +3,14 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
         import android.content.Intent;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.util.Log;
         import android.view.View;
         import android.widget.EditText;
+        import android.widget.Toast;
 
         import java.util.HashMap;
         import java.util.Map;
+        import java.util.Set;
 
 
 public class Register_Activity extends AppCompatActivity {
@@ -26,14 +29,21 @@ public class Register_Activity extends AppCompatActivity {
 
     public void register(View v){
         if(!password.getText().toString().equals(confirmPassword.getText().toString())) {
-            // need to say that passwords don't match and try again
-        } else  if (accountInformation.containsKey(username.getText().toString())) {
-            // need to say that account exists for that username
+            Toast.makeText(getApplicationContext(), "Passwords do not match.",Toast.LENGTH_SHORT).show();
+            password.setText("");
+            confirmPassword.setText("");
+            password.requestFocus();
+        } else if (accountInformation.containsKey(username.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "Account already exists for this username.",Toast.LENGTH_SHORT).show();
+            username.setText("");
+            password.setText("");
+            confirmPassword.setText("");
+            username.requestFocus();
         } else {
             accountInformation.put(username.getText().toString(), password.getText().toString());
-            // need to say success and do the redirect
+            Toast.makeText(getApplicationContext(), "Registering your account...",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Register_Activity.this, Login_Activity.class));
         }
-        startActivity(new Intent(Register_Activity.this, Home_Activity.class));
     }
 
     public void toWelcomeActivity(View v){
