@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "340869497228",
+    "firebase_url": "https://ratpack-bc74d.firebaseio.com",
+    "project_id": "ratpack-bc74d",
+    "storage_bucket": "ratpack-bc74d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340869497228:android:f99b7772e0bd3ffd",
+        "android_client_info": {
+          "package_name": "edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340869497228-4ag781tilvnk44amooued0c8n8q2221j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjCk8gJculZiUCTtdWrEdl5JIYuzQNkMQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
