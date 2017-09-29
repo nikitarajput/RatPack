@@ -1,4 +1,4 @@
-package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.User;
+package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
 /**
  * Created by Shreya on 9/29/17.
