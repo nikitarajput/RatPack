@@ -7,10 +7,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Register_Activity extends AppCompatActivity {
 
     EditText username, password, confirmPassword;
+    Map<String, User> currentUsers = new HashMap<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,7 @@ public class Register_Activity extends AppCompatActivity {
     public void register(View v){
         if (verifyConfirmPassword() && verifyUniqueUsername()) {
             User addedUser = new User(username.getText().toString(), password.getText().toString(), false, username.getText().toString());
-            // need to add this user to the database
+            currentUsers.put(addedUser.getLoginName(), addedUser);
             Toast.makeText(getApplicationContext(), "Registering your account...",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Register_Activity.this, Login_Activity.class));
         }
@@ -41,7 +45,7 @@ public class Register_Activity extends AppCompatActivity {
      * @return a boolean whether or not the username is unique.
      */
     private boolean verifyUniqueUsername() {
-        if (false) { // need to check if username is already in database
+        if (currentUsers.containsKey(username.getText().toString())) {
             Toast.makeText(getApplicationContext(), "Account already exists for this username.", Toast.LENGTH_SHORT).show();
             username.setText("");
             password.setText("");
