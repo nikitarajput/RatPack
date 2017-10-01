@@ -12,6 +12,7 @@
     <string name="user_name">Username</string>
     <string name="button_cancel">Cancel</string>
     <string name="text_welcome">Welcome</string>
+    <string name="email_address">Email Address</string>
 
 
 </resources>
