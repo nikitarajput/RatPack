@@ -52,4 +52,12 @@ public class Login_Activity extends AppCompatActivity {
     protected void onToRegistration(){
         //comments in my code
     }
+
+    protected void onLogin(){
+        //comments in my code
+    }
+
+    protected void onToRegistration(){
+        //comments in my code
+    }
 }
