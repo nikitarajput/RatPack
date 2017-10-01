@@ -1,19 +1,39 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A user is anyone who wants to use the system to view data, or enter new sightings.
  */
-public class User {
+public class User implements Parcelable {
     private String loginName;
     private String password;
     private boolean isLocked;
     private String email;
+    //ArrayList<String> allNames=new ArrayList<String>();
+    //ArrayList<String> allPasses = new ArrayList<String>();
+
 
     public User(String loginName, String password, boolean isLocked, String email) {
         this.loginName = loginName;
         this.password = password;
         this.isLocked = isLocked;
         this.email = email;
+
+    }
+
+    /**
+     * Constructor used for Parcel
+     * @param in the
+     *
+     */
+    private User(Parcel in) {
+        loginName = in.readString();
+        password = in.readString();
     }
 
     /**
@@ -79,4 +99,31 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    /**
+     * Method from Parcelable
+     */
+    public int describeContents() {
+        return 0;
+    }
+
+    /**
+     * Method from Parcelable, Writes loginName and password ot parcel
+     * @param dest the destination of the parcel file (I think)
+     * @param flags any flags concerning the parcel
+     */
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(loginName);
+        dest.writeString(password);
+}
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }

@@ -21,7 +21,13 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     public void login(View v) {
-        if(username.getText().toString().equals("user") && password.getText().toString().equals("pass")) {
+        String user=username.getText().toString();
+        String pass=password.getText().toString();
+        if(user.equals("user") && pass.equals("pass")) {
+            Toast.makeText(getApplicationContext(), "Logging in...",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Login_Activity.this, Home_Activity.class));
+        } else if (Register_Activity.currentUsers.containsKey(user) &&
+                Register_Activity.currentUsers.get(user).getPassword().equals(pass)){
             Toast.makeText(getApplicationContext(), "Logging in...",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Login_Activity.this, Home_Activity.class));
         } else {

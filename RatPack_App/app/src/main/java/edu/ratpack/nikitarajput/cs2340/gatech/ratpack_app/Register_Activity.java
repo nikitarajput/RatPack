@@ -14,7 +14,7 @@ import java.util.Map;
 public class Register_Activity extends AppCompatActivity {
 
     EditText username, password, confirmPassword;
-    Map<String, User> currentUsers = new HashMap<>();
+    public static Map<String, User> currentUsers = new HashMap<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
