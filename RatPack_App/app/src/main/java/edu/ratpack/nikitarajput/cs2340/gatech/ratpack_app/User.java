@@ -1,5 +1,11 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A user is anyone who wants to use the system to view data, or enter new sightings.
  */
@@ -22,6 +28,7 @@ public class User {
         this(username, password, email);
         this.isLocked = isLocked;
         this.isAdmin = isAdmin;
+
     }
 
     /**
