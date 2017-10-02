@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -14,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,10 +25,14 @@ import java.util.Map;
 public class Register_Activity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private static final String TAG = "EmailPasswordRegistration";
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference dbRef;
+    private static final String TAG = "Registration";
+    private static final String TAG2 = "AddToDatabase";
 
     EditText username, password, confirmPassword;
-    Map<String, User> currentUsers = new HashMap<>();
+    RadioButton isAdmin;
+    private String userID;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,9 @@ public class Register_Activity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.register_password_editText);
         confirmPassword = (EditText)findViewById(R.id.confirm_password_editText);
         mAuth = FirebaseAuth.getInstance();
+        isAdmin = (RadioButton)findViewById(R.id.radioButton2);
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        dbRef = mFirebaseDatabase.getReference();
     }
 
     /**
@@ -49,8 +59,10 @@ public class Register_Activity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Log.d(TAG, "createUserWithEmail" + task.isSuccessful());
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                userID = user.getUid();
+                                writeNewUser(username.getText().toString(), password.getText().toString(), isAdmin.isChecked());
+                                Log.d(TAG, TAG2 + "createdUser");
                                 Toast.makeText(Register_Activity.this, "Registration successful!.",
                                         Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(Register_Activity.this, Login_Activity.class));
@@ -63,6 +75,17 @@ public class Register_Activity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Registration unsuccessful. Please try again.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * Creates new User object and saves to Firebase database
+     * @param username user's username
+     * @param password user's password
+     * @param isAdmin whether or not user is an admin
+     */
+    private void writeNewUser(String username, String password, Boolean isAdmin) {
+        User user = new User(username, password, isAdmin);
+        dbRef.child("users").child(userID).setValue(user);
     }
 
     /**

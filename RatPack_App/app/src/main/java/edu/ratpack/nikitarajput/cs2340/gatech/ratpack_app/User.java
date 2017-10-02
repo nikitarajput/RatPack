@@ -6,20 +6,24 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 public class User {
     private String username;
     private String password;
-    private String email;
     private boolean isLocked;
     private boolean isAdmin;
 
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.isLocked = false;
-        this.isAdmin = false;
+    public User() {
+
     }
 
-    public User(String username, String password, String email, boolean isLocked, boolean isAdmin) {
-        this(username, password, email);
+    public User(String username, String password) {
+        this(username, password, false, false);
+    }
+
+    public User(String username, String password, boolean isAdmin) {
+        this(username, password, false, isAdmin);
+    }
+
+    public User(String username, String password,boolean isLocked, boolean isAdmin) {
+        this.username = username;
+        this.password = password;
         this.isLocked = isLocked;
         this.isAdmin = isAdmin;
     }
@@ -58,24 +62,6 @@ public class User {
      */
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    /**
-     * Getter for email
-     *
-     * @return email the email of the user
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * Setter for email
-     *
-     * @param email the email of the user
-     */
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     /**
