@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class Login_Activity extends AppCompatActivity {
 
     EditText username, password;
+    static User currentUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class Login_Activity extends AppCompatActivity {
             startActivity(new Intent(Login_Activity.this, Home_Activity.class));
         } else if (Register_Activity.currentUsers.containsKey(user) &&
                 Register_Activity.currentUsers.get(user).getPassword().equals(pass)){
+            currentUser=Register_Activity.currentUsers.get(user);
             Toast.makeText(getApplicationContext(), "Logging in...",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Login_Activity.this, Home_Activity.class));
         } else {

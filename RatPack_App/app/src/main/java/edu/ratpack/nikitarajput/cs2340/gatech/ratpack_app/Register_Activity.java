@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -14,7 +15,8 @@ import java.util.Map;
 public class Register_Activity extends AppCompatActivity {
 
     EditText username, password, confirmPassword;
-    Map<String, User> currentUsers = new HashMap<>();
+    RadioButton isAdmin;
+    static Map<String, User> currentUsers = new HashMap<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,8 @@ public class Register_Activity extends AppCompatActivity {
         username = (EditText)findViewById(R.id.register_username_editText);
         password = (EditText)findViewById(R.id.register_password_editText);
         confirmPassword = (EditText)findViewById(R.id.confirm_password_editText);
+        isAdmin = (RadioButton)findViewById(R.id.isAdmin_radioButton);
+
     }
 
     /**
@@ -32,7 +36,7 @@ public class Register_Activity extends AppCompatActivity {
      */
     public void register(View v){
         if (verifyUniqueUsername() && verifyUsernameLength() && verifyPasswordLength() && verifyConfirmPassword()) {
-            User addedUser = new User(username.getText().toString(), password.getText().toString(), username.getText().toString());
+            User addedUser = new User(username.getText().toString(), password.getText().toString(), username.getText().toString(),false,isAdmin.isChecked());
             currentUsers.put(addedUser.getUsername(), addedUser);
             Toast.makeText(getApplicationContext(), "Registering your account...",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Register_Activity.this, Login_Activity.class));
