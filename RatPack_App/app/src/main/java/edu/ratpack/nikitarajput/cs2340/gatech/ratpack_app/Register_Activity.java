@@ -42,7 +42,7 @@ public class Register_Activity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.register_password_editText);
         confirmPassword = (EditText)findViewById(R.id.confirm_password_editText);
         mAuth = FirebaseAuth.getInstance();
-        isAdmin = (RadioButton)findViewById(R.id.radioButton2);
+        isAdmin = (RadioButton)findViewById(R.id.isAdmin_radioButton);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         dbRef = mFirebaseDatabase.getReference();
     }
