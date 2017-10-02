@@ -43,7 +43,7 @@ public class Register_Activity extends AppCompatActivity {
      * @param v the current view that the data is coming from.
      */
     public void register(View v) {
-        if (verifyUsernameLength() || verifyPasswordLength() || verifyConfirmPassword()) {
+        if (verifyUsernameLength() && verifyPasswordLength() && verifyConfirmPassword()) {
             mAuth.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
