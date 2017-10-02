@@ -2,11 +2,21 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,9 +24,15 @@ import java.util.Map;
 
 public class Register_Activity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference dbRef;
+    private static final String TAG = "Registration";
+    private static final String TAG2 = "AddToDatabase";
+
     EditText username, password, confirmPassword;
     RadioButton isAdmin;
-    static Map<String, User> currentUsers = new HashMap<>();
+    private String userID;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,8 +41,10 @@ public class Register_Activity extends AppCompatActivity {
         username = (EditText)findViewById(R.id.register_username_editText);
         password = (EditText)findViewById(R.id.register_password_editText);
         confirmPassword = (EditText)findViewById(R.id.confirm_password_editText);
-        isAdmin = (RadioButton)findViewById(R.id.isAdmin_radioButton);
-
+        mAuth = FirebaseAuth.getInstance();
+        isAdmin = (RadioButton)findViewById(R.id.radioButton2);
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        dbRef = mFirebaseDatabase.getReference();
     }
 
     /**
@@ -34,31 +52,40 @@ public class Register_Activity extends AppCompatActivity {
      *
      * @param v the current view that the data is coming from.
      */
-    public void register(View v){
-        if (verifyUniqueUsername() && verifyUsernameLength() && verifyPasswordLength() && verifyConfirmPassword()) {
-            User addedUser = new User(username.getText().toString(), password.getText().toString(), username.getText().toString(),false,isAdmin.isChecked());
-            currentUsers.put(addedUser.getUsername(), addedUser);
-            Toast.makeText(getApplicationContext(), "Registering your account...",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Register_Activity.this, Login_Activity.class));
+    public void register(View v) {
+        if (verifyUsernameLength() || verifyPasswordLength() || verifyConfirmPassword()) {
+            mAuth.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                userID = user.getUid();
+                                writeNewUser(username.getText().toString(), password.getText().toString(), isAdmin.isChecked());
+                                Log.d(TAG, TAG2 + "createdUser");
+                                Toast.makeText(Register_Activity.this, "Registration successful!.",
+                                        Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(Register_Activity.this, Login_Activity.class));
+                            } else {
+                                Toast.makeText(Register_Activity.this, "Authentication failed. Please try again.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } else {
+            Toast.makeText(getApplicationContext(), "Registration unsuccessful. Please try again.", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * Verifies that the username is not already in the database.
-     *
-     * @return boolean true if the username is unique and false otherwise.
-     *
+     * Creates new User object and saves to Firebase database
+     * @param username user's username
+     * @param password user's password
+     * @param isAdmin whether or not user is an admin
      */
-    private boolean verifyUniqueUsername() {
-        if (currentUsers.containsKey(username.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "Account already exists for this username.", Toast.LENGTH_SHORT).show();
-            username.setText("");
-            password.setText("");
-            confirmPassword.setText("");
-            username.requestFocus();
-            return false;
-        }
-        return true;
+    private void writeNewUser(String username, String password, Boolean isAdmin) {
+        User user = new User(username, password, isAdmin);
+        dbRef.child("users").child(userID).setValue(user);
     }
 
     /**
