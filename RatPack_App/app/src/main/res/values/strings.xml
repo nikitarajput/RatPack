@@ -13,6 +13,10 @@
     <string name="button_cancel">Cancel</string>
     <string name="text_welcome">Welcome</string>
     <string name="email_address">Email Address</string>
+    <string name="rat_sightings">Rat Sightings</string>
+    <string name="back">Go Back</string>
+
+
 
 
 </resources>

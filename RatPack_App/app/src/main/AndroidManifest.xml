@@ -30,7 +30,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Welcome_Activity" />
         </activity>
-        <activity android:name=".Home_Activity" />
+        <activity
+            android:name=".Home_Activity"
+            android:parentActivityName=".Login_Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Login_Activity"/>
+        </activity>
+        <activity
+            android:name=".Rat_Sightings_Activity"
+            android:parentActivityName=".Home_Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home_Activity"/>
+        </activity>
 
     </application>
 
