@@ -15,8 +15,31 @@
     <string name="email_address">Email Address</string>
     <string name="rat_sightings">Rat Sightings</string>
     <string name="back">Go Back</string>
+    <string name="button_submit">Submit</string>
+    <string name="spinner_location">Location Type</string>
+    <string name="text_name_of_rat">Name of Rat</string>
+    <string name="text_incident">Incident Address</string>
+    <string name="text_incident_zip">Incident Zipcode</string>
+    <string name="text_incident_city">Incident City</string>
+    <string name="spinner_borough">Borough</string>
 
+    <string-array name="location_types">
+        <item>Hospital</item>
+        <item>Apartment</item>
+        <item>Restaurant</item>
+        <item>Retail Store</item>
+        <item>Office</item>
+        <item>Warehouse</item>
+        <item>Factory</item>
+        <item>Outside</item>
+    </string-array>
 
-
+    <string-array name="boroughs">
+        <item>Manhatten</item>
+        <item>Kings</item>
+        <item>Queens</item>
+        <item>Bronx</item>
+        <item>Richmond</item>
+    </string-array>
 
 </resources>
