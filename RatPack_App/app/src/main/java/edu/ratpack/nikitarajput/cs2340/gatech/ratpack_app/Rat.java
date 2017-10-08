@@ -2,6 +2,9 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
 import android.location.Location;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,6 +16,7 @@ import java.util.Calendar;
 public class Rat {
 
     private String uniqueKey;
+    private String name;
     private double longitude;
     private double latitude;
     private String date;
@@ -22,9 +26,16 @@ public class Rat {
     private String address;
     private String city;
     private Borough borough;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference dbRef;
 
-    public Rat(double longitude, double latitude, LocationType locationType, int zipCode, String address, String city, Borough borough) {
+    public Rat(String name, LocationType locationType, String address, String city, int zipCode, Borough borough) {
+        this(name, 0, 0, locationType, address, city, zipCode, borough);
+    }
+
+    public Rat(String name, double longitude, double latitude, LocationType locationType, String address, String city, int zipCode, Borough borough) {
         // set the unique key from firebase
+        this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
         this.date = createDate();
@@ -34,6 +45,8 @@ public class Rat {
         this.address = address;
         this.city = city;
         this.borough = borough;
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        dbRef = mFirebaseDatabase.getReference();
     }
 
     /**
@@ -74,6 +87,24 @@ public class Rat {
      */
     public void setUniqueKey(String uniqueKey) {
         this.uniqueKey = uniqueKey;
+    }
+
+    /**
+     * Gets the name.
+     *
+     * @return the name.
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Sets the name.
+     *
+     * @param name the the name to be set.
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
