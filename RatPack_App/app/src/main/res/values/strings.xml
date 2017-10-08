@@ -24,22 +24,22 @@
     <string name="spinner_borough">Borough</string>
 
     <string-array name="location_types">
+        <item>1-2 Family Dwelling</item>
+        <item>3+ Family Apartment Building</item>
+        <item>3+ Family Mixed Use Building</item>
+        <item>Commercial Building</item>
+        <item>Vacant Lot</item>
+        <item>Construction Site</item>
         <item>Hospital</item>
-        <item>Apartment</item>
-        <item>Restaurant</item>
-        <item>Retail Store</item>
-        <item>Office</item>
-        <item>Warehouse</item>
-        <item>Factory</item>
-        <item>Outside</item>
+        <item>Catch Basin/Sewer</item>
     </string-array>
 
     <string-array name="boroughs">
-        <item>Manhatten</item>
-        <item>Kings</item>
+        <item>Manhattan</item>
+        <item>Staten Island</item>
         <item>Queens</item>
+        <item>Brooklyn</item>
         <item>Bronx</item>
-        <item>Richmond</item>
     </string-array>
 
 </resources>

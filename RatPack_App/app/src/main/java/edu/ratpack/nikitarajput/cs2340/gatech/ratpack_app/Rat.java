@@ -261,6 +261,15 @@ public class Rat {
         public String toString() {
             return name;
         }
+
+        public static LocationType fromString(String text) {
+            for (LocationType b : LocationType.values()) {
+                if (b.name.equalsIgnoreCase(text)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("No constant with text " + text + " found");
+        }
     }
 
     public enum Borough implements Serializable {
@@ -282,6 +291,15 @@ public class Rat {
         @Override
         public String toString() {
             return name;
+        }
+
+        public static Borough fromString(String text) {
+            for (Borough b : Borough.values()) {
+                if (b.name.equalsIgnoreCase(text)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("No constant with text " + text + " found");
         }
     }
 }
