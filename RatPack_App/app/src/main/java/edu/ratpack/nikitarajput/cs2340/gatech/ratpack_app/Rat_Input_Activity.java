@@ -59,11 +59,6 @@ public class Rat_Input_Activity extends AppCompatActivity {
                 Integer.parseInt(incidentZipCode.getText().toString()),
                 (Rat.Borough) boroughSpinner.getSelectedItem());
         DatabaseReference ratRef = dbRef.child("rats");
-        String key = ratRef.push(rat);
-
-
-
-
-
+        ratRef.push().setValue(rat);
     }
 }
