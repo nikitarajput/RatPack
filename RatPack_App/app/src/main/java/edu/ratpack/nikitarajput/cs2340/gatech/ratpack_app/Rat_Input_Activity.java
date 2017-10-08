@@ -1,5 +1,6 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -9,9 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,6 +20,7 @@ public class Rat_Input_Activity extends AppCompatActivity implements AdapterView
 
 
     EditText ratName, address, zipCode, city;
+    String locationType, borough;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mFirebaseDatabase;
@@ -60,28 +62,29 @@ public class Rat_Input_Activity extends AppCompatActivity implements AdapterView
                 address.getText().toString(), city.getText().toString(),
                 Integer.parseInt(zipCode.getText().toString()),
                 (Rat.Borough) boroughSpinner.getSelectedItem());
-        DatabaseReference ratRef = dbRef.child("rats");
-        ratRef.setValue(rat, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                if (databaseError != null) {
-                    System.out.println("Data could not be saved " + databaseError.getMessage());
-                } else {
-                    System.out.println("Data saved successfully.");
-                }
-            }
-        });
-
+        DatabaseReference ratsRef = dbRef.child("rats");
+        DatabaseReference newRatRef = ratsRef.push();
+        newRatRef.setValue(rat);
+        String ratID = newRatRef.getKey();
+        rat.setUniqueKey(ratID);
+        Toast.makeText(Rat_Input_Activity.this, "Rat added!.",
+                Toast.LENGTH_SHORT).show();
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
+        locationType = parent.getItemAtPosition(pos).toString();
+        borough = parent.getItemAtPosition(pos).toString();
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
+    }
+
+    public void toSightingsActivity(View v){
+        startActivity(new Intent(Rat_Input_Activity.this, Rat_Sightings_Activity.class));
     }
 
 
