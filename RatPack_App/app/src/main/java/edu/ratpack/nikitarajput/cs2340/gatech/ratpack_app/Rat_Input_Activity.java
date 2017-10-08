@@ -2,27 +2,29 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Rat_Input_Activity extends AppCompatActivity {
+public class Rat_Input_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+
+    EditText ratName, address, zipCode, city;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference dbRef;
     private Spinner locationTypeSpinner;
     private Spinner boroughSpinner;
-    private EditText ratName;
-    private EditText incidentAddress;
-    private EditText incidentCity;
-    private EditText incidentZipCode;
     private static final String TAG = "AddToDatabase";
 
     @Override
@@ -32,10 +34,10 @@ public class Rat_Input_Activity extends AppCompatActivity {
 
         locationTypeSpinner = (Spinner) findViewById(R.id.spinner_location_type);
         boroughSpinner = (Spinner) findViewById(R.id.spinner_borough);
-        ratName = (EditText) findViewById(R.id.rat_name_editText);
-        incidentAddress = (EditText) findViewById(R.id.incident_address_editText);
-        incidentCity = (EditText) findViewById(R.id.incident_city_editText);
-        incidentZipCode = (EditText) findViewById(R.id.incident_zipcode_editText);
+        ratName = (EditText)findViewById(R.id.rat_name_editText);
+        address = (EditText)findViewById(R.id.incident_address_editText);
+        zipCode = (EditText)findViewById(R.id.incident_zip_editText);
+        city = (EditText)findViewById(R.id.incident_city_editText);
 
         ArrayAdapter<String> locationTypeAdapter = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, Rat.LocationType.values());
@@ -55,10 +57,45 @@ public class Rat_Input_Activity extends AppCompatActivity {
     public void addRat(View v) {
         Log.d(TAG, ratName.getText().toString());
         Rat rat = new Rat(ratName.getText().toString(), (Rat.LocationType) locationTypeSpinner.getSelectedItem(),
-                incidentAddress.getText().toString(), incidentCity.getText().toString(),
-                Integer.parseInt(incidentZipCode.getText().toString()),
+                address.getText().toString(), city.getText().toString(),
+                Integer.parseInt(zipCode.getText().toString()),
                 (Rat.Borough) boroughSpinner.getSelectedItem());
         DatabaseReference ratRef = dbRef.child("rats");
-        ratRef.push().setValue(rat);
+        ratRef.setValue(rat, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError != null) {
+                    System.out.println("Data could not be saved " + databaseError.getMessage());
+                } else {
+                    System.out.println("Data saved successfully.");
+                }
+            }
+        });
+
     }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
