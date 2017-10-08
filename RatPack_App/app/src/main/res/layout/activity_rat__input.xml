@@ -76,17 +76,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-    <EditText
-        android:id="@+id/incident_zip_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
@@ -104,9 +93,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="@string/text_incident_city"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/incident_zip_editText" />
 
     <Spinner
@@ -126,13 +115,14 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_submit"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_borough"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
+        android:onClick="addRat"
+        android:text="@string/button_submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_borough" />
 
     <TextView
         android:id="@+id/textView13"
@@ -156,4 +146,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/incident_city_editText"
         android:layout_marginStart="16dp" />
+
+    <EditText
+        android:id="@+id/incident_zip_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 </android.support.constraint.ConstraintLayout>

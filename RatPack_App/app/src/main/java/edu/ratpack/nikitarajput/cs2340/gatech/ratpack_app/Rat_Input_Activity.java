@@ -16,7 +16,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Rat_Input_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Rat_Input_Activity extends AppCompatActivity {
 
 
     EditText ratName, address, zipCode, city;
@@ -41,13 +44,13 @@ public class Rat_Input_Activity extends AppCompatActivity implements AdapterView
         zipCode = (EditText)findViewById(R.id.incident_zip_editText);
         city = (EditText)findViewById(R.id.incident_city_editText);
 
-        ArrayAdapter<String> locationTypeAdapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, Rat.LocationType.values());
+        ArrayAdapter<CharSequence> locationTypeAdapter = ArrayAdapter.createFromResource(this,
+                R.array.location_types, android.R.layout.simple_spinner_item);
         locationTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationTypeSpinner.setAdapter(locationTypeAdapter);
 
-        ArrayAdapter<String> boroughAdapater = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, Rat.Borough.values());
+        ArrayAdapter<CharSequence> boroughAdapater = ArrayAdapter.createFromResource(this,
+                R.array.boroughs, android.R.layout.simple_spinner_item);
         boroughAdapater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         boroughSpinner.setAdapter(boroughAdapater);
 
@@ -56,34 +59,31 @@ public class Rat_Input_Activity extends AppCompatActivity implements AdapterView
         dbRef = mFirebaseDatabase.getReference();
     }
 
+    /**
+     * Adds rat to Firebase
+     * @param v is the current view
+     */
     public void addRat(View v) {
         Log.d(TAG, ratName.getText().toString());
-        Rat rat = new Rat(ratName.getText().toString(), (Rat.LocationType) locationTypeSpinner.getSelectedItem(),
+        Rat rat = new Rat(ratName.getText().toString(), locationTypeSpinner.getSelectedItem().toString(),
                 address.getText().toString(), city.getText().toString(),
                 Integer.parseInt(zipCode.getText().toString()),
-                (Rat.Borough) boroughSpinner.getSelectedItem());
+                boroughSpinner.getSelectedItem().toString());
         DatabaseReference ratsRef = dbRef.child("rats");
+
         DatabaseReference newRatRef = ratsRef.push();
         newRatRef.setValue(rat);
+
         String ratID = newRatRef.getKey();
         rat.setUniqueKey(ratID);
+
         Toast.makeText(Rat_Input_Activity.this, "Rat added!.",
                 Toast.LENGTH_SHORT).show();
+        toSightingsActivity();
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
-        locationType = parent.getItemAtPosition(pos).toString();
-        borough = parent.getItemAtPosition(pos).toString();
-    }
 
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
-    }
-
-    public void toSightingsActivity(View v){
+    public void toSightingsActivity(){
         startActivity(new Intent(Rat_Input_Activity.this, Rat_Sightings_Activity.class));
     }
 

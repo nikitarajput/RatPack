@@ -21,19 +21,17 @@ public class Rat {
     private double latitude;
     private String date;
     private String time;
-    private LocationType locationType;
+    private String locationType;
     private int zipCode;
     private String address;
     private String city;
-    private Borough borough;
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference dbRef;
+    private String borough;
 
-    public Rat(String name, LocationType locationType, String address, String city, int zipCode, Borough borough) {
+    public Rat(String name, String locationType, String address, String city, int zipCode, String borough) {
         this(name, 0, 0, locationType, address, city, zipCode, borough);
     }
 
-    public Rat(String name, double longitude, double latitude, LocationType locationType, String address, String city, int zipCode, Borough borough) {
+    public Rat(String name, double longitude, double latitude, String locationType, String address, String city, int zipCode, String borough) {
         // set the unique key from firebase
         this.name = name;
         this.longitude = longitude;
@@ -45,8 +43,7 @@ public class Rat {
         this.address = address;
         this.city = city;
         this.borough = borough;
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        dbRef = mFirebaseDatabase.getReference();
+
     }
 
     /**
@@ -184,7 +181,7 @@ public class Rat {
      *
      * @return the location type.
      */
-    public LocationType getLocationType() {
+    public String getLocationType() {
         return this.locationType;
     }
 
@@ -193,7 +190,7 @@ public class Rat {
      *
      * @param locationType the location type to be set.
      */
-    public void setLocationType(LocationType locationType) {
+    public void setLocationType(String locationType) {
         this.locationType = locationType;
     }
 
@@ -256,7 +253,7 @@ public class Rat {
      *
      * @return the borough.
      */
-    public Borough getBorough() {
+    public String getBorough() {
         return this.borough;
     }
 
@@ -265,54 +262,9 @@ public class Rat {
      *
      * @param borough the borough to be set.
      */
-    public void setBorough(Borough borough) {
+    public void setBorough(String borough) {
         this.borough = borough;
     }
 
-    public enum LocationType implements Serializable {
-        FAMILY_DWELLING("1-2 Family Dwelling"),
-        FAMILY_APARTMENT("3+ Family Apartment Building"),
-        FAMILY_MIXED_USE("3+ Family Mixed Use Building"),
-        COMMERCIAL("Commercial Building"),
-        VACANT("Vacant Lot"),
-        CONSTRUCTION("Construction Site"),
-        HOSPITAL("Hospital"),
-        SEWER("Catch Basin/Sewer");
 
-        private String name;
-
-        /**
-         * Constructor for the enumeration
-         *
-         * @param name name for the location type.
-         */
-        LocationType(String name) { this.name = name; }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-    }
-
-    public enum Borough implements Serializable {
-        MANHATTAN("Manhattan"),
-        STATEN_ISLAND("Staten Island"),
-        QUEENS("Queens"),
-        BROOKLYN("Brooklyn"),
-        BRONX("Bronx");
-
-        private String name;
-
-        /**
-         * Constructor for the enumeration
-         *
-         * @param name name for the borough.
-         */
-        Borough(String name) { this.name = name; }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-    }
 }
