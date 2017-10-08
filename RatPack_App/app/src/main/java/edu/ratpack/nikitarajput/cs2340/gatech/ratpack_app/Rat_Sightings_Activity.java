@@ -27,7 +27,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     //all methods involving the list of rats will be fully implemented in the Rat class
     //currently they are just place holders for testing/debugging
     static String[] oldRatListStandIn = new String[]{"Sleepy", "Ratty", "Fluffy", "Dopey"};
-    static String[] ratListStandIn = new String[]{"Newbie", "Sleepy", "Ratty", "Fluffy", "Dopey"};
+    static String[] ratListStandIn = new String[]{"Newbie", "Sleepy", "Ratty", "Fluffy", "Dopey", "asds", "asdasd", "asdsads", "asdasds", "asdsads", "asdsads"};
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +89,8 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     }
 
     public void addRat(View v){
-        //dummy method to be implemented later
+        startActivity(new Intent(Rat_Sightings_Activity.this, Rat_Input_Activity.class));
+
     }
 
     public static void viewRat(View v){
