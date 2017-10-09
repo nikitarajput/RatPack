@@ -11,6 +11,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 /**
@@ -19,7 +21,7 @@ import java.util.Iterator;
 
 public class Rat {
 
-    private static Rat[] rats;
+    private static Rat[] rats = new Rat[1];
     private String uniqueKey;
     private String name;
     private double longitude;
@@ -53,6 +55,18 @@ public class Rat {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         dbRef = mFirebaseDatabase.getReference();
     }
+    public Rat() {
+        this.name = "default";
+        this.time = "TIME";
+        this.date = "DATE";
+        this.address = "123 Easy ST";
+        this.zipCode = 12345;
+        this.borough = Borough.BRONX;
+        this.locationType = LocationType.COMMERCIAL;
+        this.latitude = 1;
+        this. longitude = 2;
+    }
+
 
     /**
      * Creates the current date.
@@ -76,15 +90,12 @@ public class Rat {
         return timeFormat.format(calendar.getTime());
     }
 
-    /**
-     * Gets the unique key.
-     *
-     * @return the unique key.
-     */
 
+    //doesn't work. Returns null rat array
     public static Rat[] updateList(){
-        //makes reference to most recent rats data
-        DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference("https://ratpack-bc74d.firebaseio.com/rats");
+        //makes reference to rats data
+        DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference().child("rats");
+        //only way i could find to get data from fireBase
         dbTemp.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -107,13 +118,18 @@ public class Rat {
      */
     private static Rat[] makeList(DataSnapshot data){
         rats = new Rat[(int)data.getChildrenCount()];
-        Iterator<DataSnapshot> list = data.getChildren().iterator();
+        Iterator<DataSnapshot> list = data.getChildren().iterator();//think this is doesn't give rats
         for(int i = 0; i < rats.length; i++){//should add all of the Rat objects to rats
             rats[i]=(Rat) list.next().getValue();
         }
         return rats;
     }
 
+    /**
+     * Gets the unique key.
+     *
+     * @return the unique key.
+     */
     public String getUniqueKey() {
         return this.uniqueKey;
     }
