@@ -68,7 +68,6 @@ public class Rat_Input_Activity extends AppCompatActivity {
         DatabaseReference ratsRef = dbRef.child("rats");
 
         DatabaseReference newRatRef = ratsRef.push();
-        newRatRef.setValue(rat);
 
         String ratID = newRatRef.getKey();
         rat.setUniqueKey(parseKey(ratID));
