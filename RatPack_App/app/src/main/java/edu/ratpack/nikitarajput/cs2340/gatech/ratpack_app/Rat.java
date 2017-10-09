@@ -2,12 +2,16 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
 import android.location.Location;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Iterator;
 
 /**
  * Created by soniaggarwal on 10/6/17.
@@ -15,6 +19,7 @@ import java.util.Calendar;
 
 public class Rat {
 
+    private static Rat[] rats;
     private String uniqueKey;
     private String name;
     private double longitude;
@@ -76,6 +81,39 @@ public class Rat {
      *
      * @return the unique key.
      */
+
+    public static Rat[] updateList(){
+        //makes reference to most recent rats data
+        DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference("https://ratpack-bc74d.firebaseio.com/rats");
+        dbTemp.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Rat.makeList(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+        return rats;
+    }
+
+    /**
+     * Helper method to @method updateList() to get Rat[] from the ValueEventListener
+     * @param data the snapshot of the current rat data
+     * @return current list of rats in the FirebaseDatabase
+     */
+    private static Rat[] makeList(DataSnapshot data){
+        rats = new Rat[(int)data.getChildrenCount()];
+        Iterator<DataSnapshot> list = data.getChildren().iterator();
+        for(int i = 0; i < rats.length; i++){//should add all of the Rat objects to rats
+            rats[i]=(Rat) list.next().getValue();
+        }
+        return rats;
+    }
+
     public String getUniqueKey() {
         return this.uniqueKey;
     }

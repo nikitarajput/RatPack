@@ -26,6 +26,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     //this will be replaced with our list of rats from firebase
     //all methods involving the list of rats will be fully implemented in the Rat class
     //currently they are just place holders for testing/debugging
+    private static Rat[] ratList;
     static String[] oldRatListStandIn = new String[]{"Sleepy", "Ratty", "Fluffy", "Dopey"};
     static String[] ratListStandIn = new String[]{"Newbie", "Sleepy", "Ratty", "Fluffy", "Dopey", "asds", "asdasd", "asdsads", "asdasds", "asdsads", "asdsads"};
 
@@ -33,7 +34,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings);
 
-        Rat_Sightings_Activity.setRatList();
+        Rat_Sightings_Activity.updateRatList();
         LinearLayout layout = (LinearLayout) findViewById(R.id.activity_rat_sightings);
         for(int i = 0; i<ratListStandIn.length; i++){//adds the buttons to the Layout
             Button butt = new Button(this);
@@ -54,7 +55,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
 
     public void reload(View v) {//I thought this would be nice to have. We can get rid of it if we need
         // updates ratListStandIn
-        Rat_Sightings_Activity.setRatList();
+        Rat_Sightings_Activity.updateRatList();
         LinearLayout layout = (LinearLayout) v.getParent();
         int larger = (ratListStandIn.length>oldRatListStandIn.length?
                 ratListStandIn.length: oldRatListStandIn.length);
@@ -99,10 +100,11 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
         //^probably must use this method
     }
 
-    public static void setRatList(){//will be a moved to rat class later
-        String[] temp = ratListStandIn;
+    public static void updateRatList(){//will be a moved to rat class later
+        ratList = Rat.updateList();
+        /*String[] temp = ratListStandIn;
         ratListStandIn = oldRatListStandIn;
-        oldRatListStandIn = temp;
+        oldRatListStandIn = temp;*/
     }
 
 
