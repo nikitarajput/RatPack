@@ -1,6 +1,7 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
 import android.location.Location;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -20,27 +22,27 @@ import java.util.Iterator;
  */
 
 public class Rat {
-
-    private static Rat[] rats = new Rat[1];
+    private static Rat[] rats=new Rat[0];
     private String uniqueKey;
     private String name;
-    private double longitude;
-    private double latitude;
+    private long longitude;
+    private long latitude;
     private String date;
     private String time;
     private LocationType locationType;
-    private int zipCode;
+    private long zipCode;
     private String address;
     private String city;
     private Borough borough;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference dbRef;
 
-    public Rat(String name, LocationType locationType, String address, String city, int zipCode, Borough borough) {
+    public Rat(String name, LocationType locationType, String address, String city, long zipCode, Borough borough) {
         this(name, 0, 0, locationType, address, city, zipCode, borough);
+
     }
 
-    public Rat(String name, double longitude, double latitude, LocationType locationType, String address, String city, int zipCode, Borough borough) {
+    public Rat(String name, long longitude, long latitude, LocationType locationType, String address, String city, long zipCode, Borough borough) {
         // set the unique key from firebase
         this.name = name;
         this.longitude = longitude;
@@ -55,18 +57,7 @@ public class Rat {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         dbRef = mFirebaseDatabase.getReference();
     }
-    public Rat() {
-        this.name = "default";
-        this.time = "TIME";
-        this.date = "DATE";
-        this.address = "123 Easy ST";
-        this.zipCode = 12345;
-        this.borough = Borough.BRONX;
-        this.locationType = LocationType.COMMERCIAL;
-        this.latitude = 1;
-        this. longitude = 2;
-    }
-
+    public Rat() {}//just used so we can avoid static methods
 
     /**
      * Creates the current date.
@@ -93,18 +84,16 @@ public class Rat {
 
     //doesn't work. Returns null rat array
     public static Rat[] updateList(){
-        //makes reference to rats data
         DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference().child("rats");
         //only way i could find to get data from fireBase
         dbTemp.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Rat.makeList(dataSnapshot);
+                makeList(dataSnapshot);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
             }
         });
 
@@ -118,10 +107,26 @@ public class Rat {
      */
     private static Rat[] makeList(DataSnapshot data){
         rats = new Rat[(int)data.getChildrenCount()];
+        Log.d("TEST R", "init list to length: "+rats.length);
         Iterator<DataSnapshot> list = data.getChildren().iterator();//think this is doesn't give rats
-        for(int i = 0; i < rats.length; i++){//should add all of the Rat objects to rats
-            rats[i]=(Rat) list.next().getValue();
+        //HashMap<String, Rat> temp = list.next().getValue(Rat.class);
+        int i = 0;
+        //has to get individual values. Enums are stored as lowercase so throws error if don't String.toUpperCase()
+        for (DataSnapshot messageSnapshot: data.getChildren()) {
+            String name = (String)messageSnapshot.child("name").getValue();
+            long longitude = (long)messageSnapshot.child("longitude").getValue();
+            long latitude = (long)messageSnapshot.child("latitude").getValue();
+            String date = (String)messageSnapshot.child("date").getValue();
+            String time = (String)messageSnapshot.child("time").getValue();
+            LocationType locationType = LocationType.valueOf(((String)messageSnapshot.child("locationType").getValue()).toUpperCase());
+            long zipCode = (long)messageSnapshot.child("zipCode").getValue();
+            String address =(String)messageSnapshot.child("address").getValue();
+            String city = (String)messageSnapshot.child("city").getValue();
+            Borough borough = Borough.valueOf(((String)messageSnapshot.child("borough").getValue()).toUpperCase());
+            rats[i] = new Rat( name, longitude, latitude, locationType, address, city, zipCode, borough);
+            i++;
         }
+
         return rats;
     }
 
@@ -166,7 +171,7 @@ public class Rat {
      *
      * @return the latitude.
      */
-    public double getLatitude() {
+    public long getLatitude() {
         return this.latitude;
     }
 
@@ -175,7 +180,7 @@ public class Rat {
      *
      * @param latitude the the latitude to be set.
      */
-    public void setLatitude(double latitude) {
+    public void setLatitude(long latitude) {
         this.latitude = latitude;
     }
 
@@ -184,7 +189,7 @@ public class Rat {
      *
      * @return the longitude.
      */
-    public double getLongitude() {
+    public long getLongitude() {
         return this.longitude;
     }
 
@@ -193,7 +198,7 @@ public class Rat {
      *
      * @param longitude the the longitude to be set.
      */
-    public void setLongitude(double longitude) {
+    public void setLongitude(long longitude) {
         this.longitude = longitude;
     }
 
@@ -256,7 +261,7 @@ public class Rat {
      *
      * @return the zip code.
      */
-    public int getZipCode() {
+    public long getZipCode() {
         return this.zipCode;
     }
 
@@ -265,7 +270,7 @@ public class Rat {
      *
      * @param zipCode the zip code to be set.
      */
-    public void setZipCode(int zipCode) {
+    public void setZipCode(long zipCode) {
         this.zipCode = zipCode;
     }
 
