@@ -30,7 +30,33 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_rat_sightings);
         updateRatList();
         LinearLayout layout = (LinearLayout) findViewById(R.id.activity_rat_sightings);
-        displayRats(layout);
+        for (int i = 0; i < ratList.length; i++) {//adds the buttons to the Layout
+            Button butt = new Button(this);
+            //rat button, id is even number
+            butt.setText("Rat: " + ratList[i].getName());//changed later
+            butt.setId(2 * i);
+            butt.setBackgroundColor(Color.WHITE);
+            butt.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+            butt.setHeight(findViewById(R.id.add_rat_button).getHeight());
+            butt.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    viewRat(findViewById(v.getId() + 1));
+                }
+            });
+            //rat lstView for info, id is odd
+            TextView buttDetails = new TextView(this);
+            buttDetails.setText("Name: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
+                    + "\nCity: " + ratList[i].getCity() + "\nZipcode: " + ratList[i].getZipCode()
+                    + "\nLocation Type: " + ratList[i].getLocationType() + "\nBorough: " + ratList[i].getBorough().toString()
+                    + "\nDate: " + ratList[i].getDate() + "\nTime: " + ratList[i].getTime()
+                    + "\nLatitude: " + ratList[i].getLatitude() + "\nLongitude: " + ratList[i].getLongitude());
+            buttDetails.setId(2 * i + 1);
+            buttDetails.setVisibility(View.GONE);
+
+            layout.addView(butt);
+            layout.addView(buttDetails);
+        }
     }
 
     public void reload(View v) {//I thought this would be nice to have. We can get rid of it if we need
@@ -43,7 +69,33 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
             layout.removeView(findViewById(2 * i));
             layout.removeView(findViewById(2 * i + 1));
         }
-        displayRats(layout);
+        for (int i = 0; i < ratList.length; i++) {//copy paste from onCreate
+            Button butt = new Button(this);
+            //rat button, id is even number
+            butt.setText("Rat: " + ratList[i].getName());//changed later
+            butt.setId(2 * i);
+            butt.setBackgroundColor(Color.WHITE);
+            butt.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+            butt.setHeight(findViewById(R.id.add_rat_button).getHeight());
+            butt.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    viewRat(findViewById(v.getId() + 1));
+                }
+            });
+            //rat lstView for info, id is odd
+            TextView buttDetails = new TextView(this);
+            buttDetails.setText("Name: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
+                    + "\nCity: " + ratList[i].getCity() + "\nZipcode: " + ratList[i].getZipCode()
+                    + "\nLocation Type: " + ratList[i].getLocationType() + "\nBorough: " + ratList[i].getBorough()
+                    + "\nDate: " + ratList[i].getDate() + "\nTime: " + ratList[i].getTime()
+                    + "\nLatitude: " + ratList[i].getLatitude() + "\nLongitude: " + ratList[i].getLongitude());
+            buttDetails.setId(2 * i + 1);
+            buttDetails.setTextSize(25f);
+            buttDetails.setVisibility(View.GONE);
+
+            layout.addView(butt);
+            layout.addView(buttDetails);
+        }
     }
 
     public void onBack(View v) {
@@ -68,43 +120,6 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
         Log.d("TEST rsa", "going to update list");
         ratList = Rat.updateList();
         Log.d("TEST rsa", "updated list to length: "+ratList.length);
-        if (ratList.length != 0 && ratList.length != 4) {
-            int count = ratList.length == 3 ? 5 : 3;
-            ratList = new Rat[count];
-            for (int i = 0; i < ratList.length; i++) {
-                ratList[i] = new Rat();
-            }
-        }
 
-
-    }
-
-    private void displayRats(LinearLayout layout){
-        for (int i = 0; i < ratList.length; i++) {//copy paste from onCreate
-            Button butt = new Button(this);
-            //rat button, id is even number
-            butt.setText("Rat: " + ratList[i].getName());//changed later
-            butt.setId(2 * i);
-            butt.setBackgroundColor(Color.WHITE);
-            butt.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
-            butt.setHeight(findViewById(R.id.add_rat_button).getHeight());
-            butt.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    viewRat(findViewById(v.getId() + 1));
-                }
-            });
-            //rat lstView for info, id is odd
-            TextView buttDetails = new TextView(this);
-            buttDetails.setText("Name: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
-                    + "\nCity: " + ratList[i].getCity() + "\nZipcode: " + ratList[i].getZipCode()
-                    + "\nLocation Type: " + ratList[i].getLocationType() + "\nBorough: " + ratList[i].getBorough()
-                    + "\nDate: " + ratList[i].getDate() + "\nTime: " + ratList[i].getTime()
-                    + "\nLatitude: " + ratList[i].getLatitude() + "\nLongitude: " + ratList[i].getLongitude());
-            buttDetails.setId(2 * i + 1);
-            buttDetails.setVisibility(View.GONE);
-
-            layout.addView(butt);
-            layout.addView(buttDetails);
-        }
     }
 }
