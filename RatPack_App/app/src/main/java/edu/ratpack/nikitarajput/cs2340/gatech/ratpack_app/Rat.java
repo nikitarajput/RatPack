@@ -1,37 +1,48 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
 import android.location.Location;
+import android.util.Log;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by soniaggarwal on 10/6/17.
  */
 
 public class Rat {
-
+    private static Rat[] rats=new Rat[0];
     private String uniqueKey;
     private String name;
-    private double longitude;
-    private double latitude;
+    private long longitude;
+    private long latitude;
     private String date;
     private String time;
     private String locationType;
-    private int zipCode;
+    private long zipCode;
     private String address;
     private String city;
     private String borough;
 
-    public Rat(String name, String locationType, String address, String city, int zipCode, String borough) {
+
+    public Rat(String name, String locationType, String address, String city, long zipCode, String borough) {
         this(name, 0, 0, locationType, address, city, zipCode, borough);
+
     }
 
-    public Rat(String name, double longitude, double latitude, String locationType, String address, String city, int zipCode, String borough) {
+
+    public Rat(String name, long longitude, long latitude, String locationType, String address, String city, long zipCode, String borough) {
         // set the unique key from firebase
         this.name = name;
         this.longitude = longitude;
@@ -45,6 +56,7 @@ public class Rat {
         this.borough = borough;
 
     }
+    public Rat() {}//just used so we can avoid static methods
 
     /**
      * Creates the current date.
@@ -66,6 +78,41 @@ public class Rat {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         return timeFormat.format(calendar.getTime());
+    }
+
+
+    //doesn't work. Returns null rat array
+    public static Rat[] updateList(){
+        DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference().child("rats");
+        //only way i could find to get data from fireBase
+        dbTemp.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                makeList(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        return rats;
+    }
+
+    /**
+     * Helper method to @method updateList() to get Rat[] from the ValueEventListener
+     * @param data the snapshot of the current rat data
+     * @return current list of rats in the FirebaseDatabase
+     */
+    private static Rat[] makeList(DataSnapshot data){
+        rats = new Rat[(int)data.getChildrenCount()];
+        int i = 0;
+        for (DataSnapshot snap: data.getChildren()) {
+            rats[i] = snap.getValue(Rat.class);
+            i++;
+        }
+
+        return rats;
     }
 
     /**
@@ -109,7 +156,7 @@ public class Rat {
      *
      * @return the latitude.
      */
-    public double getLatitude() {
+    public long getLatitude() {
         return this.latitude;
     }
 
@@ -118,7 +165,7 @@ public class Rat {
      *
      * @param latitude the the latitude to be set.
      */
-    public void setLatitude(double latitude) {
+    public void setLatitude(long latitude) {
         this.latitude = latitude;
     }
 
@@ -127,7 +174,7 @@ public class Rat {
      *
      * @return the longitude.
      */
-    public double getLongitude() {
+    public long getLongitude() {
         return this.longitude;
     }
 
@@ -136,7 +183,7 @@ public class Rat {
      *
      * @param longitude the the longitude to be set.
      */
-    public void setLongitude(double longitude) {
+    public void setLongitude(long longitude) {
         this.longitude = longitude;
     }
 
@@ -199,7 +246,7 @@ public class Rat {
      *
      * @return the zip code.
      */
-    public int getZipCode() {
+    public long getZipCode() {
         return this.zipCode;
     }
 
@@ -208,7 +255,7 @@ public class Rat {
      *
      * @param zipCode the zip code to be set.
      */
-    public void setZipCode(int zipCode) {
+    public void setZipCode(long zipCode) {
         this.zipCode = zipCode;
     }
 
