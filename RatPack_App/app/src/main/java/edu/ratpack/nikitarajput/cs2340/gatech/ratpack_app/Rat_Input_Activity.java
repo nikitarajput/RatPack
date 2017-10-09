@@ -60,25 +60,40 @@ public class Rat_Input_Activity extends AppCompatActivity {
      * @param v is the current view
      */
     public void addRat(View v) {
-        Log.d(TAG, ratName.getText().toString());
-        Rat rat = new Rat(ratName.getText().toString(), locationTypeSpinner.getSelectedItem().toString(),
-                address.getText().toString(), city.getText().toString(),
-                Integer.parseInt(zipCode.getText().toString()),
-                boroughSpinner.getSelectedItem().toString());
-        DatabaseReference ratsRef = dbRef.child("rats");
+        if(noEmptyFields()) {
+            Log.d(TAG, ratName.getText().toString());
+            Rat rat = new Rat(ratName.getText().toString(), locationTypeSpinner.getSelectedItem().toString(),
+                    address.getText().toString(), city.getText().toString(),
+                    Integer.parseInt(zipCode.getText().toString()),
+                    boroughSpinner.getSelectedItem().toString());
+            DatabaseReference ratsRef = dbRef.child("rats");
 
-        DatabaseReference newRatRef = ratsRef.push();
+            DatabaseReference newRatRef = ratsRef.push();
 
-        String ratID = newRatRef.getKey();
-        rat.setUniqueKey(parseKey(ratID));
-        newRatRef.setValue(rat);
-        Toast.makeText(Rat_Input_Activity.this, "Rat added!.",
-                Toast.LENGTH_SHORT).show();
-        toSightingsActivity();
+            String ratID = newRatRef.getKey();
+            rat.setUniqueKey(parseKey(ratID));
+            newRatRef.setValue(rat);
+            Toast.makeText(Rat_Input_Activity.this, "Rat added!.",
+                    Toast.LENGTH_SHORT).show();
+            toSightingsActivity();
+        }
+        else{
+            Toast.makeText(Rat_Input_Activity.this, "Invalid rat.",
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private String parseKey(String url){
         return url.substring(url.lastIndexOf('-') + 1);
+    }
+
+    private boolean noEmptyFields(){
+        if(ratName.getText().toString().matches("") || address.getText().toString().matches("") ||
+                zipCode.getText().toString().matches("") || city.getText().toString().matches(""))
+            return false;
+        else
+            return true;
     }
 
     public void toSightingsActivity(){
