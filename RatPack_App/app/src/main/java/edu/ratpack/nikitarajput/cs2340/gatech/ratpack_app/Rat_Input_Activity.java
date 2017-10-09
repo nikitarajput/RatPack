@@ -71,13 +71,16 @@ public class Rat_Input_Activity extends AppCompatActivity {
         newRatRef.setValue(rat);
 
         String ratID = newRatRef.getKey();
-        rat.setUniqueKey(ratID);
-
+        rat.setUniqueKey(parseKey(ratID));
+        newRatRef.setValue(rat);
         Toast.makeText(Rat_Input_Activity.this, "Rat added!.",
                 Toast.LENGTH_SHORT).show();
         toSightingsActivity();
     }
 
+    private String parseKey(String url){
+        return url.substring(url.lastIndexOf('-') + 1);
+    }
 
     public void toSightingsActivity(){
         startActivity(new Intent(Rat_Input_Activity.this, Rat_Sightings_Activity.class));

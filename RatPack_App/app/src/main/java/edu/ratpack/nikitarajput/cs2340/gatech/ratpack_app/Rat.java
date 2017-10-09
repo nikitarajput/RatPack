@@ -109,18 +109,6 @@ public class Rat {
         Log.d("TEST", "Size of array is: "+rats.length);
         int i = 0;
         for (DataSnapshot snap: data.getChildren()) {
-            /*String name = (String)snap.child("name").getValue();
-            double longitude = (long)snap.child("longitude").getValue();
-            double latitude = (long)snap.child("latitude").getValue();
-            String date = (String)snap.child("date").getValue();
-            String time = (String)snap.child("time").getValue();
-            String locationType = (String)snap.child("locationType").getValue();
-            Integer zc = (int) (long)snap.child("zipCode").getValue();
-            int zipCode =zc.intValue();
-            String address = (String)snap.child("address").getValue();
-            String city = (String)snap.child("city").getValue();
-            String borough = (String)snap.child("borough").getValue();
-            rats[i] = new Rat(name, longitude, latitude, locationType, address, city, zipCode, borough);*/
             rats[i] = snap.getValue(Rat.class);
             i++;
         }

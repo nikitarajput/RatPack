@@ -46,7 +46,8 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
             });
             //rat lstView for info, id is odd
             TextView buttDetails = new TextView(this);
-            buttDetails.setText("Name: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
+            buttDetails.setText("Unique ID: " + ratList[i].getUniqueKey()
+                    + "\nName: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
                     + "\nCity: " + ratList[i].getCity() + "\nZipcode: " + ratList[i].getZipCode()
                     + "\nLocation Type: " + ratList[i].getLocationType() + "\nBorough: " + ratList[i].getBorough().toString()
                     + "\nDate: " + ratList[i].getDate() + "\nTime: " + ratList[i].getTime()
@@ -84,7 +85,8 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
             });
             //rat lstView for info, id is odd
             TextView buttDetails = new TextView(this);
-            buttDetails.setText("Name: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
+            buttDetails.setText("Unique ID: " + ratList[i].getUniqueKey()
+                    + "\nName: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
                     + "\nCity: " + ratList[i].getCity() + "\nZipcode: " + ratList[i].getZipCode()
                     + "\nLocation Type: " + ratList[i].getLocationType() + "\nBorough: " + ratList[i].getBorough()
                     + "\nDate: " + ratList[i].getDate() + "\nTime: " + ratList[i].getTime()
