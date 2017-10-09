@@ -30,8 +30,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Welcome_Activity" />
         </activity>
-        <activity
-            android:name=".Home_Activity"></activity>
+        <activity android:name=".Home_Activity" />
         <activity
             android:name=".Rat_Sightings_Activity"
             android:parentActivityName=".Home_Activity">
@@ -45,6 +44,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Rat_Sightings_Activity" />
         </activity>
+        <activity android:name=".Rat_Details_Activity"></activity>
     </application>
 
 </manifest>

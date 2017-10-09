@@ -45,7 +45,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
             butt.setHeight(findViewById(R.id.add_rat_button).getHeight());
             butt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Rat_Sightings_Activity.viewRat(v);
+                    Rat_Sightings_Activity.this.viewRat(v);
                 }
             });
             layout.addView(butt);
@@ -74,7 +74,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
                 butt.setHeight(findViewById(R.id.add_rat_button).getHeight());
                 butt.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        Rat_Sightings_Activity.viewRat(v);
+                        Rat_Sightings_Activity.this.viewRat(v);
                     }
                 });
                 layout.addView(butt);
@@ -93,10 +93,8 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
 
     }
 
-    public static void viewRat(View v){
-        //dummy method to be implemented later
-        //v.getParent()
-        //^probably must use this method
+    public void viewRat(View v){
+        startActivity(new Intent(Rat_Sightings_Activity.this, Rat_Details_Activity.class));
     }
 
     public static void setRatList(){//will be a moved to rat class later
