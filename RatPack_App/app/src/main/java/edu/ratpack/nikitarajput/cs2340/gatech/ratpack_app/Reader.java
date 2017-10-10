@@ -3,6 +3,8 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 /**
  * Created by aaron on 10/9/2017.
  */
+import android.support.annotation.RequiresPermission;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -61,8 +63,8 @@ public class Reader {
         try  {
             BufferedReader buffy = new BufferedReader(new FileReader(csvFile));//give buff the file
             line=buffy.readLine();//skips first line(the headers)
-            int uniqueID = 1;
-            while ((line = buffy.readLine()) != null) {//stops when null line
+            int whileCounter = 0;
+            while ((line = buffy.readLine()) != null) {//loops until finds the end of CSV
 
                 // use comma as separator
                 String[] rats = line.split(cvsSplitBy);//only one line at a time
@@ -103,18 +105,11 @@ public class Reader {
                 String city = goodRats[4];
                 String borough = goodRats[5];
                 Rat temp = new Rat("No Name(CSV)",lon, lat,locationType,address,city,zip,borough);
-                temp.setUniqueKey(""+uniqueID);
-                map.put("/rats/"+uniqueID,temp);
-                uniqueID++;
-                //add rat to Firebase
-                DatabaseReference newRatRef = ratsRef.push();
+                temp.setUniqueKey(""+whileCounter);
+                allRats.add(whileCounter,temp);
+                map.put("/rats/"+whileCounter,temp);
+                whileCounter++;
 
-                String ratID = newRatRef.getKey();
-                temp.setUniqueKey(parseKeyReader(ratID));
-                newRatRef.setValue(temp);
-
-
-            //}
 
 
                 //used ot check individual rats
@@ -132,6 +127,7 @@ public class Reader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Reader.pushToFB();
         //System.out.println("\n\nTimes Failed: "+badCount+"\nPercent success: "+((100638.0-badCount)/(100638.0)));
 
 
@@ -166,7 +162,8 @@ public class Reader {
     private static void pushToFB(){
         FirebaseDatabase temp = FirebaseDatabase.getInstance();
         DatabaseReference ref = temp.getReference();
-        ref.updateChildren(map);
+        ref.updateChildren(map);//is supposed to add everything in the map to FireBase
+
 
     }
     //copied from Rat_Input_activity
