@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +32,7 @@ public class Register_Activity extends AppCompatActivity {
     private static final String TAG2 = "AddToDatabase";
 
     EditText username, password, confirmPassword;
-    RadioButton isAdmin;
+    Switch isAdmin;
     private String userID;
 
     @Override
@@ -42,7 +43,7 @@ public class Register_Activity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.register_password_editText);
         confirmPassword = (EditText)findViewById(R.id.confirm_password_editText);
         mAuth = FirebaseAuth.getInstance();
-        isAdmin = (RadioButton)findViewById(R.id.isAdmin_radioButton);
+        isAdmin = (Switch)findViewById(R.id.isAdmin_switch);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         dbRef = mFirebaseDatabase.getReference();
     }

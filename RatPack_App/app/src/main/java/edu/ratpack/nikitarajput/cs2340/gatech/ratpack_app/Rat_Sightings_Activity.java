@@ -23,85 +23,78 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class Rat_Sightings_Activity extends AppCompatActivity {
-    //this will be replaced with our list of rats from firebase
-    //all methods involving the list of rats will be fully implemented in the Rat class
-    //currently they are just place holders for testing/debugging
-    static String[] oldRatListStandIn = new String[]{"Sleepy", "Ratty", "Fluffy", "Dopey"};
-    static String[] ratListStandIn = new String[]{"Newbie", "Sleepy", "Ratty", "Fluffy", "Dopey", "asds", "asdasd", "asdsads", "asdasds", "asdsads", "asdsads"};
+    private static Rat[] ratList =new Rat[0];
+    public static Button forRat;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings);
-
-        Rat_Sightings_Activity.setRatList();
         LinearLayout layout = (LinearLayout) findViewById(R.id.activity_rat_sightings);
-        for(int i = 0; i<ratListStandIn.length; i++){//adds the buttons to the Layout
-            Button butt = new Button(this);
+        forRat = (Button)findViewById(R.id.reload_button);
+        reload(findViewById(R.id.reload_button));
+    }
 
-            butt.setText("Rat: "+ratListStandIn[i]);//changed later
-            butt.setId(i);
+    public void reload(View v) {//I thought this would be nice to have. We can get rid of it if we need
+
+        Rat[] oldRatList = ratList;
+        updateRatList();
+        LinearLayout layout = (LinearLayout) findViewById(R.id.activity_rat_sightings);
+        for (int i = 0; i < oldRatList.length; i++) {//removes old buttons
+
+            layout.removeView(findViewById(2 * i));
+            layout.removeView(findViewById(2 * i + 1));
+        }
+        for (int i = 0; i < ratList.length; i++) {//adds new buttons
+            //rat button
+            Button butt = new Button(this);
+            butt.setText("Rat: " + ratList[i].getName());
+            butt.setId(2 * i);
             butt.setBackgroundColor(Color.WHITE);
             butt.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
             butt.setHeight(findViewById(R.id.add_rat_button).getHeight());
             butt.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Rat_Sightings_Activity.this.viewRat(v);
+                    viewRat(findViewById(v.getId() + 1));
                 }
             });
+            //rat lstView for info
+            TextView buttDetails = new TextView(this);
+            buttDetails.setText("Unique ID: " + ratList[i].getUniqueKey()
+                    + "\nName: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
+                    + "\nCity: " + ratList[i].getCity() + "\nZipcode: " + ratList[i].getZipCode()
+                    + "\nLocation Type: " + ratList[i].getLocationType() + "\nBorough: " + ratList[i].getBorough()
+                    + "\nDate: " + ratList[i].getDate() + "\nTime: " + ratList[i].getTime()
+                    + "\nLatitude: " + ratList[i].getLatitude() + "\nLongitude: " + ratList[i].getLongitude());
+            buttDetails.setId(2 * i + 1);
+            buttDetails.setTextSize(20f);
+            buttDetails.setVisibility(View.GONE);
+
             layout.addView(butt);
+            layout.addView(buttDetails);
         }
+
     }
 
-    public void reload(View v) {//I thought this would be nice to have. We can get rid of it if we need
-        // updates ratListStandIn
-        Rat_Sightings_Activity.setRatList();
-        LinearLayout layout = (LinearLayout) v.getParent();
-        int larger = (ratListStandIn.length>oldRatListStandIn.length?
-                ratListStandIn.length: oldRatListStandIn.length);
-        int smaller =(ratListStandIn.length<oldRatListStandIn.length?
-                ratListStandIn.length: oldRatListStandIn.length);
-        for (int i = 0; i < larger; i++) {//adds new buttons
-            if(i < smaller){ //renaming buttons still on screen
-                Button butt = (Button)findViewById(i);
-                butt.setText("Rat: " + ratListStandIn[i]);//changed later
-            } else if(ratListStandIn.length > oldRatListStandIn.length){//adds extra if adding
-                Button butt = new Button(this);
-
-                butt.setText("Rat: " + ratListStandIn[i]);//changed later
-                butt.setId(i);
-                butt.setBackgroundColor(Color.WHITE);
-                butt.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
-                butt.setHeight(findViewById(R.id.add_rat_button).getHeight());
-                butt.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Rat_Sightings_Activity.this.viewRat(v);
-                    }
-                });
-                layout.addView(butt);
-            } else{//removes extra if removing
-                layout.removeView(findViewById(i));
-            }
-        }
-    }
-
-    public void onBack(View v){
+    public void onBack(View v) {
         startActivity(new Intent(Rat_Sightings_Activity.this, Home_Activity.class));
     }
 
-    public void addRat(View v){
+    public void addRat(View v) {
         startActivity(new Intent(Rat_Sightings_Activity.this, Rat_Input_Activity.class));
 
     }
 
-    public void viewRat(View v){
-        startActivity(new Intent(Rat_Sightings_Activity.this, Rat_Details_Activity.class));
+
+    public void viewRat(View v) {
+        if (v.getVisibility() == View.GONE)
+            findViewById(v.getId()).setVisibility(View.VISIBLE);
+        else
+            findViewById(v.getId()).setVisibility(View.GONE);
+
     }
 
-    public static void setRatList(){//will be a moved to rat class later
-        String[] temp = ratListStandIn;
-        ratListStandIn = oldRatListStandIn;
-        oldRatListStandIn = temp;
+    public static void updateRatList() {//will be a moved to rat class later
+        ratList = Rat.updateList();
+
     }
-
-
 }

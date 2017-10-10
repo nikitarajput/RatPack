@@ -1,20 +1,32 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
+import android.content.Context;
 import android.location.Location;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by soniaggarwal on 10/6/17.
  */
 
 public class Rat {
-
+    private static Rat[] rats=new Rat[0];
     private String uniqueKey;
     private String name;
     private double longitude;
@@ -27,9 +39,12 @@ public class Rat {
     private String city;
     private String borough;
 
+
     public Rat(String name, String locationType, String address, String city, int zipCode, String borough) {
         this(name, 0, 0, locationType, address, city, zipCode, borough);
+
     }
+
 
     public Rat(String name, double longitude, double latitude, String locationType, String address, String city, int zipCode, String borough) {
         // set the unique key from firebase
@@ -45,6 +60,7 @@ public class Rat {
         this.borough = borough;
 
     }
+    public Rat() {}//just used so we can avoid static methods & testing
 
     /**
      * Creates the current date.
@@ -66,6 +82,45 @@ public class Rat {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         return timeFormat.format(calendar.getTime());
+    }
+
+
+    //doesn't work. Returns null rat array
+    public static Rat[] updateList(){
+        DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference().child("rats");
+        //only way i could find to get data from fireBase
+        dbTemp.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                makeList(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        return rats;
+    }
+
+    /**
+     * Helper method to @method updateList() to get Rat[] from the ValueEventListener
+     * @param data the snapshot of the current rat data
+     * @return current list of rats in the FirebaseDatabase
+     */
+    private static void makeList(DataSnapshot data){
+        int oldLength = rats.length;
+        rats = new Rat[(int)data.getChildrenCount()];
+        int i = 0;
+        for (DataSnapshot snap: data.getChildren()) {
+            rats[i] = snap.getValue(Rat.class);
+            i++;
+        }
+        //calls reload once on first getting data. Never calls again.
+        if(oldLength == 0 && Rat_Sightings_Activity.forRat != null) {
+            Rat_Sightings_Activity.forRat.callOnClick();
+            Rat_Sightings_Activity.forRat = null;
+        }
+
     }
 
     /**
