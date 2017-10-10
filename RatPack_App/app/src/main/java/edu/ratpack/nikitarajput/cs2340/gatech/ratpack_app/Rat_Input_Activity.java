@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.File;
 import java.util.Map;
 
 public class Rat_Input_Activity extends AppCompatActivity {
@@ -38,9 +39,6 @@ public class Rat_Input_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_input);
 
-        Map<String, Object> temp =Reader.updateMap();
-        Log.d("TEST", "\nFinished updating Map\n");
-        reader(temp);
         locationTypeSpinner = (Spinner) findViewById(R.id.spinner_location_type);
         boroughSpinner = (Spinner) findViewById(R.id.spinner_borough);
         ratName = (EditText)findViewById(R.id.rat_name_editText);
@@ -63,15 +61,18 @@ public class Rat_Input_Activity extends AppCompatActivity {
         dbRef = mFirebaseDatabase.getReference();
     }
 
-    //used for reader
-    /*Rat_Input_Activity(){
-        mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        dbRef = mFirebaseDatabase.getReference();
-    }*/
+
     public void reader(Map<String, Object> m){
         dbRef.child("rats").updateChildren(m);
     }//end of reader helper methods
+
+    public void readCSV(View v){
+        Map<String, Object> temp =Reader.updateMap(this);
+        Log.d("TEST", "\nFinished updating Map, is size:"+temp.size());
+        mFirebaseDatabase= FirebaseDatabase.getInstance();
+        dbRef = mFirebaseDatabase.getReference();
+        reader(temp);
+    }
 
     /**
      * Adds rat to Firebase
