@@ -95,6 +95,14 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
 
     public static void updateRatList() {//will be a moved to rat class later
         ratList = Rat.updateList();
+        Rat[] temp = ratList;
+        //safegaurd to make sure we don't display more that 50 rats at a time
+        if (ratList.length > 50){
+            ratList = new Rat[50];
+            for(int i = 0; i < ratList.length; i++){
+                ratList[i] = temp[i];
+            }
+        }
 
     }
 }

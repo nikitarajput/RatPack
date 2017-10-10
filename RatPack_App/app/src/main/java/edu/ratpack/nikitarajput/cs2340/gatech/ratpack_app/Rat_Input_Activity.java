@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,6 +23,8 @@ public class Rat_Input_Activity extends AppCompatActivity {
 
     EditText ratName, address, zipCode, city;
     String locationType, borough;
+
+    private FirebaseApp fbApp = FirebaseApp.initializeApp(this);
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mFirebaseDatabase;
@@ -35,6 +38,9 @@ public class Rat_Input_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_input);
 
+        Map<String, Object> temp =Reader.updateMap();
+        Log.d("TEST", "\nFinished updating Map\n");
+        reader(temp);
         locationTypeSpinner = (Spinner) findViewById(R.id.spinner_location_type);
         boroughSpinner = (Spinner) findViewById(R.id.spinner_borough);
         ratName = (EditText)findViewById(R.id.rat_name_editText);
@@ -58,13 +64,13 @@ public class Rat_Input_Activity extends AppCompatActivity {
     }
 
     //used for reader
-    Rat_Input_Activity(){
+    /*Rat_Input_Activity(){
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         dbRef = mFirebaseDatabase.getReference();
-    }
+    }*/
     public void reader(Map<String, Object> m){
-        dbRef.updateChildren(m);
+        dbRef.child("rats").updateChildren(m);
     }//end of reader helper methods
 
     /**
