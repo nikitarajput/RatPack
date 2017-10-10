@@ -37,16 +37,13 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     public void reload(View v) {//I thought this would be nice to have. We can get rid of it if we need
 
         Rat[] oldRatList = ratList;
-        Log.d("TEST","Begin reload, calls updateRatList()");
         updateRatList();
         LinearLayout layout = (LinearLayout) findViewById(R.id.activity_rat_sightings);
-        Log.d("TEST","Removing "+oldRatList.length+" button-textview pairs");
         for (int i = 0; i < oldRatList.length; i++) {//removes old buttons
 
             layout.removeView(findViewById(2 * i));
             layout.removeView(findViewById(2 * i + 1));
         }
-        Log.d("TEST","adding "+ratList.length+" button-textView pairs");
         for (int i = 0; i < ratList.length; i++) {//adds new buttons
             //rat button
             Button butt = new Button(this);
@@ -75,7 +72,6 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
             layout.addView(butt);
             layout.addView(buttDetails);
         }
-        Log.d("TEST","End reload()\n**********************");
 
     }
 
@@ -98,9 +94,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     }
 
     public static void updateRatList() {//will be a moved to rat class later
-        Log.d("TEST rsa", "going to update list");
         ratList = Rat.updateList();
-        Log.d("TEST rsa", "updated ratList to length: "+ratList.length+"\n*********************");
 
     }
 }

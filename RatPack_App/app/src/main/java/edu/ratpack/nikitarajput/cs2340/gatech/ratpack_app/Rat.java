@@ -87,7 +87,6 @@ public class Rat {
 
     //doesn't work. Returns null rat array
     public static Rat[] updateList(){
-        Log.d("TEST","int Rat class, starting updateList()");
         DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference().child("rats");
         //only way i could find to get data from fireBase
         dbTemp.addValueEventListener(new ValueEventListener() {
@@ -100,7 +99,6 @@ public class Rat {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        Log.d("TEST","end updateList()\n******************");
         return rats;
     }
 
