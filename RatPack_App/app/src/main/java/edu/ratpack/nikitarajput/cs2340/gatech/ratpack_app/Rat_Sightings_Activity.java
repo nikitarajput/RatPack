@@ -23,57 +23,34 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class Rat_Sightings_Activity extends AppCompatActivity {
-    private static Rat[] ratList;
+    private static Rat[] ratList =new Rat[0];
+    public static Button forRat;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings);
-        updateRatList();
         LinearLayout layout = (LinearLayout) findViewById(R.id.activity_rat_sightings);
-        for (int i = 0; i < ratList.length; i++) {//adds the buttons to the Layout
-            Button butt = new Button(this);
-            //rat button, id is even number
-            butt.setText("Rat: " + ratList[i].getName());//changed later
-            butt.setId(2 * i);
-            butt.setBackgroundColor(Color.WHITE);
-            butt.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
-            butt.setHeight(findViewById(R.id.add_rat_button).getHeight());
-            butt.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-
-                    viewRat(findViewById(v.getId() + 1));
-                }
-            });
-            //rat lstView for info, id is odd
-            TextView buttDetails = new TextView(this);
-            buttDetails.setText("Unique ID: " + ratList[i].getUniqueKey()
-                    + "\nName: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
-                    + "\nCity: " + ratList[i].getCity() + "\nZipcode: " + ratList[i].getZipCode()
-                    + "\nLocation Type: " + ratList[i].getLocationType() + "\nBorough: " + ratList[i].getBorough().toString()
-                    + "\nDate: " + ratList[i].getDate() + "\nTime: " + ratList[i].getTime()
-                    + "\nLatitude: " + ratList[i].getLatitude() + "\nLongitude: " + ratList[i].getLongitude());
-            buttDetails.setId(2 * i + 1);
-            buttDetails.setVisibility(View.GONE);
-
-            layout.addView(butt);
-            layout.addView(buttDetails);
-        }
+        forRat = (Button)findViewById(R.id.reload_button);
+        reload(findViewById(R.id.reload_button));
     }
 
     public void reload(View v) {//I thought this would be nice to have. We can get rid of it if we need
 
-        // updates ratList
         Rat[] oldRatList = ratList;
+        Log.d("TEST","Begin reload, calls updateRatList()");
         updateRatList();
         LinearLayout layout = (LinearLayout) findViewById(R.id.activity_rat_sightings);
-        for (int i = 0; i < oldRatList.length; i++) {//adds new buttons
+        Log.d("TEST","Removing "+oldRatList.length+" button-textview pairs");
+        for (int i = 0; i < oldRatList.length; i++) {//removes old buttons
+
             layout.removeView(findViewById(2 * i));
             layout.removeView(findViewById(2 * i + 1));
         }
-        for (int i = 0; i < ratList.length; i++) {//copy paste from onCreate
+        Log.d("TEST","adding "+ratList.length+" button-textView pairs");
+        for (int i = 0; i < ratList.length; i++) {//adds new buttons
+            //rat button
             Button butt = new Button(this);
-            //rat button, id is even number
-            butt.setText("Rat: " + ratList[i].getName());//changed later
+            butt.setText("Rat: " + ratList[i].getName());
             butt.setId(2 * i);
             butt.setBackgroundColor(Color.WHITE);
             butt.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
@@ -83,7 +60,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
                     viewRat(findViewById(v.getId() + 1));
                 }
             });
-            //rat lstView for info, id is odd
+            //rat lstView for info
             TextView buttDetails = new TextView(this);
             buttDetails.setText("Unique ID: " + ratList[i].getUniqueKey()
                     + "\nName: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
@@ -92,12 +69,14 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
                     + "\nDate: " + ratList[i].getDate() + "\nTime: " + ratList[i].getTime()
                     + "\nLatitude: " + ratList[i].getLatitude() + "\nLongitude: " + ratList[i].getLongitude());
             buttDetails.setId(2 * i + 1);
-            buttDetails.setTextSize(25f);
+            buttDetails.setTextSize(20f);
             buttDetails.setVisibility(View.GONE);
 
             layout.addView(butt);
             layout.addView(buttDetails);
         }
+        Log.d("TEST","End reload()\n**********************");
+
     }
 
     public void onBack(View v) {
@@ -121,7 +100,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     public static void updateRatList() {//will be a moved to rat class later
         Log.d("TEST rsa", "going to update list");
         ratList = Rat.updateList();
-        Log.d("TEST rsa", "updated list to length: "+ratList.length);
+        Log.d("TEST rsa", "updated ratList to length: "+ratList.length+"\n*********************");
 
     }
 }

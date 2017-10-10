@@ -1,7 +1,11 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
+import android.content.Context;
 import android.location.Location;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,7 +60,7 @@ public class Rat {
         this.borough = borough;
 
     }
-    public Rat() {}//just used so we can avoid static methods
+    public Rat() {}//just used so we can avoid static methods & testing
 
     /**
      * Creates the current date.
@@ -83,6 +87,7 @@ public class Rat {
 
     //doesn't work. Returns null rat array
     public static Rat[] updateList(){
+        Log.d("TEST","int Rat class, starting updateList()");
         DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference().child("rats");
         //only way i could find to get data from fireBase
         dbTemp.addValueEventListener(new ValueEventListener() {
@@ -95,7 +100,7 @@ public class Rat {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
+        Log.d("TEST","end updateList()\n******************");
         return rats;
     }
 
@@ -104,16 +109,20 @@ public class Rat {
      * @param data the snapshot of the current rat data
      * @return current list of rats in the FirebaseDatabase
      */
-    private static Rat[] makeList(DataSnapshot data){
+    private static void makeList(DataSnapshot data){
+        int oldLength = rats.length;
         rats = new Rat[(int)data.getChildrenCount()];
-        Log.d("TEST", "Size of array is: "+rats.length);
         int i = 0;
         for (DataSnapshot snap: data.getChildren()) {
             rats[i] = snap.getValue(Rat.class);
             i++;
         }
-        Log.d("TEST isNull", "Rat[0] name: "+(rats[0]==null? "null":rats[0].getName()));
-        return rats;
+        //calls reload once on first getting data. Never calls again.
+        if(oldLength == 0 && Rat_Sightings_Activity.forRat != null) {
+            Rat_Sightings_Activity.forRat.callOnClick();
+            Rat_Sightings_Activity.forRat = null;
+        }
+
     }
 
     /**
