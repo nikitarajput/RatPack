@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Map;
+
 public class Rat_Input_Activity extends AppCompatActivity {
 
 
@@ -54,6 +56,16 @@ public class Rat_Input_Activity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         dbRef = mFirebaseDatabase.getReference();
     }
+
+    //used for reader
+    Rat_Input_Activity(){
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        dbRef = mFirebaseDatabase.getReference();
+    }
+    public void reader(Map<String, Object> m){
+        dbRef.updateChildren(m);
+    }//end of reader helper methods
 
     /**
      * Adds rat to Firebase

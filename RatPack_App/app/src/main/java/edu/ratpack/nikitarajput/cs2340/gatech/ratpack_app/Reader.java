@@ -23,10 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Reader {
 
     static String line= "";
-    static FirebaseAuth mAuth;
-    static FirebaseDatabase mFirebaseDatabase;
-    static DatabaseReference dbRef;
-    static DatabaseReference ratsRef;
     static Map<String, Object> map;
     static ArrayList<Rat> allRats;//holding rats
 
@@ -38,10 +34,6 @@ public class Reader {
         String csvFile = "/Users/aaron/eclipse-workspace/RatPack/src/Res/Rat_Sightings.csv";
         //THIS IS THE ERROR**********************************************************
 
-        mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        dbRef = mFirebaseDatabase.getReference();
-        ratsRef = dbRef.child("rats");
         //int badCount = 0;
         String cvsSplitBy = ",";
         int cols = 52;//# of cols in csv
@@ -158,9 +150,7 @@ public class Reader {
 
 
     private static void pushToFB(){
-
-        dbRef.updateChildren(map);//is supposed to add everything in the map to FireBase
-
+        new Rat_Input_Activity().reader(map);
 
     }
     //copied from Rat_Input_activity

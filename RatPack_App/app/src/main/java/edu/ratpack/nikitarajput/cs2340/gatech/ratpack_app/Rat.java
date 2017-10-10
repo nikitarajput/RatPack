@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by soniaggarwal on 10/6/17.
@@ -38,6 +39,8 @@ public class Rat {
     private String address;
     private String city;
     private String borough;
+    private FirebaseDatabase db;
+    private DatabaseReference dbRef;
 
 
     public Rat(String name, String locationType, String address, String city, int zipCode, String borough) {
@@ -320,6 +323,5 @@ public class Rat {
     public void setBorough(String borough) {
         this.borough = borough;
     }
-
 
 }
