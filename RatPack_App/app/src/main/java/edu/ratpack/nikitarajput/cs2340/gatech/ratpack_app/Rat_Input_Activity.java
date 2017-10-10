@@ -88,6 +88,8 @@ public class Rat_Input_Activity extends AppCompatActivity {
         return url.substring(url.lastIndexOf('-') + 1);
     }
 
+
+
     private boolean noEmptyFields(){
         if(ratName.getText().toString().matches("") || address.getText().toString().matches("") ||
                 zipCode.getText().toString().matches("") || city.getText().toString().matches(""))
@@ -95,6 +97,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
         else
             return true;
     }
+
 
     public void toSightingsActivity(){
         startActivity(new Intent(Rat_Input_Activity.this, Rat_Sightings_Activity.class));
