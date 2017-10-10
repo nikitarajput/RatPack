@@ -24,6 +24,11 @@ public class Reader {
     static FirebaseAuth mAuth;
     static FirebaseDatabase mFirebaseDatabase;
     static DatabaseReference dbRef;
+    static DatabaseReference ratsRef;
+    static Map<String, Object> map = new HashMap<>();
+    static ArrayList<Rat> allRats;//holding rats
+
+
 
     public static void main(String[] args) {
 
@@ -42,9 +47,9 @@ public class Reader {
         int cols = 52;//# of cols in csv
         int[] goodCols = new int[] {1,7,8,9, 16,23, 49, 50};//only cols we care about
         boolean[] mask = new boolean[cols];
-        DatabaseReference ratsRef = dbRef.child("rats");
+        ratsRef = dbRef.child("rats");
 
-        ArrayList<Rat> allRats = new ArrayList<Rat>();//holding rats
+        allRats = new ArrayList<Rat>();//holding rats
 
         for(int i = 0; i< cols; i++) {
             for(int j = 0; j < goodCols.length; j++) {
@@ -56,6 +61,7 @@ public class Reader {
         try  {
             BufferedReader buffy = new BufferedReader(new FileReader(csvFile));//give buff the file
             line=buffy.readLine();//skips first line(the headers)
+            int uniqueID = 1;
             while ((line = buffy.readLine()) != null) {//stops when null line
 
                 // use comma as separator
@@ -97,7 +103,9 @@ public class Reader {
                 String city = goodRats[4];
                 String borough = goodRats[5];
                 Rat temp = new Rat("No Name(CSV)",lon, lat,locationType,address,city,zip,borough);
-
+                temp.setUniqueKey(""+uniqueID);
+                map.put("/rats/"+uniqueID,temp);
+                uniqueID++;
                 //add rat to Firebase
                 DatabaseReference newRatRef = ratsRef.push();
 
@@ -105,12 +113,7 @@ public class Reader {
                 temp.setUniqueKey(parseKeyReader(ratID));
                 newRatRef.setValue(temp);
 
-                /*Map<String, Object> map = new HashMap<>();
-                map.put("/Users/" + temp.get + "/", null);
-                map.put("/Groups/" + groupId + "/Users/" + userId + "/", new HashMap<>().put(userId, null));
-                //other locations
-                databaseReference.updateChildren(map);*/
-                //maybe useful for a single push?
+
             //}
 
 
@@ -159,6 +162,13 @@ public class Reader {
         return true;
     }
 
+
+    private static void pushToFB(){
+        FirebaseDatabase temp = FirebaseDatabase.getInstance();
+        DatabaseReference ref = temp.getReference();
+        ref.updateChildren(map);
+
+    }
     //copied from Rat_Input_activity
     private static String parseKeyReader(String url){
         return url.substring(url.lastIndexOf('-') + 1);
