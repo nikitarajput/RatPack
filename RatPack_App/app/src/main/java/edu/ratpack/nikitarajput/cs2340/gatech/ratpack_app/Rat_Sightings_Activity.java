@@ -1,25 +1,11 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-//import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.text.Layout;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 
 public class Rat_Sightings_Activity extends AppCompatActivity {
@@ -34,6 +20,10 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
         reload(findViewById(R.id.reload_button));
     }
 
+    /**
+     * Refreshes rat sightings page.
+     * @param v the current view that the data is coming from.
+     */
     public void reload(View v) {//I thought this would be nice to have. We can get rid of it if we need
 
         Rat[] oldRatList = ratList;
@@ -75,16 +65,27 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
 
     }
 
+    /**
+     * Takes user to home page.
+     * @param v the current view that the data is coming from.
+     */
     public void onBack(View v) {
         startActivity(new Intent(Rat_Sightings_Activity.this, Home_Activity.class));
     }
 
+    /**
+     * Takes user to add rat page.
+     * @param v the current view that the data is coming from.
+     */
     public void addRat(View v) {
         startActivity(new Intent(Rat_Sightings_Activity.this, Rat_Input_Activity.class));
 
     }
 
-
+    /**
+     * Shows rat details.
+     * @param v the current view that the data is coming from.
+     */
     public void viewRat(View v) {
         if (v.getVisibility() == View.GONE)
             findViewById(v.getId()).setVisibility(View.VISIBLE);
@@ -93,10 +94,12 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
 
     }
 
-    public static void updateRatList() {//will be a moved to rat class later
+    /**
+     * Shows first 50 entries of rat sightings.
+     */
+    public static void updateRatList() {
         ratList = Rat.updateList();
         Rat[] temp = ratList;
-        //safegaurd to make sure we don't display more that 50 rats at a time
         if (ratList.length > 50){
             ratList = new Rat[50];
             for(int i = 0; i < ratList.length; i++){
