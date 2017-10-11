@@ -1,26 +1,12 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
-import android.content.Context;
-import android.location.Location;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Created by soniaggarwal on 10/6/17.
@@ -42,13 +28,29 @@ public class Rat {
     private FirebaseDatabase db;
     private DatabaseReference dbRef;
 
-
+    /**
+     * Rat constructor with longitude and latitude of 0
+     * @param name rat name
+     * @param locationType incident loacation type
+     * @param address incident address
+     * @param city incident city
+     * @param zipCode incident zip code
+     * @param borough incident borough
+     */
     public Rat(String name, String locationType, String address, String city, int zipCode, String borough) {
         this(name, 0, 0, locationType, address, city, zipCode, borough);
 
     }
 
-
+    /**
+     * Rat default constructor
+     * @param name rat name
+     * @param locationType incident loacation type
+     * @param address incident address
+     * @param city incident city
+     * @param zipCode incident zip code
+     * @param borough incident borough
+     */
     public Rat(String name, double longitude, double latitude, String locationType, String address, String city, int zipCode, String borough) {
         // set the unique key from firebase
         this.name = name;
