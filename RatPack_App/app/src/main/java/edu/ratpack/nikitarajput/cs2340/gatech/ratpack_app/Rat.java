@@ -42,13 +42,29 @@ public class Rat {
     private FirebaseDatabase db;
     private DatabaseReference dbRef;
 
-
+    /**
+     * Rat constructor with longitude and latitude of 0
+     * @param name rat name
+     * @param locationType incident loacation type
+     * @param address incident address
+     * @param city incident city
+     * @param zipCode incident zip code
+     * @param borough incident borough
+     */
     public Rat(String name, String locationType, String address, String city, int zipCode, String borough) {
         this(name, 0, 0, locationType, address, city, zipCode, borough);
 
     }
 
-
+    /**
+     * Rat default constructor
+     * @param name rat name
+     * @param locationType incident loacation type
+     * @param address incident address
+     * @param city incident city
+     * @param zipCode incident zip code
+     * @param borough incident borough
+     */
     public Rat(String name, double longitude, double latitude, String locationType, String address, String city, int zipCode, String borough) {
         // set the unique key from firebase
         this.name = name;
