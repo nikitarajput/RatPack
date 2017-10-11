@@ -47,7 +47,7 @@ public class Reader {
 
         try {
             Log.d("TEST","Inside Try Statement, trying to open file");
-            InputStreamReader test = new InputStreamReader(assMan.open(csvFile));
+            //InputStreamReader test = new InputStreamReader(assMan.open(csvFile));
             Log.d("TEST","Opened file");
 
             BufferedReader buffy = new BufferedReader(new InputStreamReader(assMan.open(csvFile)));//give buffy the file

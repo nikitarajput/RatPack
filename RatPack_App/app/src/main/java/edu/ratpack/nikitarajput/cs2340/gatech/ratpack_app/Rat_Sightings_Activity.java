@@ -29,7 +29,6 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings);
-        LinearLayout layout = (LinearLayout) findViewById(R.id.activity_rat_sightings);
         forRat = (Button)findViewById(R.id.reload_button);
         reload(findViewById(R.id.reload_button));
     }

@@ -69,8 +69,6 @@ public class Rat_Input_Activity extends AppCompatActivity {
     public void readCSV(View v){
         Map<String, Object> temp =Reader.updateMap(this);
         Log.d("TEST", "\nFinished updating Map, is size:"+temp.size());
-        mFirebaseDatabase= FirebaseDatabase.getInstance();
-        dbRef = mFirebaseDatabase.getReference();
         reader(temp);
     }
 
