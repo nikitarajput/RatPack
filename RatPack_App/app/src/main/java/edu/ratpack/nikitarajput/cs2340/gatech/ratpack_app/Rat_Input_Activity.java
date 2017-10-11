@@ -61,11 +61,18 @@ public class Rat_Input_Activity extends AppCompatActivity {
         dbRef = mFirebaseDatabase.getReference();
     }
 
-
+    /**
+     * updates the children of the rats database to match those in the inputted Map
+     * @param m the map of all values in the database to be updated.
+     */
     public void reader(Map<String, Object> m){
         dbRef.child("rats").updateChildren(m);
     }//end of reader helper methods
 
+    /**
+     * Reads all the Rats in the CSV to Rat objects and adds them to FireBase
+     * @param v the View that is calling this method
+     */
     public void readCSV(View v){
         Map<String, Object> temp =Reader.updateMap(this);
         Log.d("TEST", "\nFinished updating Map, is size:"+temp.size());
