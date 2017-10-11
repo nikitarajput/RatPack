@@ -24,7 +24,10 @@ public class Reader {
 
 
 
-
+    /**
+     * Creates a map from the given csv file containing all the rats in the file
+     * @param ctx is the context from the class calling this method, allows creation of AssetManager
+     */
     public static Map<String, Object> updateMap(Context ctx) {
 
         //This needs to be the file name of the CSV in assets
@@ -93,6 +96,10 @@ public class Reader {
 
     }
 
+    /**
+     * Creates a Rat from a list of attributes as Strings
+     * @param attr is the list of attributs in the order gotten from the csv from first row to last
+     */
     public static Rat makeRat(String[] attr){
         int zip;
         try {
