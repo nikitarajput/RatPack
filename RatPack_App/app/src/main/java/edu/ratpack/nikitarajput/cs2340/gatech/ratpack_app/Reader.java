@@ -79,8 +79,8 @@ public class Reader {
                 }
 
                 Rat temp = Reader.makeRat(goodRats);
-                temp.setUniqueKey(rats[0]);
-                map.put("/rats"+rats[0],temp);
+                temp.setUniqueKey("rats"+rats[0]);
+                map.put("/"+temp.getUniqueKey(),temp);
                 Log.d("TEST","ADDED rat ->  #" + whileCounter);
                 whileCounter++;
 

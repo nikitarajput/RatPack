@@ -10,12 +10,12 @@ import android.widget.*;
 
 public class Rat_Sightings_Activity extends AppCompatActivity {
     private static Rat[] ratList =new Rat[0];
-    public static Button forRat;
+    public static Button forFirstData;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings);
-        forRat = (Button)findViewById(R.id.reload_button);
+        forFirstData = (Button)findViewById(R.id.reload_button);
         reload(findViewById(R.id.reload_button));
     }
 
