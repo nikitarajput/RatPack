@@ -91,7 +91,7 @@ public class Rat {
 
 
     //doesn't work. Returns null rat array
-    public static Rat[] updateList(){
+    /*public static Rat[] updateList(){
         DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference().child("rats");
         //only way i could find to get data from fireBase
         dbTemp.addValueEventListener(new ValueEventListener() {
@@ -112,7 +112,7 @@ public class Rat {
      * @param data the snapshot of the current rat data
      * @return current list of rats in the FirebaseDatabase
      */
-    private static void makeList(DataSnapshot data){
+   /* private static void makeList(DataSnapshot data){
         int oldLength = rats.length;
         rats = new Rat[(int)data.getChildrenCount()];
         int i = 0;
@@ -126,7 +126,7 @@ public class Rat {
             Rat_Sightings_Activity.forRat = null;
         }
 
-    }
+    }*/
 
     /**
      * Gets the unique key.

@@ -30,12 +30,15 @@ public class RatFB {
     private boolean firstCall;
 
     public RatFB(){
+        Log.d("Test", "Called constructor for RatFB");
         fbDB = FirebaseDatabase.getInstance();
         dbRef = fbDB.getReference();
         masterMap = new HashMap<String, Object>();
         allRats = new Rat[0];
         firstCall = true;
+        Log.d("TEST","initialized all variables");
         this.addListener();
+        Log.d("TEST","Added listener");
         while(!firstCall){//wait until we get the first call to the listener
             try {
                 wait(200l);//waits in 200 millisecond increments for efficiency. Will work without.
@@ -43,6 +46,7 @@ public class RatFB {
                 Log.d("TEST", "wait inturrupted in RatFB constructor");
             }
         }
+        Log.d("TEST","Recieved info");
 
 
     }
@@ -107,9 +111,9 @@ public class RatFB {
         this.setAllRats(rats);
         this.updateRats(m);
 
-        if(firstCall && Rat_Sightings_Activity.forFirstData != null) {//updates the rat sightings activity when data is first recieved
-            Rat_Sightings_Activity.forFirstData.callOnClick();
-            Rat_Sightings_Activity.forFirstData = null;
+        if(firstCall) {//updates the rat sightings activity when data is first recieved
+            //Rat_Sightings_Activity.forFirstData.callOnClick();
+            //Rat_Sightings_Activity.forFirstData = null;
             firstCall = false;
         }
 

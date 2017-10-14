@@ -10,13 +10,11 @@ import android.widget.*;
 
 public class Rat_Sightings_Activity extends AppCompatActivity {
     private static Rat[] ratList =new Rat[0];
-    public static Button forFirstData;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings);
-        forFirstData = (Button)findViewById(R.id.reload_button);
-        reload(findViewById(R.id.reload_button));
+        //reload(findViewById(R.id.reload_button));
     }
 
     /**
@@ -97,14 +95,16 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
      * Shows first 50 entries of rat sightings.
      */
     public static void updateRatList() {
-        ratList = Rat.updateList();
-        Rat[] temp = ratList;
-        if (ratList.length > 50){
+
+        Rat[] temp = new RatFB().getAllRats();
+        if (temp.length > 50){
             ratList = new Rat[50];
             for(int i = 0; i < ratList.length; i++){
                 ratList[i] = temp[i];
             }
         }
+        else
+            ratList = temp;
 
     }
 }
