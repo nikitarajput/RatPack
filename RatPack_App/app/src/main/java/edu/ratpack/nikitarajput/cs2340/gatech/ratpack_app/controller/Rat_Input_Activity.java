@@ -1,4 +1,4 @@
-package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
+package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +13,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.Map;
+
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
 public class Rat_Input_Activity extends AppCompatActivity {
 

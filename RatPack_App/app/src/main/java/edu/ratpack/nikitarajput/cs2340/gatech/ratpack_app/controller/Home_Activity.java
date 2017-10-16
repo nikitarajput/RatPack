@@ -1,4 +1,4 @@
-package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
+package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 
 
 public class Home_Activity extends AppCompatActivity {

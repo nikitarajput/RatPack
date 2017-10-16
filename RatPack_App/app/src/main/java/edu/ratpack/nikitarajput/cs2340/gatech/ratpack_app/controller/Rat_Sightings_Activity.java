@@ -1,4 +1,4 @@
-package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
+package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.*;
+
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
 
 public class Rat_Sightings_Activity extends AppCompatActivity {

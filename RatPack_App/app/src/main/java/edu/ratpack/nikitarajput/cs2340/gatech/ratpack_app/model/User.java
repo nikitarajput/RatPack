@@ -1,4 +1,4 @@
-package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
+package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

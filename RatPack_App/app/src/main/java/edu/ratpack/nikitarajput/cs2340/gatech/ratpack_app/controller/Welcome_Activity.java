@@ -1,9 +1,11 @@
-package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
+package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 
 public class Welcome_Activity extends AppCompatActivity {
 

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Welcome_Activity">
+        <activity android:name=".controller.Welcome_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,34 +17,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login_Activity"
-            android:parentActivityName=".Welcome_Activity">
+            android:name=".controller.Login_Activity"
+            android:parentActivityName=".controller.Welcome_Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Welcome_Activity" />
+                android:value=".controller.Welcome_Activity" />
         </activity>
         <activity
-            android:name=".Register_Activity"
-            android:parentActivityName=".Welcome_Activity">
+            android:name=".controller.Register_Activity"
+            android:parentActivityName=".controller.Welcome_Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Welcome_Activity" />
+                android:value=".controller.Welcome_Activity" />
         </activity>
-        <activity android:name=".Home_Activity" />
+        <activity android:name=".controller.Home_Activity" />
         <activity
-            android:name=".Rat_Sightings_Activity"
-            android:parentActivityName=".Home_Activity">
+            android:name=".controller.Rat_Sightings_Activity"
+            android:parentActivityName=".controller.Home_Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Home_Activity" />
+                android:value=".controller.Home_Activity" />
         </activity>
-        <activity android:name=".Rat_Input_Activity">
+        <activity android:name=".controller.Rat_Input_Activity">
             android:parentActivityName=".Rat_Sightings_Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Rat_Sightings_Activity" />
+                android:value=".controller.Rat_Sightings_Activity" />
         </activity>
-        <activity android:name=".Rat_Details_Activity"></activity>
+        <activity android:name=".controller.Rat_Details_Activity"></activity>
     </application>
 
 </manifest>

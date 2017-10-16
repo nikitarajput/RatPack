@@ -1,7 +1,9 @@
-package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
+package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 
 public class Rat_Details_Activity extends AppCompatActivity {
 

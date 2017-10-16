@@ -1,4 +1,4 @@
-package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
+package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model;
 
 /**
  * Created by aaron on 10/9/2017.
@@ -10,7 +10,6 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,8 +78,8 @@ public class Reader {
                 }
 
                 Rat temp = Reader.makeRat(goodRats);
-                temp.setUniqueKey("rats"+rats[0]);
-                map.put("/"+temp.getUniqueKey(),temp);
+                temp.setUniqueKey(rats[0]);
+                map.put("/rats"+rats[0],temp);
                 Log.d("TEST","ADDED rat ->  #" + whileCounter);
                 whileCounter++;
 

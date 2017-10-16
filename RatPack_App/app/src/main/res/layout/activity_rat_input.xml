@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.Rat_Input_Activity">
+    tools:context="edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller.Rat_Input_Activity">
 
 
     <Spinner
