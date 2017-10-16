@@ -17,6 +17,7 @@ import java.util.Map;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Reader;
 
 public class Rat_Input_Activity extends AppCompatActivity {
 
@@ -24,9 +25,9 @@ public class Rat_Input_Activity extends AppCompatActivity {
     EditText ratName, address, zipCode, city;
 
 
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference dbRef;
+    //private FirebaseAuth mAuth;
+    //private FirebaseDatabase mFirebaseDatabase;
+    //private DatabaseReference dbRef;
     private Spinner locationTypeSpinner;
     private Spinner boroughSpinner;
     private static final String TAG = "AddToDatabase";
@@ -53,9 +54,9 @@ public class Rat_Input_Activity extends AppCompatActivity {
         boroughAdapater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         boroughSpinner.setAdapter(boroughAdapater);
 
-        mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        dbRef = mFirebaseDatabase.getReference();
+        //mAuth = FirebaseAuth.getInstance();
+        //mFirebaseDatabase = FirebaseDatabase.getInstance();
+        //dbRef = mFirebaseDatabase.getReference();
     }
 
     /**
@@ -63,7 +64,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
      * @param v the current view that the data is coming from.
      */
     public void readCSV(View v){
-        Map<String, Object> temp =Reader.updateMap(this);
+        Map<String, Object> temp = Reader.updateMap(this);
         Log.d("TEST", "\nFinished updating Map, is size:"+temp.size());
         new RatFB().updateRats(temp);
     }

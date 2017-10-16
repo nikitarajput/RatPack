@@ -3,6 +3,7 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;

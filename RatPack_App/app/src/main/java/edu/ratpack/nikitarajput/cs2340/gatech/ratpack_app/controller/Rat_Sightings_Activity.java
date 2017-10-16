@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
@@ -18,7 +19,8 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings);
-        //reload(findViewById(R.id.reload_button));
+        Log.d("TEST", "This is a test. please display");
+        reload(findViewById(R.id.reload_button));
     }
 
     /**
@@ -27,6 +29,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
      */
     public void reload(View v) {//I thought this would be nice to have. We can get rid of it if we need
 
+        Log.d("TEST", "Called Reload");
         Rat[] oldRatList = ratList;
         updateRatList();
         LinearLayout layout = (LinearLayout) findViewById(R.id.activity_rat_sightings);
@@ -100,6 +103,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
      */
     public static void updateRatList() {
 
+        Log.d("TEST", "entered updateRatList()");
         Rat[] temp = new RatFB().getAllRats();
         if (temp.length > 50){
             ratList = new Rat[50];
@@ -109,6 +113,6 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
         }
         else
             ratList = temp;
-
+        Log.d("TEST", "finished method. Updated ist to length: "+ratList.length);
     }
 }
