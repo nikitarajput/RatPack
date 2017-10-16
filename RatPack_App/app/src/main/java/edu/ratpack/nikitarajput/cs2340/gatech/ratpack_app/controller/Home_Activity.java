@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
 
 public class Home_Activity extends AppCompatActivity {

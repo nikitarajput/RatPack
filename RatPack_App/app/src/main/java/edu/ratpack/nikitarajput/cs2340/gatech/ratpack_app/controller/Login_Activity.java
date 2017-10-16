@@ -15,6 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
 
 public class Login_Activity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class Login_Activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
                         if (task.isSuccessful()) {
+                            RatFB.init();
                             Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Login_Activity.this, Home_Activity.class));
                         } else {

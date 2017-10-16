@@ -104,7 +104,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     public static void updateRatList() {
 
         Log.d("TEST", "entered updateRatList()");
-        Rat[] temp = new RatFB().getAllRats();
+        Rat[] temp = RatFB.getAllRats();
         if (temp.length > 50){
             ratList = new Rat[50];
             for(int i = 0; i < ratList.length; i++){

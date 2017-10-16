@@ -87,45 +87,6 @@ public class Rat {
         return timeFormat.format(calendar.getTime());
     }
 
-
-    //doesn't work. Returns null rat array
-    /*public static Rat[] updateList(){
-        DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference().child("rats");
-        //only way i could find to get data from fireBase
-        dbTemp.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                makeList(dataSnapshot);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-        return rats;
-    }
-
-    /**
-     * Helper method to @method updateList() to get Rat[] from the ValueEventListener
-     * @param data the snapshot of the current rat data
-     * @return current list of rats in the FirebaseDatabase
-     */
-   /* private static void makeList(DataSnapshot data){
-        int oldLength = rats.length;
-        rats = new Rat[(int)data.getChildrenCount()];
-        int i = 0;
-        for (DataSnapshot snap: data.getChildren()) {
-            rats[i] = snap.getValue(Rat.class);
-            i++;
-        }
-        //calls reload once on first getting data. Never calls again.
-        if(oldLength == 0 && Rat_Sightings_Activity.forRat != null) {
-            Rat_Sightings_Activity.forRat.callOnClick();
-            Rat_Sightings_Activity.forRat = null;
-        }
-
-    }*/
-
     /**
      * Gets the unique key.
      *
