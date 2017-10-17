@@ -23,8 +23,6 @@ public class Rat {
     private String address;
     private String city;
     private String borough;
-    private FirebaseDatabase db;
-    private DatabaseReference dbRef;
 
     /**
      * Rat constructor with longitude and latitude of 0
