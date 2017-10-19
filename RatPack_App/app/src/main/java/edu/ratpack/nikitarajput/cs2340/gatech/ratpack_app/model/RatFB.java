@@ -41,7 +41,7 @@ public class RatFB {
         DatabaseReference ratRef = dbRef.child("rats").push();
         String ratID = ratRef.getKey();
         r.setUniqueKey(ratID.substring(ratID.lastIndexOf('-') + 1));
-        ratRef.setValue(r.getTime());
+        ratRef.setValue(r);
     }
 
     /**
