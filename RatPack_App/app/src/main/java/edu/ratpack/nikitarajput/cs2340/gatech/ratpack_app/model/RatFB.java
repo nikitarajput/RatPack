@@ -38,10 +38,11 @@ public class RatFB {
      * @param r rat to be added to database
      */
     public static void addRat(Rat r){
-        DatabaseReference ratRef = dbRef.child("rats").push();
+        DatabaseReference ratRef = dbRef.child("rats").push();//makes a spot for the rat
         String ratID = ratRef.getKey();
         r.setUniqueKey(ratID.substring(ratID.lastIndexOf('-') + 1));
-        ratRef.setValue(r);
+        ratRef.setValue(r);//sets available spot to Rat r
+        //^^this is what adds value to firebase, don't change unless you don't want a Rat
     }
 
     /**
