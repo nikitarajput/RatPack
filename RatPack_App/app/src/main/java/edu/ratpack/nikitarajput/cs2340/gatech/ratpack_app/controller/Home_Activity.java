@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.MapsActivity;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
@@ -33,6 +34,8 @@ public class Home_Activity extends AppCompatActivity {
     }
     public void toRatSightings(View v){
         startActivity(new Intent(Home_Activity.this, Rat_Sightings_Activity.class));
-
+    }
+    public void toRatMap(View v){
+        startActivity(new Intent(Home_Activity.this, MapsActivity.class));
     }
 }
