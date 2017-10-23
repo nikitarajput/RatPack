@@ -88,7 +88,6 @@ public class Rat_Input_Activity extends AppCompatActivity {
             geocode(geocoder.buildURL(rat.getAddress(), rat.getCity()));
             Toast.makeText(Rat_Input_Activity.this, "Rat added!.",
                     Toast.LENGTH_SHORT).show();
-            toSightingsActivity();
 
         }
         else{
@@ -117,6 +116,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
                         Log.d("LATITUDE of rat", "" + rat.getLatitude());
                         Log.d("LONGITUDE of rat", "" + rat.getLongitude());
                         RatFB.addRat(rat);
+                        toSightingsActivity();
                     }
                 }, new Response.ErrorListener() {
 
