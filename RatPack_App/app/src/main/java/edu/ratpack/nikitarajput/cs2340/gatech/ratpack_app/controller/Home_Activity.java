@@ -22,10 +22,6 @@ public class Home_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_);
         mAuth = FirebaseAuth.getInstance();
-
-        //shows that you are the right user
-        TextView temp = (TextView)findViewById(R.id.login_status_textView);
-        temp.setText(temp.getText()+"\n"+mAuth.getCurrentUser().getEmail());
     }
 
     public void onLogout(View v) {
