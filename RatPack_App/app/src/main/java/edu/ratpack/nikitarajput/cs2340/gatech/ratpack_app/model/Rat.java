@@ -47,11 +47,11 @@ public class Rat {
      * @param zipCode incident zip code
      * @param borough incident borough
      */
-    public Rat(String name, double longitude, double latitude, String locationType, String address, String city, int zipCode, String borough) {
+    public Rat(String name, double latitude, double longitude, String locationType, String address, String city, int zipCode, String borough) {
         // set the unique key from firebase
         this.name = name;
-        this.longitude = longitude;
         this.latitude = latitude;
+        this.longitude = longitude;
         this.date = createDate();
         this.time = createTime();
         this.locationType = locationType;

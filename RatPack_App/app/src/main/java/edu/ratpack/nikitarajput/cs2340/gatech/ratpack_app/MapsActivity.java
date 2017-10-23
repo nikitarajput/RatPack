@@ -11,6 +11,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Geocoder;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
@@ -18,6 +19,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private static Rat[] ratList =new Rat[0];
+    public Geocoder geocoder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        geocoder = new Geocoder();
     }
 
     @Override
