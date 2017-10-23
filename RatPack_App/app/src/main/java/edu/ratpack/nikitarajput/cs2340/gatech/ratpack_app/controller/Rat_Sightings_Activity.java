@@ -113,6 +113,6 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
         }
         else
             ratList = temp;
-        Log.d("TEST", "finished method. Updated ist to length: "+ratList.length);
+        Log.d("TEST", "finished method. Updated ist to length: "+ ratList.length);
     }
 }
