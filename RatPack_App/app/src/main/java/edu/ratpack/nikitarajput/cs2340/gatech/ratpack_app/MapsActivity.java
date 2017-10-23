@@ -45,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng nyc = new LatLng(40.7829, -73.9654);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
-        mMap.setMinZoomPreference(12);
+        mMap.setMinZoomPreference(11);
 
         Rat[] currentRatList= RatFB.getAllRats();
         for (int i = 0; i < currentRatList.length; i++) {
