@@ -8,6 +8,7 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -45,11 +46,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.Home_Activity" />
         </activity>
-        <activity android:name=".controller.Rat_Input_Activity">
-            android:parentActivityName=".Rat_Sightings_Activity">
+        <activity android:name=".controller.Rat_Input_Activity"
+            android:parentActivityName=".controller.Rat_Sightings_Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controller.Rat_Sightings_Activity" />
+                android:value=".controller.Rat_Sightings_Activity"/>
         </activity>
         <activity android:name=".controller.Rat_Details_Activity" />
         <!--
@@ -62,7 +63,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyCif2_-0qjOnioEUSrMWq1t3vFb0UnH4gM" />
 
         <activity
             android:name=".MapsActivity"
