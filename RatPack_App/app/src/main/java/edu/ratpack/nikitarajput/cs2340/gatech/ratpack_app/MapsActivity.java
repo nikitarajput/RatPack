@@ -42,7 +42,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng nyc = new LatLng(40.7128, -73.935242);
+        LatLng nyc = new LatLng(40.7829, -73.9654);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
         mMap.setMinZoomPreference(12);
