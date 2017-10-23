@@ -52,6 +52,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.Rat_Sightings_Activity"/>
         </activity>
+        <activity android:name=".controller.Map_Range_Activity"
+            android:parentActivityName=".controller.Home_Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controller.Rat_Sightings_Activity"/>
+        </activity>
         <activity android:name=".controller.Rat_Details_Activity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

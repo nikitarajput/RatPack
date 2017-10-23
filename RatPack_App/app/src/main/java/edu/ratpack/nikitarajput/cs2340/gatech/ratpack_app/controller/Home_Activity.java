@@ -31,7 +31,7 @@ public class Home_Activity extends AppCompatActivity {
     public void toRatSightings(View v){
         startActivity(new Intent(Home_Activity.this, Rat_Sightings_Activity.class));
     }
-    public void toRatMap(View v){
-        startActivity(new Intent(Home_Activity.this, MapsActivity.class));
+    public void toMapRange(View v){
+        startActivity(new Intent(Home_Activity.this, Map_Range_Activity.class));
     }
 }

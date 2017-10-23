@@ -1,8 +1,11 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +21,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.Date;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Geocoder;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
@@ -49,16 +54,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Rat[] currentRatList= RatFB.getAllRats();
         for (int i = 0; i < currentRatList.length; i++) {
-            double currLat = currentRatList[i].getLatitude();
-            double currLong = currentRatList[i].getLongitude();
-            LatLng currLatLong = new LatLng(currLat, currLong);
-            mMap.addMarker(new MarkerOptions().position(currLatLong)
-                    .title("Rat ID: " + currentRatList[i].getUniqueKey())
-                    .snippet("Rat Name: " + currentRatList[i].getName() + "\n"
-                            + "Date Created: " + currentRatList[i].getDate()
-                            + "\n" + "Address: " + currentRatList[i].getAddress()
-                            + "\n" + "Borough: " + currentRatList[i].getBorough()
-                            + "\n" + "Location Type: " + currentRatList[i].getLocationType()));
+            if (isValidDate(currentRatList[i])) {
+                double currLat = currentRatList[i].getLatitude();
+                double currLong = currentRatList[i].getLongitude();
+                LatLng currLatLong = new LatLng(currLat, currLong);
+                mMap.addMarker(new MarkerOptions().position(currLatLong)
+                        .title("Rat ID: " + currentRatList[i].getUniqueKey())
+                        .snippet("Rat Name: " + currentRatList[i].getName() + "\n"
+                                + "Date Created: " + currentRatList[i].getDate()
+                                + "\n" + "Address: " + currentRatList[i].getAddress()
+                                + "\n" + "Borough: " + currentRatList[i].getBorough()
+                                + "\n" + "Location Type: " + currentRatList[i].getLocationType()));
+            }
         }
 
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
@@ -92,6 +99,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return info;
             }
         });
+    }
+
+    /**
+     * Checks if the rat's creation date is in the correct range.
+     * @param rat the rat to check the creation date of.
+     * @return true if the creation date is in the range and false otherwise.
+     */
+    private boolean isValidDate(Rat rat) {
+        Intent myIntent = getIntent();
+        String year = myIntent.getStringExtra("year");
+        String month = myIntent.getStringExtra("month");
+        String day = myIntent.getStringExtra("day");
+        int yearInt = Integer.parseInt(year);
+        int monthInt = Integer.parseInt(month);
+        int dayInt = Integer.parseInt(day);
+        DateFormat originalFormat = new SimpleDateFormat("MMM dd, yyyy");
+        DateFormat targetFormat = new SimpleDateFormat("yyyyMMdd");
+        try {
+            Date date = originalFormat.parse(rat.getDate());
+            String formattedDate = targetFormat.format(date);
+            String createDateYear = formattedDate.substring(0, 4);
+            String createDateMonth = formattedDate.substring(4, 6);
+            String createDateDay = formattedDate.substring(6, 8);
+            int createDateYearInt = Integer.parseInt(createDateYear);
+            int createDateMonthInt = Integer.parseInt(createDateMonth);
+            int createDateDayInt = Integer.parseInt(createDateDay);
+            if (createDateYearInt >= yearInt && createDateMonthInt >= monthInt && createDateDayInt >= dayInt) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            Log.d("Exception", "Could not parse the date.");
+        }
+        return true;
     }
 
 }
