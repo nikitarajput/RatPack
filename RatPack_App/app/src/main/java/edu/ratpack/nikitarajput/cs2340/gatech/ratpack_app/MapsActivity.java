@@ -1,14 +1,22 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Geocoder;
@@ -18,14 +26,13 @@ import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private static Rat[] ratList =new Rat[0];
+    private static Rat[] ratList = new Rat[0];
     public Geocoder geocoder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -45,8 +52,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double currLat = currentRatList[i].getLatitude();
             double currLong = currentRatList[i].getLongitude();
             LatLng currLatLong = new LatLng(currLat, currLong);
-            mMap.addMarker(new MarkerOptions().position(currLatLong).title("Marker" + i));
+            mMap.addMarker(new MarkerOptions().position(currLatLong)
+                    .title("Rat ID: " + currentRatList[i].getUniqueKey())
+                    .snippet("Rat Name: " + currentRatList[i].getName() + "\n"  + "Date Created: " + currentRatList[i].getDate() + "\n" + "Borough: " + currentRatList[i].getBorough()));
         }
+
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+            @Override
+            public View getInfoWindow(Marker arg0) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+
+                Context context = MapsActivity.this;
+
+                LinearLayout info = new LinearLayout(context);
+                info.setOrientation(LinearLayout.VERTICAL);
+
+                TextView title = new TextView(context);
+                title.setTextColor(Color.BLACK);
+                title.setGravity(Gravity.CENTER);
+                title.setTypeface(null, Typeface.BOLD);
+                title.setText(marker.getTitle());
+
+                TextView snippet = new TextView(context);
+                snippet.setTextColor(Color.GRAY);
+                snippet.setText(marker.getSnippet());
+
+                info.addView(title);
+                info.addView(snippet);
+
+                return info;
+            }
+        });
     }
 
 }
