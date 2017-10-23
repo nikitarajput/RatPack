@@ -36,6 +36,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
     private Spinner boroughSpinner;
     private static final String TAG = "AddToDatabase";
     public Geocoder geocoder;
+    private Rat rat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,19 +81,15 @@ public class Rat_Input_Activity extends AppCompatActivity {
     public void addRat(View v) {
         if(noEmptyFields()) {
             Log.d(TAG, ratName.getText().toString());
-            Rat rat = new Rat(ratName.getText().toString(), locationTypeSpinner.getSelectedItem().toString(),
+            rat = new Rat(ratName.getText().toString(), locationTypeSpinner.getSelectedItem().toString(),
                     address.getText().toString(), city.getText().toString(),
                     Integer.parseInt(zipCode.getText().toString()),
                     boroughSpinner.getSelectedItem().toString());
             geocode(geocoder.buildURL(rat.getAddress(), rat.getCity()));
-            Log.d("LATITUDE", "" + geocoder.getLat());
-            Log.d("LONGITUDE", "" + geocoder.getLong());
-            rat.setLatitude(geocoder.getLat());
-            rat.setLongitude(geocoder.getLong());
-            RatFB.addRat(rat);
             Toast.makeText(Rat_Input_Activity.this, "Rat added!.",
                     Toast.LENGTH_SHORT).show();
             toSightingsActivity();
+
         }
         else{
             Toast.makeText(Rat_Input_Activity.this, "Invalid rat.",
@@ -101,6 +98,10 @@ public class Rat_Input_Activity extends AppCompatActivity {
 
     }
 
+    /**
+     * makes Google Map's API call to geocode rat location
+     * @param url custom url used to make API call
+     */
     public void geocode(String url) {
         RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -111,6 +112,11 @@ public class Rat_Input_Activity extends AppCompatActivity {
                         Log.d("TAG", response.toString());
                         JSONObject locationDetails = response;
                         geocoder.parseData(locationDetails);
+                        rat.setLatitude(geocoder.getLat());
+                        rat.setLongitude(geocoder.getLong());
+                        Log.d("LATITUDE of rat", "" + rat.getLatitude());
+                        Log.d("LONGITUDE of rat", "" + rat.getLongitude());
+                        RatFB.addRat(rat);
                     }
                 }, new Response.ErrorListener() {
 
