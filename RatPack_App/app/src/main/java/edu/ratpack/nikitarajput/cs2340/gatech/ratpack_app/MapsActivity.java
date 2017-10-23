@@ -56,6 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .title("Rat ID: " + currentRatList[i].getUniqueKey())
                     .snippet("Rat Name: " + currentRatList[i].getName() + "\n"
                             + "Date Created: " + currentRatList[i].getDate()
+                            + "\n" + "Address: " + currentRatList[i].getAddress()
                             + "\n" + "Borough: " + currentRatList[i].getBorough()
                             + "\n" + "Location Type: " + currentRatList[i].getLocationType()));
         }
