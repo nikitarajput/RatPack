@@ -54,7 +54,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             LatLng currLatLong = new LatLng(currLat, currLong);
             mMap.addMarker(new MarkerOptions().position(currLatLong)
                     .title("Rat ID: " + currentRatList[i].getUniqueKey())
-                    .snippet("Rat Name: " + currentRatList[i].getName() + "\n"  + "Date Created: " + currentRatList[i].getDate() + "\n" + "Borough: " + currentRatList[i].getBorough()));
+                    .snippet("Rat Name: " + currentRatList[i].getName() + "\n"
+                            + "Date Created: " + currentRatList[i].getDate()
+                            + "\n" + "Borough: " + currentRatList[i].getBorough()
+                            + "\n" + "Location Type: " + currentRatList[i].getLocationType()));
         }
 
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
