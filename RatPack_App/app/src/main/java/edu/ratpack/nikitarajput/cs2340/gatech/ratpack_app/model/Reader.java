@@ -108,13 +108,13 @@ public class Reader {
         }
         double lon;
         try{
-            lon = Double.parseDouble(attr[7]);
+            lon = Double.parseDouble(attr[6]);
         } catch (Exception e){
             lon = -1;
         }
         double lat;
         try{
-            lat = Double.parseDouble(attr[6]);
+            lat = Double.parseDouble(attr[7]);
         } catch (Exception e){
             lat = -1;
         }
