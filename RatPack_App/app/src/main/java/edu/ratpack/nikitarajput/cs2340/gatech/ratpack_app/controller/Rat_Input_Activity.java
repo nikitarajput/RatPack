@@ -79,7 +79,8 @@ public class Rat_Input_Activity extends AppCompatActivity {
      * @param v is the current view
      */
     public void addRat(View v) {
-        if(noEmptyFields()) {
+        String msg = "unknown";
+        if((msg=isValid()).equals("")) {
             Log.d(TAG, ratName.getText().toString());
             rat = new Rat(ratName.getText().toString(), locationTypeSpinner.getSelectedItem().toString(),
                     address.getText().toString(), city.getText().toString(),
@@ -91,7 +92,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(Rat_Input_Activity.this, "Invalid rat.",
+            Toast.makeText(Rat_Input_Activity.this, msg,
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -132,15 +133,46 @@ public class Rat_Input_Activity extends AppCompatActivity {
 
 
     /**
-     * Checks for empty fields in a CSV row.
-     * @return true if CSV row has no empty fields, otherwise false.
+     * Checks validity by checking for empty fields, and for length of the inputs.
+     * @return a message saying what went wrong. Returns "" if there was a success.
      */
-    private boolean noEmptyFields(){
+    private String isValid(){
+        String goodmsg = "";
+        int maxLength = 100;
+        int errors=0;
+
+        String zip = zipCode.getText().toString();
+        String name = ratName.getText().toString();
+        String tempAdd = address.getText().toString();
+        String tempCity = city.getText().toString();
+
+        //Only displays 1 error. if more than one, says how many other errors there are.
+        try {
+            Integer.parseInt(zip);
+        } catch(Exception e){
+            e.printStackTrace();
+            errors++;
+            goodmsg += errors==1? "Zipcode is invalid\n" : "";
+        }
+
+        if(name.length() > maxLength){
+            errors++;
+            goodmsg += errors==1? "Name cannot excede "+maxLength+" characters\n" : "";
+        }
+        if(tempAdd.length() > maxLength){
+            errors++;
+            goodmsg += errors==1? "Address cannot excede "+maxLength+" characters\n" : "";
+        }
+        if(tempCity.length() > maxLength){
+            errors++;
+            goodmsg += errors==1? "City cannot excede "+maxLength+" characters\n" : "";
+        }
         if(ratName.getText().toString().matches("") || address.getText().toString().matches("") ||
-                zipCode.getText().toString().matches("") || city.getText().toString().matches(""))
-            return false;
-        else
-            return true;
+                zipCode.getText().toString().matches("") || city.getText().toString().matches("")) {
+            errors++;
+            goodmsg += errors==1? "Empty inputs\n" : "";
+        }
+        return errors<2? goodmsg.trim() : goodmsg+"and "+(errors-1)+ " other errors.";
     }
 
     /**
