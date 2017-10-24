@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.RelativeLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 
@@ -30,6 +31,9 @@ public class GraphActivity extends AppCompatActivity {
 
         LineData lineData = new LineData(gl.getMonthSet());
         chart.setData(lineData);
+        Description desc = new Description();
+        desc.setText("Rats per month");
+        chart.setDescription(desc);
         chart.invalidate(); // refresh
     }
 }

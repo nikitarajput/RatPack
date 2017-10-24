@@ -31,7 +31,8 @@ public class GraphLogic {
             entries.add(new Entry(i, monthData[i][1]));
         }
 
-         dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
+        dataSet = new LineDataSet(entries, "Number of Rats"); // add entries to dataset
+
 
     }
 
