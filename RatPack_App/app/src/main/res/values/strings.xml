@@ -42,5 +42,6 @@
         <item>Bronx</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+    <string name="ratdata">Rat Data</string>
 
 </resources>

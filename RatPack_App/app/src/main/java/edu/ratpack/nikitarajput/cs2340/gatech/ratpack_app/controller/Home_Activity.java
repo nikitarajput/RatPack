@@ -34,4 +34,8 @@ public class Home_Activity extends AppCompatActivity {
     public void toMapRange(View v){
         startActivity(new Intent(Home_Activity.this, Map_Range_Activity.class));
     }
+
+    public void toRatData(View v){
+        startActivity(new Intent(Home_Activity.this, GraphActivity.class));
+    }
 }
