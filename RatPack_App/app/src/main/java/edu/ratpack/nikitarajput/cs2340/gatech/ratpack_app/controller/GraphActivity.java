@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 
@@ -17,6 +18,7 @@ import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.GraphLogic;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.XAxisFormatter;
 
 public class GraphActivity extends AppCompatActivity {
 
@@ -31,6 +33,14 @@ public class GraphActivity extends AppCompatActivity {
 
         LineData lineData = new LineData(gl.getMonthSet());
         chart.setData(lineData);
+
+        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setValueFormatter(new XAxisFormatter(months));
+        xAxis.setLabelCount(12, true);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
         Description desc = new Description();
         desc.setText("Rats per month");
         chart.setDescription(desc);

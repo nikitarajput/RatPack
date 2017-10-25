@@ -14,6 +14,7 @@ public class GraphLogic {
     private int[][] monthData;
     private int[][] yearData;
     private LineDataSet dataSet;
+    private List<Entry> entries;
 
     public GraphLogic(){
         ratlist = RatFB.getAllRats();
@@ -25,9 +26,11 @@ public class GraphLogic {
         }
 
         setMonthData();
-        List<Entry> entries = new ArrayList<Entry>();
+        entries = new ArrayList<Entry>();
+
 
         for(int i = 0; i < monthData.length; i++){
+
             entries.add(new Entry(i, monthData[i][1]));
         }
 
