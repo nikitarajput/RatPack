@@ -79,7 +79,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
      * @param v is the current view
      */
     public void addRat(View v) {
-        if(noEmptyFields()) {
+        if(isValid()) {
             Log.d(TAG, ratName.getText().toString());
             rat = new Rat(ratName.getText().toString(), locationTypeSpinner.getSelectedItem().toString(),
                     address.getText().toString(), city.getText().toString(),
@@ -91,7 +91,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(Rat_Input_Activity.this, "Invalid rat.",
+            Toast.makeText(Rat_Input_Activity.this, "Please fill all fields.",
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -132,15 +132,17 @@ public class Rat_Input_Activity extends AppCompatActivity {
 
 
     /**
-     * Checks for empty fields in a CSV row.
-     * @return true if CSV row has no empty fields, otherwise false.
+     * Checks validity by checking for empty fields, and for length of the inputs.
+     * @return a message saying what went wrong. Returns "" if there was a success.
      */
-    private boolean noEmptyFields(){
+    private boolean isValid(){
+        String goodmsg = "";
+
         if(ratName.getText().toString().matches("") || address.getText().toString().matches("") ||
-                zipCode.getText().toString().matches("") || city.getText().toString().matches(""))
+                zipCode.getText().toString().matches("") || city.getText().toString().matches("")) {
             return false;
-        else
-            return true;
+        }
+        return true;
     }
 
     /**
