@@ -43,5 +43,11 @@
     </string-array>
     <string name="title_activity_maps">Map</string>
     <string name="ratdata">Rat Data</string>
+    <string name="year">Year</string>
+    <string name="graph_range">Graph Date Range</string>
+    <string name="starting_month">Starting Month</string>
+    <string name="starting_year">Starting Year</string>
+    <string name="end_year">End Year</string>
+    <string name="end_month">End Month</string>
 
 </resources>
