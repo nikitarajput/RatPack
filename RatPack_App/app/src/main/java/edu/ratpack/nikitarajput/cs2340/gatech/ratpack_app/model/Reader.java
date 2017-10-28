@@ -79,6 +79,23 @@ public class Reader {
 
                 Rat temp = Reader.makeRat(goodRats);
                 temp.setUniqueKey(rats[0]);
+                /*
+                This sets the dates for the different groups of rats.
+                Leave the section blank to set it to today's date.
+                Remember that any Rats not encompassed by the ranges will be set to today's date.
+                Delete the closing comment line below this to comment this out.
+                 */
+                if(whileCounter < 3000){
+                    //defaults to today's date
+                } else if(whileCounter < 6000){
+                    temp.setDate("Jun 6, 2016");
+                } else if(whileCounter < 9000){
+                    temp.setDate("May 5, 2015");
+                }else if(whileCounter < 12000){
+                    temp.setDate("Apr 4, 2014");
+                } else{
+                    temp.setDate("Oct 10, 2017");
+                }//*/
                 map.put("zz"+rats[0],temp);
                 Log.d("TEST","ADDED rat ->  #" + whileCounter);
                 whileCounter++;
