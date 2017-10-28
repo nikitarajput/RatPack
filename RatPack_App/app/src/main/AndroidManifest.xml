@@ -77,13 +77,13 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:parentActivityName=".controller.Home_Activity" />
-        <activity
-            android:name=".controller.GraphActivity">
+        <activity android:name=".controller.GraphActivity">
             android:parentActivityName=".controller.Home_Activity">
             <meta-data
-              android:name="android.support.PARENT_ACTIVITY"
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.Home_Activity" />
         </activity>
+        <activity android:name=".controller.DaterActivity"></activity>
     </application>
 
 </manifest>

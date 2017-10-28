@@ -54,7 +54,7 @@
         android:layout_marginBottom="87dp"
         android:layout_marginStart="23dp"
         android:layout_marginTop="89dp"
-        android:onClick="toRatData"
+        android:onClick="toDataRange"
         android:text="@string/ratdata"
         app:layout_constraintBottom_toBottomOf="@+id/logout_button"
         app:layout_constraintLeft_toLeftOf="@+id/logout_button"
