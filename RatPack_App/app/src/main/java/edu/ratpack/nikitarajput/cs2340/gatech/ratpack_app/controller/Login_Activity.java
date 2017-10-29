@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
@@ -31,6 +33,7 @@ public class Login_Activity extends AppCompatActivity {
         username = (EditText)findViewById(R.id.username_editText);
         password = (EditText)findViewById(R.id.password_editText);
         mAuth = FirebaseAuth.getInstance();
+        autoLogin();
     }
 
     public void login(View v) {
@@ -53,6 +56,16 @@ public class Login_Activity extends AppCompatActivity {
 
     public void toWelcomeActivity(View v){
         startActivity(new Intent(Login_Activity.this, Welcome_Activity.class));
+    }
+
+    public void autoLogin(){
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("users");
+        String current = mAuth.getCurrentUser().getUid();
+            if (dbRef.child(current) != null) {
+                RatFB.init();
+                Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Login_Activity.this, Home_Activity.class));
+            }
     }
 
     public void forgotPassword(View v)  {
