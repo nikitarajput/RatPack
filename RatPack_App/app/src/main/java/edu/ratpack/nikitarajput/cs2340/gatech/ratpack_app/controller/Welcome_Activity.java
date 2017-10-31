@@ -5,15 +5,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
 public class Welcome_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        autoLogin();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
     }
 
     public void toLoginActivity(View view){
@@ -22,5 +30,16 @@ public class Welcome_Activity extends AppCompatActivity {
 
     public void toRegisterActivity(View view){
         startActivity(new Intent(Welcome_Activity.this, Register_Activity.class));
+    }
+
+    public void autoLogin(){
+        FirebaseAuth mAuth =FirebaseAuth.getInstance();
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("users");
+        String current = mAuth.getCurrentUser().getUid();
+        if (dbRef.child(current) != null) {
+            RatFB.init();
+            Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Welcome_Activity.this, Home_Activity.class));
+        }
     }
 }
