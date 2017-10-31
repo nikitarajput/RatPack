@@ -29,7 +29,12 @@ public class GraphActivity extends AppCompatActivity {
 
         LineChart chart = (LineChart) findViewById(R.id.chart);
 
-        GraphLogic gl = new GraphLogic();
+        Bundle extras = getIntent().getExtras();
+        int startYear = extras.getInt("startYear");
+        int startMonth = extras.getInt("startMonth");
+        int endYear = extras.getInt("endYear");
+        int endMonth = extras.getInt("endMonth");
+        GraphLogic gl = new GraphLogic(startYear, startMonth, endYear, endMonth);
 
         LineData lineData = new LineData(gl.getSet());
         chart.setData(lineData);

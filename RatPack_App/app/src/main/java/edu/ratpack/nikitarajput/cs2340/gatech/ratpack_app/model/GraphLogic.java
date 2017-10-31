@@ -19,17 +19,17 @@ public class GraphLogic {
     private List<Entry> entries;
     private int startYear, endYear, startMonthInt, endMonthInt;
 
-    public GraphLogic(){
+    public GraphLogic(int startYear, int startMonth, int endYear, int endMonth){
         ratlist = RatFB.getAllRats();
         allDates = new String[ratlist.length];
         for(int i = 0; i < ratlist.length; i++){
             allDates[i] = ratlist[i].getDate();
         }
-//TODO get starting values from activity
-        startYear = 2016;
-        endYear = 2017;
-        startMonthInt = 2;
-        endMonthInt = 10;
+
+        this.startYear = startYear;
+        this.endYear = endYear;
+        this.startMonthInt = startMonth;
+        this.endMonthInt = endMonth;
 
         sumData = new ArrayList<ArrayList<Integer>>();
         setData(startYear, startMonthInt, endYear, endMonthInt);
@@ -47,10 +47,11 @@ public class GraphLogic {
 
 
     private void setData(int startYear, int startMonthInt, int endYear, int endMonthInt){
-        for(int i = startYear; i <= endYear; i++){
+        for(int i = startYear; i <= endYear; i++){//this adds data of all moths of each year in range
             sumData.add(getMonthData("" + i));
         }
-        sumData.set(0, new ArrayList<Integer>(sumData.get(0).subList(startMonthInt, 12)));
+        //below trims to for year data to start and end at dictated months
+        sumData.set(0, new ArrayList<Integer>(sumData.get(0).subList(startMonthInt - 1, 12)));
         sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));
     }
 
