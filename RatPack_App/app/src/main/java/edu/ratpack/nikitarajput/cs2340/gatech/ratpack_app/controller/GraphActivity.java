@@ -41,15 +41,7 @@ public class GraphActivity extends AppCompatActivity {
 
         XAxis xAxis = chart.getXAxis();
         gl.formatXAxis(xAxis);
-        /*
-        String[] months = {"2017", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        XAxis xAxis = chart.getXAxis();
-        xAxis.setValueFormatter(new XAxisFormatter(months));
-        xAxis.setLabelCount(12, true);
 
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-*/
         Description desc = new Description();
         desc.setText("Rats per month");
         chart.setDescription(desc);

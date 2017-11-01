@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +17,8 @@ public class DaterActivity extends AppCompatActivity {
 
     private Spinner startYear, startMonth, endYear, endMonth;
     private int startYearInt, startMonthInt, endYearInt, endMonthInt;
+    public static String[] monthsArray = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,7 @@ public class DaterActivity extends AppCompatActivity {
         startYear.setAdapter(yearAdapter);
         endYear.setAdapter(yearAdapter);
 
-        String[] monthsArray = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
         ArrayList<String> months = new ArrayList<String>(Arrays.asList(monthsArray));
 
         ArrayAdapter<String> monthAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, months);
@@ -90,13 +92,18 @@ public class DaterActivity extends AppCompatActivity {
         endYearInt = Integer.parseInt(endYear.getSelectedItem().toString());
         endMonthInt = parseMonth(endMonth.getSelectedItem().toString());
 
-        Intent intent = new Intent(DaterActivity.this, GraphActivity.class);
-        intent.putExtra("startYear", startYearInt);
-        intent.putExtra("startMonth", startMonthInt);
-        intent.putExtra("endYear", endYearInt);
-        intent.putExtra("endMonth", endMonthInt);
+        if(startYearInt * 100 + startMonthInt >= endYearInt * 100 + endMonthInt){
+            Toast.makeText(DaterActivity.this, "Can't go backwards!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(DaterActivity.this, GraphActivity.class);
+            intent.putExtra("startYear", startYearInt);
+            intent.putExtra("startMonth", startMonthInt);
+            intent.putExtra("endYear", endYearInt);
+            intent.putExtra("endMonth", endMonthInt);
 
-        startActivity(intent);
-
+            startActivity(intent);
+        }
     }
 }

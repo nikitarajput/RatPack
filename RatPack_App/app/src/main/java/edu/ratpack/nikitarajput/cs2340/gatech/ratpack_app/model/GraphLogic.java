@@ -10,6 +10,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller.DaterActivity;
+
 public class GraphLogic {
 
     private Rat[] ratlist;
@@ -32,13 +34,14 @@ public class GraphLogic {
         this.endMonthInt = endMonth;
 
         sumData = new ArrayList<ArrayList<Integer>>();
-        setData(startYear, startMonthInt, endYear, endMonthInt);
+        setData(this.startYear, startMonthInt, this.endYear, endMonthInt);
         entries = new ArrayList<Entry>();
 
-
+        int l = 0;
         for(int i = 0; i < sumData.size(); i++){
             for(int j = 0; j < sumData.get(i).size(); j++){
-                entries.add(new Entry(i*12 + j, sumData.get(i).get(j)));
+                entries.add(new Entry(l, sumData.get(i).get(j)));
+                l++;
             }
         }
 
@@ -50,9 +53,10 @@ public class GraphLogic {
         for(int i = startYear; i <= endYear; i++){//this adds data of all moths of each year in range
             sumData.add(getMonthData("" + i));
         }
+
         //below trims to for year data to start and end at dictated months
-        sumData.set(0, new ArrayList<Integer>(sumData.get(0).subList(startMonthInt - 1, 12)));
-        sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));
+        sumData.set(0, new ArrayList<Integer>(sumData.get(0).subList(startMonthInt - 1, 12)));//sets first years first month
+        sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));//sets last years last month
     }
 
     private ArrayList<Integer> getMonthData(String year){
@@ -95,9 +99,62 @@ public class GraphLogic {
     }
 
     public void formatXAxis(XAxis xAxis){
-        //TODO
+        /*
+        String[] months = {"2017", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setValueFormatter(new XAxisFormatter(months));
+        xAxis.setLabelCount(12, true);
+
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+*/
+        String firstMonth = DaterActivity.monthsArray[startMonthInt - 1];
+        String lastMonth = DaterActivity.monthsArray[endMonthInt - 1];
+        ArrayList<String> xFormat = new ArrayList<String>();
+        xFormat.add(firstMonth);
+        int counter = getNumberMonths() - 1;// for counting purposes. only testing
+        for(int i = startMonthInt + 1; i <= 12; i++){
+            xFormat.add("");
+            counter--;
+        }
+        int j;
+        for(j = startYear + 1; j < endYear; j++){
+            xFormat.add("'" + (j - 2000));
+            counter--;
+            for(int i = 0; i < 11; i++) {
+                xFormat.add("");
+                counter--;
+            }
+
+        }
+        xFormat.add("'" + (j - 2000));
+        counter--;
+        for(int k = 1; k < endMonthInt - 1; k++){
+            xFormat.add("");
+            counter--;
+        }
+
+        xFormat.add(lastMonth);
+        counter--;
+        Log.d("counter", "formatXAxis: " + counter);
+        int labelCount = getNumberMonths();
+        xAxis.setLabelCount(labelCount);
+        xAxis.setValueFormatter(new XAxisFormatter(xFormat.toArray(new String[0])));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
     }
 
+    private int getNumberMonths(){
+        int dif = endYear - startYear;
+        if(dif == 0){
+            return endMonthInt - startMonthInt + 1;
+        }
+        else if(dif == 1){
+            return (12 - startMonthInt + 1) + endMonthInt;
+        }
+        else{
+            return (12 - startMonthInt + 1) + endMonthInt + 12*(endYear - startYear - 1);
+        }
+    }
 }
 
 
