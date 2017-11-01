@@ -35,11 +35,15 @@ public class Welcome_Activity extends AppCompatActivity {
     public void autoLogin(){
         FirebaseAuth mAuth =FirebaseAuth.getInstance();
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("users");
-        String current = mAuth.getCurrentUser().getUid();
-        if (dbRef.child(current) != null) {
-            RatFB.init();
-            Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Welcome_Activity.this, Home_Activity.class));
+        try {
+            String current = mAuth.getCurrentUser().getUid();
+            if (dbRef.child(current) != null) {
+                RatFB.init();
+                Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Welcome_Activity.this, Home_Activity.class));
+            }
+        } catch (Exception e){
+            Log.d("TEST", "autoLogin: Null current user");
         }
     }
 }
