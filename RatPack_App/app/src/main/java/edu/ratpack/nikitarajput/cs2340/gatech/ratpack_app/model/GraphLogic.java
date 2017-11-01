@@ -10,6 +10,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller.DaterActivity;
+
 public class GraphLogic {
 
     private Rat[] ratlist;
@@ -19,26 +21,27 @@ public class GraphLogic {
     private List<Entry> entries;
     private int startYear, endYear, startMonthInt, endMonthInt;
 
-    public GraphLogic(){
+    public GraphLogic(int startYear, int startMonth, int endYear, int endMonth){
         ratlist = RatFB.getAllRats();
         allDates = new String[ratlist.length];
         for(int i = 0; i < ratlist.length; i++){
             allDates[i] = ratlist[i].getDate();
         }
-//TODO get starting values from activity
-        startYear = 2016;
-        endYear = 2017;
-        startMonthInt = 2;
-        endMonthInt = 10;
+
+        this.startYear = startYear;
+        this.endYear = endYear;
+        this.startMonthInt = startMonth;
+        this.endMonthInt = endMonth;
 
         sumData = new ArrayList<ArrayList<Integer>>();
-        setData(startYear, startMonthInt, endYear, endMonthInt);
+        setData(this.startYear, startMonthInt, this.endYear, endMonthInt);
         entries = new ArrayList<Entry>();
 
-
+        int l = 0;
         for(int i = 0; i < sumData.size(); i++){
             for(int j = 0; j < sumData.get(i).size(); j++){
-                entries.add(new Entry(i*12 + j, sumData.get(i).get(j)));
+                entries.add(new Entry(l, sumData.get(i).get(j)));
+                l++;
             }
         }
 
@@ -47,11 +50,13 @@ public class GraphLogic {
 
 
     private void setData(int startYear, int startMonthInt, int endYear, int endMonthInt){
-        for(int i = startYear; i <= endYear; i++){
+        for(int i = startYear; i <= endYear; i++){//this adds data of all moths of each year in range
             sumData.add(getMonthData("" + i));
         }
-        sumData.set(0, new ArrayList<Integer>(sumData.get(0).subList(startMonthInt, 12)));
-        sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));
+
+        //below trims to for year data to start and end at dictated months
+        sumData.set(0, new ArrayList<Integer>(sumData.get(0).subList(startMonthInt - 1, 12)));//sets first years first month
+        sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));//sets last years last month
     }
 
     private ArrayList<Integer> getMonthData(String year){
@@ -94,9 +99,88 @@ public class GraphLogic {
     }
 
     public void formatXAxis(XAxis xAxis){
-        //TODO
+        /*
+        String[] months = {"2017", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setValueFormatter(new XAxisFormatter(months));
+        xAxis.setLabelCount(12, true);
+
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+*/
+        String firstMonth = DaterActivity.monthsArray[startMonthInt - 1];
+        String lastMonth = DaterActivity.monthsArray[endMonthInt - 1];
+        ArrayList<String> xFormat = new ArrayList<String>();
+        xFormat.add(firstMonth);
+        int counter = getNumberMonths() - 1;// for counting purposes. only testing
+        if(endYear - startYear >= 2) {//full year between starting year and ending year
+            for (int i = startMonthInt + 1; i <= 12; i++) {
+                xFormat.add("");
+                counter--;
+            }
+            int j;
+            for (j = startYear + 1; j < endYear; j++) {
+                xFormat.add("'" + (j - 2000));
+                counter--;
+                for (int i = 0; i < 11; i++) {
+                    xFormat.add("");
+                    counter--;
+                }
+
+            }
+            xFormat.add("'" + (j - 2000));
+            counter--;
+            for (int k = 1; k < endMonthInt - 1; k++) {
+                xFormat.add("");
+                counter--;
+            }
+            xFormat.add(lastMonth);
+        }
+        else if(endYear - startYear == 0){//both months in same year
+            for(int i = startMonthInt + 1; i < endMonthInt; i++){
+                xFormat.add(DaterActivity.monthsArray[i - 1]);
+            }
+            xFormat.add(lastMonth);
+        }
+        else{//starting year and end year back to back
+            for(int i = startMonthInt + 1; i <= 12; i++) {
+                if(i % 2 == 1)
+                    xFormat.add(DaterActivity.monthsArray[i - 1]);
+                else
+                    xFormat.add("");
+            }
+            xFormat.add("'" + (endYear - 2000));
+            for(int i = 2; i < endMonthInt; i++) {
+                if(i % 2 == 1)
+                    xFormat.add(DaterActivity.monthsArray[i - 1]);
+                else
+                    xFormat.add("");
+            }
+            if(endMonthInt % 2 == 1)
+                xFormat.add(lastMonth);
+            else
+                xFormat.add("");
+
+        }
+
+        counter--;
+        Log.d("counter", "formatXAxis: " + counter);
+        int labelCount = getNumberMonths();
+        xAxis.setLabelCount(labelCount);
+        xAxis.setValueFormatter(new XAxisFormatter(xFormat.toArray(new String[0])));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
     }
 
+    private int getNumberMonths(){
+        int dif = endYear - startYear;
+        if(dif == 0){
+            return endMonthInt - startMonthInt;
+        }
+        else if(dif == 1){
+            return (12 - startMonthInt) + endMonthInt;
+        }
+        else{
+            return (12 - startMonthInt) + endMonthInt + 12*(endYear - startYear - 1);
+        }
+    }
 }
-
-

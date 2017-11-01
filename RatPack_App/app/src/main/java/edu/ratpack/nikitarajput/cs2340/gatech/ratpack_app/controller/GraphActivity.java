@@ -29,22 +29,19 @@ public class GraphActivity extends AppCompatActivity {
 
         LineChart chart = (LineChart) findViewById(R.id.chart);
 
-        GraphLogic gl = new GraphLogic();
+        Bundle extras = getIntent().getExtras();
+        int startYear = extras.getInt("startYear");
+        int startMonth = extras.getInt("startMonth");
+        int endYear = extras.getInt("endYear");
+        int endMonth = extras.getInt("endMonth");
+        GraphLogic gl = new GraphLogic(startYear, startMonth, endYear, endMonth);
 
         LineData lineData = new LineData(gl.getSet());
         chart.setData(lineData);
 
         XAxis xAxis = chart.getXAxis();
         gl.formatXAxis(xAxis);
-        /*
-        String[] months = {"2017", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        XAxis xAxis = chart.getXAxis();
-        xAxis.setValueFormatter(new XAxisFormatter(months));
-        xAxis.setLabelCount(12, true);
 
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-*/
         Description desc = new Description();
         desc.setText("Rats per month");
         chart.setDescription(desc);
