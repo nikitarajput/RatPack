@@ -134,16 +134,35 @@ public class GraphLogic {
                 xFormat.add("");
                 counter--;
             }
+            xFormat.add(lastMonth);
         }
         else if(endYear - startYear == 0){//both months in same year
             for(int i = startMonthInt + 1; i < endMonthInt; i++){
                 xFormat.add(DaterActivity.monthsArray[i - 1]);
             }
+            xFormat.add(lastMonth);
         }
         else{//starting year and end year back to back
+            for(int i = startMonthInt + 1; i <= 12; i++) {
+                if(i % 2 == 1)
+                    xFormat.add(DaterActivity.monthsArray[i - 1]);
+                else
+                    xFormat.add("");
+            }
+            xFormat.add("'" + (endYear - 2000));
+            for(int i = 2; i < endMonthInt; i++) {
+                if(i % 2 == 1)
+                    xFormat.add(DaterActivity.monthsArray[i - 1]);
+                else
+                    xFormat.add("");
+            }
+            if(endMonthInt % 2 == 1)
+                xFormat.add(lastMonth);
+            else
+                xFormat.add("");
 
         }
-        xFormat.add(lastMonth);
+
         counter--;
         Log.d("counter", "formatXAxis: " + counter);
         int labelCount = getNumberMonths();
