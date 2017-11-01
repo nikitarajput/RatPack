@@ -113,27 +113,36 @@ public class GraphLogic {
         ArrayList<String> xFormat = new ArrayList<String>();
         xFormat.add(firstMonth);
         int counter = getNumberMonths() - 1;// for counting purposes. only testing
-        for(int i = startMonthInt + 1; i <= 12; i++){
-            xFormat.add("");
-            counter--;
-        }
-        int j;
-        for(j = startYear + 1; j < endYear; j++){
-            xFormat.add("'" + (j - 2000));
-            counter--;
-            for(int i = 0; i < 11; i++) {
+        if(endYear - startYear >= 2) {//full year between starting year and ending year
+            for (int i = startMonthInt + 1; i <= 12; i++) {
                 xFormat.add("");
                 counter--;
             }
+            int j;
+            for (j = startYear + 1; j < endYear; j++) {
+                xFormat.add("'" + (j - 2000));
+                counter--;
+                for (int i = 0; i < 11; i++) {
+                    xFormat.add("");
+                    counter--;
+                }
 
-        }
-        xFormat.add("'" + (j - 2000));
-        counter--;
-        for(int k = 1; k < endMonthInt - 1; k++){
-            xFormat.add("");
+            }
+            xFormat.add("'" + (j - 2000));
             counter--;
+            for (int k = 1; k < endMonthInt - 1; k++) {
+                xFormat.add("");
+                counter--;
+            }
         }
+        else if(endYear - startYear == 0){//both months in same year
+            for(int i = startMonthInt + 1; i < endMonthInt; i++){
+                xFormat.add(DaterActivity.monthsArray[i - 1]);
+            }
+        }
+        else{//starting year and end year back to back
 
+        }
         xFormat.add(lastMonth);
         counter--;
         Log.d("counter", "formatXAxis: " + counter);
@@ -146,13 +155,13 @@ public class GraphLogic {
     private int getNumberMonths(){
         int dif = endYear - startYear;
         if(dif == 0){
-            return endMonthInt - startMonthInt + 1;
+            return endMonthInt - startMonthInt;
         }
         else if(dif == 1){
-            return (12 - startMonthInt + 1) + endMonthInt;
+            return (12 - startMonthInt) + endMonthInt;
         }
         else{
-            return (12 - startMonthInt + 1) + endMonthInt + 12*(endYear - startYear - 1);
+            return (12 - startMonthInt) + endMonthInt + 12*(endYear - startYear - 1);
         }
     }
 }
