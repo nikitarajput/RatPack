@@ -56,7 +56,10 @@ public class GraphLogic {
 
         //below trims to for year data to start and end at dictated months
         sumData.set(0, new ArrayList<Integer>(sumData.get(0).subList(startMonthInt - 1, 12)));//sets first years first month
-        sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt - (startMonthInt - 1))));//sets last years last month
+        if(endYear == startYear)
+            sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt - (startMonthInt - 1))));//sets last years last month
+        else
+            sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));//sets last years last month
     }
 
     private ArrayList<Integer> getMonthData(String year){
