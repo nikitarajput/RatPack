@@ -118,6 +118,10 @@ public class Reader {
      */
     public static Rat makeRat(String[] attr){
         int zip;
+        String locationType;
+        String address;
+        String city;
+        String borough;
         try {
             zip = Integer.parseInt(attr[2]);
         } catch(Exception e){
@@ -126,20 +130,38 @@ public class Reader {
         double lon;
         try{
             lon = Double.parseDouble(attr[6]);
+            lon = (lon==Double.POSITIVE_INFINITY || lon == Double.NEGATIVE_INFINITY)? -1 : lon;
         } catch (Exception e){
             lon = -1;
         }
         double lat;
         try{
             lat = Double.parseDouble(attr[7]);
+            lat = (lat==Double.POSITIVE_INFINITY || lat == Double.NEGATIVE_INFINITY)? -1 : lat;
         } catch (Exception e){
             lat = -1;
         }
-        String locationType = attr[1];
-        String address = attr[3];
-        String city = attr[4];
-        String borough = attr[5];
-        return new Rat("No Name(CSV)",lon, lat,locationType,address,city,zip,borough);
+        try {
+            locationType = attr[1];
+        } catch(Exception e){
+            locationType = "N/A";
+        }
+        try {
+            address = attr[3];
+        } catch(Exception e){
+            address = "N/A";
+        }
+        try {
+            city = attr[4];
+        } catch(Exception e){
+            city = "N/A";
+        }
+        try {
+            borough = attr[5];
+        } catch(Exception e){
+            borough = "N/A";
+        }
+        return new Rat("No Name(CSV)",lat, lon,locationType,address,city,zip,borough);
     }
 
 }
