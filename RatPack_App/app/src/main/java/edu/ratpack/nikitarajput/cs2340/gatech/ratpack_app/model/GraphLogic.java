@@ -21,6 +21,7 @@ public class GraphLogic {
     private List<Entry> entries;
     private int startYear, endYear, startMonthInt, endMonthInt;
 
+
     public GraphLogic(int startYear, int startMonth, int endYear, int endMonth){
         ratlist = RatFB.getAllRats();
         allDates = new String[ratlist.length];
@@ -48,7 +49,13 @@ public class GraphLogic {
         dataSet = new LineDataSet(entries, "Number of Rats"); // add entries to dataset
     }
 
-
+    /**
+     * Populates setData which will then be used to populate entries
+     * @param startYear literally start year
+     * @param startMonthInt january is 1
+     * @param endYear
+     * @param endMonthInt last month december is 12
+     */
     private void setData(int startYear, int startMonthInt, int endYear, int endMonthInt){
         for(int i = startYear; i <= endYear; i++){//this adds data of all moths of each year in range
             sumData.add(getMonthData("" + i));
@@ -62,6 +69,11 @@ public class GraphLogic {
             sumData.set(sumData.size() - 1, new ArrayList<>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));//sets last years last month
     }
 
+    /**
+     * Gets an arraylist for month values for year
+     * @param year First three letters of the month
+     * @return returns the arraylist of month values
+     */
     private ArrayList<Integer> getMonthData(String year){
         ArrayList<Integer> monthData = new ArrayList<>();
         for(int i = 0; i < 12; i++)
@@ -101,6 +113,10 @@ public class GraphLogic {
         return dataSet;
     }
 
+    /**
+     * Makes the labels for the xAxis. 3 cases, year difference of more than 1. difference of 1. difference of 0.
+     * @param xAxis
+     */
     public void formatXAxis(XAxis xAxis){
         /*
         String[] months = {"2017", "Feb", "Mar", "Apr", "May", "Jun",
@@ -174,6 +190,10 @@ public class GraphLogic {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
     }
 
+    /**
+     *
+     * @return the total number of months in the data set
+     */
     private int getNumberMonths(){
         int dif = endYear - startYear;
         if(dif == 0){
