@@ -85,7 +85,7 @@ public class RatFB {
         int i = 0;
         for (DataSnapshot snap : data.getChildren()) {
             Object value = snap.getValue(Rat.class);
-            String key = (String) ((Rat) value).getUniqueKey();
+            String key = ((Rat) value).getUniqueKey();
             if (key == null) {
                 key = "invalidInput";
                 Log.d("TEST", "Found a pesky rat. ID: " + ((Rat) value).getUniqueKey() + "\nnumber: " + i);
