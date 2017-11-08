@@ -35,7 +35,8 @@ public class DaterActivity extends AppCompatActivity {
             years.add(i);
         }
 
-        ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, years);
+        ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<Integer>(
+                this, android.R.layout.simple_spinner_item, years);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         startYear.setAdapter(yearAdapter);
         endYear.setAdapter(yearAdapter);
@@ -43,7 +44,8 @@ public class DaterActivity extends AppCompatActivity {
 
         ArrayList<String> months = new ArrayList<String>(Arrays.asList(monthsArray));
 
-        ArrayAdapter<String> monthAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, months);
+        ArrayAdapter<String> monthAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, months);
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         startMonth.setAdapter(monthAdapter);
         endMonth.setAdapter(monthAdapter);
