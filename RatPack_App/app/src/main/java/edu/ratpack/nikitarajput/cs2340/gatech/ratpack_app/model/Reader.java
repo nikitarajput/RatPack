@@ -40,9 +40,9 @@ public class Reader {
         map = new HashMap<>();
 
         for(int i = 0; i< cols; i++) {//makes boolean mask
-            for(int j = 0; j < goodCols.length; j++) {
-                if(i ==goodCols[j])//sets mask true if is a col we care about
-                    mask[i]=true;
+            for (int goodCol : goodCols) {
+                if (i == goodCol)//sets mask true if is a col we care about
+                    mask[i] = true;
             }
         }
         Log.d("TEST", "in Reader.updateMap, going into try statement");

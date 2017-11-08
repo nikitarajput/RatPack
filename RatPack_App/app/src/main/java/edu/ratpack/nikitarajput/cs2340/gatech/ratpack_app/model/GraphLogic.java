@@ -57,16 +57,25 @@ public class GraphLogic {
      * @param endMonthInt last month december is 12
      */
     private void setData(int startYear, int startMonthInt, int endYear, int endMonthInt){
-        for(int i = startYear; i <= endYear; i++){//this adds data of all moths of each year in range
+        //this adds data of all moths of each year in range
+        for(int i = startYear; i <= endYear; i++){
             sumData.add(getMonthData("" + i));
         }
 
         //below trims to for year data to start and end at dictated months
-        sumData.set(0, new ArrayList<>(sumData.get(0).subList(startMonthInt - 1, 12)));//sets first years first month
-        if(endYear == startYear)
-            sumData.set(sumData.size() - 1, new ArrayList<>(sumData.get(sumData.size() - 1).subList(0, endMonthInt - (startMonthInt - 1))));//sets last years last month
-        else
-            sumData.set(sumData.size() - 1, new ArrayList<>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));//sets last years last month
+        //sets first years first month
+        sumData.set(0, new ArrayList<>(sumData.get(0).subList(startMonthInt - 1, 12)));
+        if (endYear == startYear) {
+            //sets last years last month
+            sumData.set(sumData.size() - 1,
+                    new ArrayList<>(sumData.get(sumData.size() - 1)
+                            .subList(0, endMonthInt - (startMonthInt - 1))));
+        }
+        else {
+            //sets last years last month
+            sumData.set(sumData.size() - 1,
+                    new ArrayList<>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));
+        }
     }
 
     /**
@@ -114,7 +123,8 @@ public class GraphLogic {
     }
 
     /**
-     * Makes the labels for the xAxis. 3 cases, year difference of more than 1. difference of 1. difference of 0.
+     * Makes the labels for the xAxis. 3 cases, year difference of more than 1.
+     * difference of 1. difference of 0.
      * @param xAxis
      */
     public void formatXAxis(XAxis xAxis){

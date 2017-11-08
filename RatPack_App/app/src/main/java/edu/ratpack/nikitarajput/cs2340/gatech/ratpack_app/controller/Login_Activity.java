@@ -34,18 +34,23 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     public void login(View v) {
-        mAuth.signInWithEmailAndPassword(username.getText().toString(), password.getText().toString())
+        mAuth.signInWithEmailAndPassword(username.getText().toString(),
+                password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
                         if (task.isSuccessful()) {
                             RatFB.init();
-                            Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(Login_Activity.this, Home_Activity.class));
+                            Toast.makeText(getApplicationContext(),
+                                    "Logging in...", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Login_Activity.this,
+                                    Home_Activity.class));
                         } else {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
-                            Toast.makeText(Login_Activity.this, "Incorrect username or password. Please try again.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login_Activity.this,
+                                    "Incorrect username or password. Please try again.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
