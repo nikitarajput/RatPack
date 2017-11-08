@@ -1,11 +1,5 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A user is anyone who wants to use the system to view data, or enter new sightings.
  */

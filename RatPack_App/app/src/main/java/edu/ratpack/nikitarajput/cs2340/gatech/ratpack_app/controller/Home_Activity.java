@@ -4,13 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.MapsActivity;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
-import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
 
 public class Home_Activity extends AppCompatActivity {
