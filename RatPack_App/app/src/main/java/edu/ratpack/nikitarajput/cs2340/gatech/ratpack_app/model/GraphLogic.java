@@ -14,15 +14,15 @@ import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller.DaterActivi
 
 public class GraphLogic {
 
-    private Rat[] ratlist;
+
     private String[] allDates;
-    private ArrayList<ArrayList<Integer>> sumData;
+    private List<ArrayList<Integer>> sumData;
     private LineDataSet dataSet;
-    private List<Entry> entries;
     private int startYear, endYear, startMonthInt, endMonthInt;
 
+
     public GraphLogic(int startYear, int startMonth, int endYear, int endMonth){
-        ratlist = RatFB.getAllRats();
+        Rat[] ratlist = RatFB.getAllRats();
         allDates = new String[ratlist.length];
         for(int i = 0; i < ratlist.length; i++){
             allDates[i] = ratlist[i].getDate();
@@ -33,9 +33,9 @@ public class GraphLogic {
         this.startMonthInt = startMonth;
         this.endMonthInt = endMonth;
 
-        sumData = new ArrayList<ArrayList<Integer>>();
+        sumData = new ArrayList<>();
         setData(this.startYear, startMonthInt, this.endYear, endMonthInt);
-        entries = new ArrayList<Entry>();
+        List<Entry> entries = new ArrayList<>();
 
         int l = 0;
         for(int i = 0; i < sumData.size(); i++){
@@ -48,50 +48,70 @@ public class GraphLogic {
         dataSet = new LineDataSet(entries, "Number of Rats"); // add entries to dataset
     }
 
-
+    /**
+     * Populates setData which will then be used to populate entries
+     * @param startYear literally start year
+     * @param startMonthInt january is 1
+     * @param endYear literally end year
+     * @param endMonthInt last month december is 12
+     */
     private void setData(int startYear, int startMonthInt, int endYear, int endMonthInt){
-        for(int i = startYear; i <= endYear; i++){//this adds data of all moths of each year in range
+        //this adds data of all moths of each year in range
+        for(int i = startYear; i <= endYear; i++){
             sumData.add(getMonthData("" + i));
         }
 
         //below trims to for year data to start and end at dictated months
-        sumData.set(0, new ArrayList<Integer>(sumData.get(0).subList(startMonthInt - 1, 12)));//sets first years first month
-        if(endYear == startYear)
-            sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt - (startMonthInt - 1))));//sets last years last month
-        else
-            sumData.set(sumData.size() - 1, new ArrayList<Integer>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));//sets last years last month
+        //sets first years first month
+        sumData.set(0, new ArrayList<>(sumData.get(0).subList(startMonthInt - 1, 12)));
+        if (endYear == startYear) {
+            //sets last years last month
+            sumData.set(sumData.size() - 1,
+                    new ArrayList<>(sumData.get(sumData.size() - 1)
+                            .subList(0, endMonthInt - (startMonthInt - 1))));
+        }
+        else {
+            //sets last years last month
+            sumData.set(sumData.size() - 1,
+                    new ArrayList<>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));
+        }
     }
 
+    /**
+     * Gets an arraylist for month values for year
+     * @param year First three letters of the month
+     * @return returns the arraylist of month values
+     */
     private ArrayList<Integer> getMonthData(String year){
-        ArrayList<Integer> monthData = new ArrayList<Integer>();
+        ArrayList<Integer> monthData = new ArrayList<>();
         for(int i = 0; i < 12; i++)
             monthData.add(0);
         for(int i = 0; i < allDates.length; i++){
             if(allDates[i].contains("Jan") && allDates[i].contains(year)) {
-                monthData.set(0, monthData.get(0) + new Integer(1));
+                monthData.set(0, monthData.get(0) + 1);
             }
             else if(allDates[i].contains("Feb") && allDates[i].contains(year))
-                monthData.set(1, monthData.get(1) + new Integer(1));
+                monthData.set(1, monthData.get(1) + 1);
             else if(allDates[i].contains("Mar") && allDates[i].contains(year))
-                monthData.set(2, monthData.get(2) + new Integer(1));
+                monthData.set(2, monthData.get(2) + 1);
             else if(allDates[i].contains("Apr") && allDates[i].contains(year))
-                monthData.set(3, monthData.get(3) + new Integer(1));
+                monthData.set(3, monthData.get(3) + 1);
             else if(allDates[i].contains("May") && allDates[i].contains(year))
-                monthData.set(4, monthData.get(4) + new Integer(1));
+                monthData.set(4, monthData.get(4) + 1);
             else if(allDates[i].contains("Jun") && allDates[i].contains(year))
-                monthData.set(5, monthData.get(5) + new Integer(1));
+                monthData.set(5, monthData.get(5) + 1);
             else if(allDates[i].contains("Jul") && allDates[i].contains(year))
-                monthData.set(6, monthData.get(6) + new Integer(1));
+                monthData.set(6, monthData.get(6) + 1);
             else if(allDates[i].contains("Aug") && allDates[i].contains(year))
-                monthData.set(7, monthData.get(7) + new Integer(1));
+                monthData.set(7, monthData.get(7) + 1);
             else if(allDates[i].contains("Sep") && allDates[i].contains(year))
-                monthData.set(8, monthData.get(8) + new Integer(1));
+                monthData.set(8, monthData.get(8) + 1);
             else if(allDates[i].contains("Oct") && allDates[i].contains(year))
-                monthData.set(9, monthData.get(9) + new Integer(1));
+                monthData.set(9, monthData.get(9) + 1);
             else if(allDates[i].contains("Nov") && allDates[i].contains(year))
-                monthData.set(10, monthData.get(10) + new Integer(1));
+                monthData.set(10, monthData.get(10) + 1);
             else if(allDates[i].contains("Dec") && allDates[i].contains(year))
-                monthData.set(11, monthData.get(11) + new Integer(1));
+                monthData.set(11, monthData.get(11) + 1);
         }
 
         return monthData;
@@ -101,6 +121,11 @@ public class GraphLogic {
         return dataSet;
     }
 
+    /**
+     * Makes the labels for the xAxis. 3 cases, year difference of more than 1.
+     * difference of 1. difference of 0.
+     * @param xAxis
+     */
     public void formatXAxis(XAxis xAxis){
         /*
         String[] months = {"2017", "Feb", "Mar", "Apr", "May", "Jun",
@@ -174,6 +199,10 @@ public class GraphLogic {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
     }
 
+    /**
+     *
+     * @return the total number of months in the data set
+     */
     private int getNumberMonths(){
         int dif = endYear - startYear;
         if(dif == 0){

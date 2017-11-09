@@ -52,6 +52,7 @@ public class Reader {
                 if (i == goodCol) {//sets mask true if is a col we care about
                     mask[i] = true;
                 }
+
             }
         }
         Log.d("TEST", "in Reader.updateMap, going into try statement");

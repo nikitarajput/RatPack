@@ -13,7 +13,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RatFB {
     private static FirebaseDatabase fbDB;
@@ -86,7 +85,7 @@ public class RatFB {
         int i = 0;
         for (DataSnapshot snap : data.getChildren()) {
             Object value = snap.getValue(Rat.class);
-            String key = (String) ((Rat) value).getUniqueKey();
+            String key = ((Rat) value).getUniqueKey();
             if (key == null) {
                 key = "invalidInput";
                 Log.d("TEST", "Found a pesky rat. ID: " + ((Rat) value).getUniqueKey() + "\nnumber: " + i);

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -23,7 +21,8 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app", appContext.getPackageName());
+        assertEquals("edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app",
+                appContext.getPackageName());
     }
 
 

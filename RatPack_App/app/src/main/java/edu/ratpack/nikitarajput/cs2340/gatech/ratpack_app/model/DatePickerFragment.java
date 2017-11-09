@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.widget.DatePicker;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.MapsActivity;
-import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller.Map_Range_Activity;
 
 /**
  * Created by soniaggarwal on 10/23/17.

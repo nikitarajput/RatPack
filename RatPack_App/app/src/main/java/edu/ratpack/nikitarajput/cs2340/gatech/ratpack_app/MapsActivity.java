@@ -53,18 +53,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMinZoomPreference(11);
 
         Rat[] currentRatList= RatFB.getAllRats();
-        for (int i = 0; i < currentRatList.length; i++) {
-            if (isValidDate(currentRatList[i])) {
-                double currLat = currentRatList[i].getLatitude();
-                double currLong = currentRatList[i].getLongitude();
+        for (Rat aCurrentRatList : currentRatList) {
+            if (isValidDate(aCurrentRatList)) {
+                double currLat = aCurrentRatList.getLatitude();
+                double currLong = aCurrentRatList.getLongitude();
                 LatLng currLatLong = new LatLng(currLat, currLong);
                 mMap.addMarker(new MarkerOptions().position(currLatLong)
-                        .title("Rat ID: " + currentRatList[i].getUniqueKey())
-                        .snippet("Rat Name: " + currentRatList[i].getName() + "\n"
-                                + "Date Created: " + currentRatList[i].getDate()
-                                + "\n" + "Address: " + currentRatList[i].getAddress()
-                                + "\n" + "Borough: " + currentRatList[i].getBorough()
-                                + "\n" + "Location Type: " + currentRatList[i].getLocationType()));
+                        .title("Rat ID: " + aCurrentRatList.getUniqueKey())
+                        .snippet("Rat Name: " + aCurrentRatList.getName() + "\n"
+                                + "Date Created: " + aCurrentRatList.getDate()
+                                + "\n" + "Address: " + aCurrentRatList.getAddress()
+                                + "\n" + "Borough: " + aCurrentRatList.getBorough()
+                                + "\n" + "Location Type: " + aCurrentRatList.getLocationType()));
             }
         }
 

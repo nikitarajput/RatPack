@@ -8,14 +8,13 @@ import org.junit.runners.Parameterized;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Reader;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 
 /**
- * Created by aaron on 11/7/17.
+ * Created by soniaggarwal on 11/8/17.
  */
 
-public class makeRatTester {
+public class setDataTester {
     @Parameterized.Parameter
     static Rat test;
     @Parameterized.Parameter
@@ -109,5 +108,4 @@ public class makeRatTester {
         test = null;
         input = null;
     }
-
 }
