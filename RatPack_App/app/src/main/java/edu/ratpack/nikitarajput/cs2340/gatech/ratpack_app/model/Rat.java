@@ -1,17 +1,15 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
+
 
 /**
- * Created by soniaggarwal on 10/6/17.
+ * Class that handles information for Rat object.
  */
-
 public class Rat {
-    private static Rat[] rats=new Rat[0];
+    // private static final Rat[] rats=new Rat[0];
     private String uniqueKey;
     private String name;
     private double longitude;
@@ -24,31 +22,37 @@ public class Rat {
     private String city;
     private String borough;
 
+
     /**
      * Rat constructor with longitude and latitude of 0
      * @param name rat name
-     * @param locationType incident loacation type
+     * @param locationType incident location type
      * @param address incident address
      * @param city incident city
      * @param zipCode incident zip code
      * @param borough incident borough
      */
-    public Rat(String name, String locationType, String address, String city, int zipCode, String borough) {
+    public Rat(String name, String locationType, String address,
+               String city, int zipCode, String borough) {
         this(name, 0, 0, locationType, address, city, zipCode, borough);
 
     }
 
+
     /**
      * Rat default constructor
      * @param name rat name
-     * @param locationType incident loacation type
+     * @param locationType incident location type
      * @param address incident address
      * @param city incident city
      * @param zipCode incident zip code
      * @param borough incident borough
+     * @param latitude incident latitude
+     * @param longitude incident longitude
      */
-    public Rat(String name, double latitude, double longitude, String locationType, String address, String city, int zipCode, String borough) {
-        // set the unique key from firebase
+    public Rat(String name, double latitude, double longitude, String locationType,
+               String address, String city, int zipCode, String borough) {
+        // set the unique key from Firebase
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -61,7 +65,11 @@ public class Rat {
         this.borough = borough;
 
     }
-    public Rat() {}//just used so we can avoid static methods & testing
+
+    /**
+     * default rat constructor to reference variables in the Rat class
+     */
+    public Rat() {}
 
     /**
      * Creates the current date.
@@ -70,7 +78,7 @@ public class Rat {
      */
     private String createDate() {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat timeFormat = new SimpleDateFormat("MMM dd, yyyy");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
         return timeFormat.format(calendar.getTime());
     }
 
@@ -81,7 +89,7 @@ public class Rat {
      */
     private String createTime() {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.US);
         return timeFormat.format(calendar.getTime());
     }
 
@@ -241,7 +249,7 @@ public class Rat {
     /**
      * Sets the address.
      *
-     * @param address the addresss to be set.
+     * @param address the address to be set.
      */
     public void setAddress(String address) {
         this.address = address;

@@ -6,16 +6,24 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.Button;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
-
+/**
+ * Class that displays a list of the rats sighted.
+ */
 public class Rat_Sightings_Activity extends AppCompatActivity {
     private static Rat[] ratList =new Rat[0];
 
+    /**
+     * Creates all of the widgets on the screen. run on startup of activity.
+     * @param savedInstanceState instance state that has been saved.
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings);
@@ -27,7 +35,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
      * Refreshes rat sightings page.
      * @param v the current view that the data is coming from.
      */
-    public void reload(View v) {//I thought this would be nice to have. We can get rid of it if we need
+    public void reload(View v) {
 
         Log.d("TEST", "Called Reload");
         Rat[] oldRatList = ratList;
@@ -36,31 +44,47 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
         for (int i = 0; i < oldRatList.length; i++) {//removes old buttons
 
             layout.removeView(findViewById(2 * i));
-            layout.removeView(findViewById(2 * i + 1));
+            layout.removeView(findViewById((2 * i) + 1));
         }
         for (int i = 0; i < ratList.length; i++) {//adds new buttons
             //rat button
             Button butt = new Button(this);
-            butt.setText("Rat: " + ratList[i].getName());
+            Button parent = (Button)findViewById(R.id.add_rat_button);
+            String newText = "Rat: " + ratList[i].getName();
+            butt.setText(newText);
             butt.setId(2 * i);
             butt.setBackgroundColor(Color.WHITE);
             butt.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
-            butt.setHeight(findViewById(R.id.add_rat_button).getHeight());
+
+            butt.setHeight(parent.getHeight());
             butt.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
-                    viewRat(findViewById(v.getId() + 1));
+                    int targetView;
+                    try {
+                        targetView = v.getId() + (v.getId() / v.getId());
+                    } catch(Exception e){
+                        targetView = 1;
+                    }
+                    viewRat(findViewById(targetView));
                 }
             });
             //rat lstView for info
             TextView buttDetails = new TextView(this);
-            buttDetails.setText("Unique ID: " + ratList[i].getUniqueKey()
-                    + "\nName: " + ratList[i].getName() + "\nAddress: " + ratList[i].getAddress()
-                    + "\nCity: " + ratList[i].getCity() + "\nZipcode: " + ratList[i].getZipCode()
-                    + "\nLocation Type: " + ratList[i].getLocationType() + "\nBorough: " + ratList[i].getBorough()
-                    + "\nDate: " + ratList[i].getDate() + "\nTime: " + ratList[i].getTime()
-                    + "\nLatitude: " + ratList[i].getLatitude() + "\nLongitude: " + ratList[i].getLongitude());
-            buttDetails.setId(2 * i + 1);
-            buttDetails.setTextSize(20f);
+            String newerText = "Unique ID: " + ratList[i].getUniqueKey()
+                    + "\nName: " + ratList[i].getName() + "\nAddress: "
+                    + ratList[i].getAddress() + "\nCity: " + ratList[i].getCity()
+                    + "\nZipcode: " + ratList[i].getZipCode()
+                    + "\nLocation Type: " + ratList[i].getLocationType()
+                    + "\nBorough: " + ratList[i].getBorough()
+                    + "\nDate: " + ratList[i].getDate() + "\nTime: "
+                    + ratList[i].getTime() + "\nLatitude: "
+                    + ratList[i].getLatitude() + "\nLongitude: "
+                    + ratList[i].getLongitude();
+            buttDetails.setText(newerText);
+            buttDetails.setId((2 * i) + 1);
+            final float defaultTextSize = 20f;
+            buttDetails.setTextSize(defaultTextSize);
             buttDetails.setVisibility(View.GONE);
 
             layout.addView(butt);
@@ -91,10 +115,12 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
      * @param v the current view that the data is coming from.
      */
     public void viewRat(View v) {
-        if (v.getVisibility() == View.GONE)
-            findViewById(v.getId()).setVisibility(View.VISIBLE);
-        else
-            findViewById(v.getId()).setVisibility(View.GONE);
+        if (v.getVisibility() == View.GONE) {
+            v.setVisibility(View.VISIBLE);
+        }
+        else {
+            v.setVisibility(View.GONE);
+        }
 
     }
 
@@ -104,15 +130,15 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     public static void updateRatList() {
 
         Log.d("TEST", "entered updateRatList()");
+        final int max = 50;
         Rat[] temp = RatFB.getAllRats();
-        if (temp.length > 50){
-            ratList = new Rat[50];
-            for(int i = 0; i < ratList.length; i++){
-                ratList[i] = temp[i];
-            }
+        if (temp.length > max){
+            ratList = new Rat[max];
+            System.arraycopy(temp, 0, ratList, 0, ratList.length);
         }
-        else
+        else {
             ratList = temp;
+        }
         Log.d("TEST", "finished method. Updated ist to length: "+ ratList.length);
     }
 }
