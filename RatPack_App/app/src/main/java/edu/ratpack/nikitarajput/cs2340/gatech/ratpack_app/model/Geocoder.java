@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by nikitarajput on 10/22/17.
+ * Class used for location services.
  */
 
 public class Geocoder {
@@ -38,13 +38,14 @@ public class Geocoder {
      */
     public void parseData(JSONObject data) {
         try {
-            lat = ((JSONArray)data.get("results")).getJSONObject(0)
-                    .getJSONObject("geometry").getJSONObject("location")
-                    .getDouble("lat");
+            JSONArray aTemp = (JSONArray)data.get("results");
+            JSONObject oTemp = aTemp.getJSONObject(0);
+            JSONObject oTemp1 = oTemp.getJSONObject("geometry");
+            JSONObject oTemp2 = oTemp1.getJSONObject("location");
 
-            lng = ((JSONArray)data.get("results")).getJSONObject(0)
-                .getJSONObject("geometry").getJSONObject("location")
-                .getDouble("lng");
+            lat = oTemp2.getDouble("lat");
+
+            lng = oTemp2.getDouble("lng");
 
             Log.d("latitude", "" + lat);
             Log.d("longitude", "" + lng);
