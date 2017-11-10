@@ -17,10 +17,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
-
+/**
+ * Class that allows user to login.
+ */
 public class Login_Activity extends AppCompatActivity {
 
-    EditText username, password;
+    private EditText username;
+    private EditText password;
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPasswordLogIn";
 
@@ -33,6 +36,10 @@ public class Login_Activity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
+    /**
+     * Authorizes user login.
+     * @param v current view
+     */
     public void login(View v) {
         mAuth.signInWithEmailAndPassword(username.getText().toString(),
                 password.getText().toString())
@@ -56,11 +63,11 @@ public class Login_Activity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Takes user to Welcome Screen.
+     * @param v current view
+     */
     public void toWelcomeActivity(View v){
         startActivity(new Intent(Login_Activity.this, Welcome_Activity.class));
-    }
-
-    public void forgotPassword(View v)  {
-        //future implementation
     }
 }

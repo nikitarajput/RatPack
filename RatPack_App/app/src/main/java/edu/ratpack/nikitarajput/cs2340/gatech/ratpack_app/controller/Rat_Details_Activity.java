@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 
+/**
+ * Class that displays details of a rat sighting.
+ */
 public class Rat_Details_Activity extends AppCompatActivity {
 
     @Override

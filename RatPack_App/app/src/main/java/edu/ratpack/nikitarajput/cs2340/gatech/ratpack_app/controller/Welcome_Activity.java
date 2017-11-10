@@ -14,6 +14,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
+/**
+ * Class that displays a Welcome Screen.
+ */
 public class Welcome_Activity extends AppCompatActivity {
 
     @Override
@@ -24,10 +27,18 @@ public class Welcome_Activity extends AppCompatActivity {
 
     }
 
+    /**
+     * Takes user to Login Screen.
+     * @param view current view
+     */
     public void toLoginActivity(View view){
         startActivity(new Intent(Welcome_Activity.this, Login_Activity.class));
     }
 
+    /**
+     * Takes user to Registration Screen
+     * @param view current view
+     */
     public void toRegisterActivity(View view){
         startActivity(new Intent(Welcome_Activity.this, Register_Activity.class));
     }
