@@ -6,8 +6,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -24,7 +24,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Date;
 
-import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Geocoder;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 

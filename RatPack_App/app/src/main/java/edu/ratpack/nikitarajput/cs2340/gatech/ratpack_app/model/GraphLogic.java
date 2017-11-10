@@ -84,34 +84,36 @@ public class GraphLogic {
      */
     private ArrayList<Integer> getMonthData(CharSequence year){
         ArrayList<Integer> monthData = new ArrayList<>();
-        for(int i = 0; i < 12; i++)
+        for(int i = 0; i < 12; i++) {
             monthData.add(0);
+        }
         for(int i = 0; i < allDates.length; i++){
             if(allDates[i].contains("Jan") && allDates[i].contains(year)) {
                 monthData.set(0, monthData.get(0) + 1);
             }
-            else if(allDates[i].contains("Feb") && allDates[i].contains(year))
+            else if(allDates[i].contains("Feb") && allDates[i].contains(year)) {
                 monthData.set(1, monthData.get(1) + 1);
-            else if(allDates[i].contains("Mar") && allDates[i].contains(year))
+            } else if(allDates[i].contains("Mar") && allDates[i].contains(year)) {
                 monthData.set(2, monthData.get(2) + 1);
-            else if(allDates[i].contains("Apr") && allDates[i].contains(year))
+            } else if(allDates[i].contains("Apr") && allDates[i].contains(year)) {
                 monthData.set(3, monthData.get(3) + 1);
-            else if(allDates[i].contains("May") && allDates[i].contains(year))
+            } else if(allDates[i].contains("May") && allDates[i].contains(year)) {
                 monthData.set(4, monthData.get(4) + 1);
-            else if(allDates[i].contains("Jun") && allDates[i].contains(year))
+            } else if(allDates[i].contains("Jun") && allDates[i].contains(year)) {
                 monthData.set(5, monthData.get(5) + 1);
-            else if(allDates[i].contains("Jul") && allDates[i].contains(year))
+            } else if(allDates[i].contains("Jul") && allDates[i].contains(year)) {
                 monthData.set(6, monthData.get(6) + 1);
-            else if(allDates[i].contains("Aug") && allDates[i].contains(year))
+            } else if(allDates[i].contains("Aug") && allDates[i].contains(year)) {
                 monthData.set(7, monthData.get(7) + 1);
-            else if(allDates[i].contains("Sep") && allDates[i].contains(year))
+            } else if(allDates[i].contains("Sep") && allDates[i].contains(year)) {
                 monthData.set(8, monthData.get(8) + 1);
-            else if(allDates[i].contains("Oct") && allDates[i].contains(year))
+            } else if(allDates[i].contains("Oct") && allDates[i].contains(year)) {
                 monthData.set(9, monthData.get(9) + 1);
-            else if(allDates[i].contains("Nov") && allDates[i].contains(year))
+            } else if(allDates[i].contains("Nov") && allDates[i].contains(year)) {
                 monthData.set(10, monthData.get(10) + 1);
-            else if(allDates[i].contains("Dec") && allDates[i].contains(year))
+            } else if(allDates[i].contains("Dec") && allDates[i].contains(year)) {
                 monthData.set(11, monthData.get(11) + 1);
+            }
         }
 
         return monthData;
@@ -172,22 +174,25 @@ public class GraphLogic {
         }
         else{//starting year and end year back to back
             for(int i = startMonthInt + 1; i <= 12; i++) {
-                if(i % 2 == 1)
+                if(i % 2 == 1) {
                     xFormat.add(DaterActivity.monthsArray[i - 1]);
-                else
+                } else {
                     xFormat.add("");
+                }
             }
             xFormat.add("'" + (endYear - 2000));
             for(int i = 2; i < endMonthInt; i++) {
-                if(i % 2 == 1)
+                if(i % 2 == 1) {
                     xFormat.add(DaterActivity.monthsArray[i - 1]);
-                else
+                } else {
                     xFormat.add("");
+                }
             }
-            if(endMonthInt % 2 == 1)
+            if(endMonthInt % 2 == 1) {
                 xFormat.add(lastMonth);
-            else
+            } else {
                 xFormat.add("");
+            }
 
         }
 

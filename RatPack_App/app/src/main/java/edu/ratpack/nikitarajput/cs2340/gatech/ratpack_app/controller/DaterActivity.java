@@ -62,30 +62,31 @@ public class DaterActivity extends AppCompatActivity {
 
 
     private int parseMonth(String month){
-        if(month.contains("Jan"))
+        if(month.contains("Jan")) {
             return 1;
-        else if(month.contains("Feb"))
+        } else if(month.contains("Feb")) {
             return 2;
-        else if(month.contains("Mar"))
+        } else if(month.contains("Mar")) {
             return 3;
-        else if(month.contains("Apr"))
+        } else if(month.contains("Apr")) {
             return 4;
-        else if(month.contains("May"))
+        } else if(month.contains("May")) {
             return 5;
-        else if(month.contains("Jun"))
+        } else if(month.contains("Jun")) {
             return 6;
-        else if(month.contains("Jul"))
+        } else if(month.contains("Jul")) {
             return 7;
-        else if(month.contains("Aug"))
+        } else if(month.contains("Aug")) {
             return 8;
-        else if(month.contains("Sep"))
+        } else if(month.contains("Sep")) {
             return 9;
-        else if(month.contains("Oct"))
+        } else if(month.contains("Oct")) {
             return 10;
-        else if(month.contains("Nov"))
+        } else if(month.contains("Nov")) {
             return 11;
-        else
+        } else {
             return 12;
+        }
 
     }
 
