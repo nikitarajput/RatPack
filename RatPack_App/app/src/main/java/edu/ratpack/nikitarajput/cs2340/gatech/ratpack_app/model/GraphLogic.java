@@ -16,7 +16,6 @@ public class GraphLogic {
 
 
     private String[] allDates;
-    private List<ArrayList<Integer>> sumData;
     private LineDataSet dataSet;
     private int startYear, endYear, startMonthInt, endMonthInt;
 
@@ -33,8 +32,8 @@ public class GraphLogic {
         this.startMonthInt = startMonth;
         this.endMonthInt = endMonth;
 
-        sumData = new ArrayList<>();
-        setData(this.startYear, startMonthInt, this.endYear, endMonthInt);
+        List<ArrayList<Integer>> sumData =
+                setData(this.startYear, startMonthInt, this.endYear, endMonthInt);
         List<Entry> entries = new ArrayList<>();
 
         int l = 0;
@@ -55,7 +54,8 @@ public class GraphLogic {
      * @param endYear literally end year
      * @param endMonthInt last month december is 12
      */
-    private void setData(int startYear, int startMonthInt, int endYear, int endMonthInt){
+    public List<ArrayList<Integer>> setData(int startYear, int startMonthInt, int endYear, int endMonthInt){
+        List<ArrayList<Integer>> sumData = new ArrayList<>();
         //this adds data of all moths of each year in range
         for(int i = startYear; i <= endYear; i++){
             sumData.add(getMonthData("" + i));
@@ -75,6 +75,7 @@ public class GraphLogic {
             sumData.set(sumData.size() - 1,
                     new ArrayList<>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));
         }
+        return sumData;
     }
 
     /**
