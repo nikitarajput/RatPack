@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 
@@ -19,6 +20,8 @@ public class DaterActivity extends AppCompatActivity {
     private int startYearInt, startMonthInt, endYearInt, endMonthInt;
     public static String[] monthsArray = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    public static final int minYear  = 1990;
+    public static final int maxYear  = Calendar.getInstance().get(Calendar.YEAR);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class DaterActivity extends AppCompatActivity {
         endMonth = (Spinner) findViewById(R.id.endMonth);
 
         ArrayList<Integer> years = new ArrayList<Integer>();
-        for(int i = 1990; i <= 2017; i++){
+        for(int i = minYear; i <= maxYear; i++){
             years.add(i);
         }
 

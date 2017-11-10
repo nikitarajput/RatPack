@@ -110,8 +110,8 @@ public class Register_Activity extends AppCompatActivity {
      *
      */
     private boolean verifyPasswordLength() {
-        if (password.getText().toString().length() > 16 || password.getText().toString().length() < 6) {
-            Toast.makeText(getApplicationContext(), "Password must be of length 6-16.", Toast.LENGTH_SHORT).show();
+        if (password.getText().toString().length() < 6) {
+            Toast.makeText(getApplicationContext(), "Password must have at least 6 characters.", Toast.LENGTH_SHORT).show();
             password.requestFocus();
             return false;
         }

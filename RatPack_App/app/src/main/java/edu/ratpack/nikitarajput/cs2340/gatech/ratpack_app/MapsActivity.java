@@ -33,6 +33,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private static Rat[] ratList = new Rat[0];
     public Geocoder geocoder;
+    public static final double nycLat = 40.7829;
+    public static final double nycLong = -73.9654;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng nyc = new LatLng(40.7829, -73.9654);
+        LatLng nyc = new LatLng(nycLat, nycLong);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
         mMap.setMinZoomPreference(11);

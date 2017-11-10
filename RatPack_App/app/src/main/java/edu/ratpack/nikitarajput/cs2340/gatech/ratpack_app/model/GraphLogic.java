@@ -82,7 +82,7 @@ public class GraphLogic {
      * @param year First three letters of the month
      * @return returns the arraylist of month values
      */
-    private ArrayList<Integer> getMonthData(String year){
+    private ArrayList<Integer> getMonthData(CharSequence year){
         ArrayList<Integer> monthData = new ArrayList<>();
         for(int i = 0; i < 12; i++)
             monthData.add(0);
