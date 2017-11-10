@@ -60,7 +60,6 @@ public class GraphLogic {
         for(int i = startYear; i <= endYear; i++){
             sumData.add(getMonthData("" + i));
         }
-
         //below trims to for year data to start and end at dictated months
         //sets first years first month
         sumData.set(0, new ArrayList<>(sumData.get(0).subList(startMonthInt - 1, 12)));
@@ -75,6 +74,7 @@ public class GraphLogic {
             sumData.set(sumData.size() - 1,
                     new ArrayList<>(sumData.get(sumData.size() - 1).subList(0, endMonthInt)));
         }
+
         return sumData;
     }
 
