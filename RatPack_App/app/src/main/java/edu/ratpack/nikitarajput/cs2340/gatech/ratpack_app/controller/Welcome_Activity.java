@@ -43,14 +43,21 @@ public class Welcome_Activity extends AppCompatActivity {
         startActivity(new Intent(Welcome_Activity.this, Register_Activity.class));
     }
 
+    /**
+     * Automatically attempts login on start if the user is logged in on Firebase
+     */
     public void autoLogin(){
         FirebaseAuth mAuth =FirebaseAuth.getInstance();
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("users");
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference dbR = db.getReference();
+        DatabaseReference dbRef = dbR.child("users");
         try {
             String current = mAuth.getCurrentUser().getUid();
             if (dbRef.child(current) != null) {
                 RatFB.init();
-                Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
+                Toast t =Toast.makeText(getApplicationContext(),
+                        "Logging in...", Toast.LENGTH_SHORT);
+                t.show();
                 startActivity(new Intent(Welcome_Activity.this, Home_Activity.class));
             }
         } catch (Exception e){
