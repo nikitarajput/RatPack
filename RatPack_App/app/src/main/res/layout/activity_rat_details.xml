@@ -10,90 +10,73 @@
         android:id="@+id/ratPic"
         android:layout_width="152dp"
         android:layout_height="147dp"
-        app:srcCompat="@mipmap/some_rat"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="0dp"
-        tools:layout_editor_absoluteX="116dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/some_rat" />
 
     <TextView
         android:id="@+id/ratName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:textSize="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/ratPic"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="0dp"
-        tools:layout_editor_absoluteX="152dp" />
+        android:layout_marginStart="36dp"
+        android:text="@string/name"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/ratPic"
+        app:layout_constraintTop_toBottomOf="@+id/ratPic" />
 
     <TextView
         android:id="@+id/incidentDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Spotted on: "
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/ratName"
-        tools:layout_editor_absoluteX="40dp"
-        android:layout_marginTop="33dp" />
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="33dp"
+        android:text="@string/spotted_on"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratName" />
 
     <TextView
         android:id="@+id/locationType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location Type: "
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/incidentDate"
-        tools:layout_editor_absoluteX="40dp"
-        android:layout_marginTop="14dp" />
+        android:layout_marginTop="14dp"
+        android:text="@string/location_type"
+        app:layout_constraintStart_toStartOf="@+id/incidentDate"
+        app:layout_constraintTop_toBottomOf="@+id/incidentDate" />
 
     <TextView
         android:id="@+id/incidentAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Address: "
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/locationType"
-        android:layout_marginTop="17dp" />
+        android:layout_marginTop="17dp"
+        android:text="@string/address"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationType" />
 
     <TextView
         android:id="@+id/incidentBorough"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Borough: "
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/incidentAddress"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:text="@string/borough"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/incidentAddress" />
 
     <Button
         android:id="@+id/viewOnMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View On Map"
         android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/incidentBorough"
-        tools:layout_editor_absoluteX="135dp"
-        android:layout_marginTop="94dp" />
+        android:layout_marginTop="94dp"
+        android:text="@string/view_on_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/incidentBorough" />
 
 </android.support.constraint.ConstraintLayout>
