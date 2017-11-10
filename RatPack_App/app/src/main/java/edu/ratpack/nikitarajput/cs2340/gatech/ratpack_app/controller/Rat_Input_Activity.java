@@ -3,6 +3,7 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -85,21 +86,33 @@ public class Rat_Input_Activity extends AppCompatActivity {
      * @param v is the current view
      */
     public void addRat(View v) {
+        Toast response = Toast.makeText(Rat_Input_Activity.this,
+                "", Toast.LENGTH_SHORT);
         if(isValid()) {
-            Log.d(TAG, ratName.getText().toString());
-            rat = new Rat(ratName.getText().toString(), locationTypeSpinner.getSelectedItem().toString(),
-                    address.getText().toString(), city.getText().toString(),
-                    Integer.parseInt(zipCode.getText().toString()),
-                    boroughSpinner.getSelectedItem().toString());
+            Editable name = ratName.getText();
+            Object locType = locationTypeSpinner.getSelectedItem();
+            Editable addr = address.getText();
+            Editable cit = city.getText();
+            Editable zip = zipCode.getText();
+            Object borough = boroughSpinner.getSelectedItem();
+            String z = zip.toString();
+            String n = name.toString();
+            String l = locType.toString();
+            String c = cit.toString();
+            String a = addr.toString();
+            int zi = Integer.parseInt(z);
+            String b = borough.toString();
+
+            Log.d(TAG, n);
+            rat = new Rat(n, l, a, c, zi, b);
             geocode(geocoder.buildURL(rat.getAddress(), rat.getCity()));
-            Toast.makeText(Rat_Input_Activity.this, "Rat added!.",
-                    Toast.LENGTH_SHORT).show();
+            response.setText("Rat added!");
 
         }
         else{
-            Toast.makeText(Rat_Input_Activity.this, "Please fill all fields.",
-                    Toast.LENGTH_SHORT).show();
+            response.setText("Please fill all fields.");
         }
+        response.show();
 
     }
 
@@ -141,11 +154,19 @@ public class Rat_Input_Activity extends AppCompatActivity {
      * @return a message saying what went wrong. Returns "" if there was a success.
      */
     private boolean isValid(){
-        if(ratName.getText().toString().matches("") || address.getText().toString().matches("") ||
-                zipCode.getText().toString().matches("") || city.getText().toString().matches("")) {
-            return false;
-        }
-        return true;
+        Editable name = ratName.getText();
+        Object locType = locationTypeSpinner.getSelectedItem();
+        Editable addr = address.getText();
+        Editable cit = city.getText();
+        Editable zip = zipCode.getText();
+        Object borough = boroughSpinner.getSelectedItem();
+        String z = zip.toString();
+        String n = name.toString();
+        String a = addr.toString();
+        String c = cit.toString();
+
+        return !(n.matches("") || a.matches("") ||
+                z.matches("") || c.matches(""));
     }
 
     /**
