@@ -30,11 +30,9 @@ import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
-    private static Rat[] ratList = new Rat[0];
-    public Geocoder geocoder;
-    public static final double nycLat = 40.7829;
-    public static final double nycLong = -73.9654;
+    private static final double nycLat = 40.7829;
+    private static final double nycLong = -73.9654;
+    private static final int zoomPref = 11;
 
 
     @Override
@@ -44,16 +42,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        geocoder = new Geocoder();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        GoogleMap mMap = googleMap;
         LatLng nyc = new LatLng(nycLat, nycLong);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
-        mMap.setMinZoomPreference(11);
+        mMap.setMinZoomPreference(zoomPref);
 
         Rat[] currentRatList= RatFB.getAllRats();
         for (Rat aCurrentRatList : currentRatList) {
@@ -128,7 +125,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             int createDateYearInt = Integer.parseInt(createDateYear);
             int createDateMonthInt = Integer.parseInt(createDateMonth);
             int createDateDayInt = Integer.parseInt(createDateDay);
-            if (createDateYearInt >= yearInt && createDateMonthInt >= monthInt && createDateDayInt >= dayInt) {
+            if ((createDateYearInt >= yearInt) && (createDateMonthInt >= monthInt) && (createDateDayInt >= dayInt)) {
                 return true;
             } else {
                 return false;
