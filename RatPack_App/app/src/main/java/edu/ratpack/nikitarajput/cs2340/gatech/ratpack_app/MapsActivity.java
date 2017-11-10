@@ -45,11 +45,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        GoogleMap mMap = googleMap;
         LatLng nyc = new LatLng(nycLat, nycLong);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
-        mMap.setMinZoomPreference(zoomPref);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
+        googleMap.setMinZoomPreference(zoomPref);
 
         Rat[] currentRatList= RatFB.getAllRats();
         for (Rat aCurrentRatList : currentRatList) {
@@ -57,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double currLat = aCurrentRatList.getLatitude();
                 double currLong = aCurrentRatList.getLongitude();
                 LatLng currLatLong = new LatLng(currLat, currLong);
-                mMap.addMarker(new MarkerOptions().position(currLatLong)
+                googleMap.addMarker(new MarkerOptions().position(currLatLong)
                         .title("Rat ID: " + aCurrentRatList.getUniqueKey())
                         .snippet("Rat Name: " + aCurrentRatList.getName() + "\n"
                                 + "Date Created: " + aCurrentRatList.getDate()
@@ -67,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
 
-        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+        googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
             @Override
             public View getInfoWindow(Marker arg0) {
@@ -124,11 +123,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             int createDateYearInt = Integer.parseInt(createDateYear);
             int createDateMonthInt = Integer.parseInt(createDateMonth);
             int createDateDayInt = Integer.parseInt(createDateDay);
-            if ((createDateYearInt >= yearInt) && (createDateMonthInt >= monthInt) && (createDateDayInt >= dayInt)) {
-                return true;
-            } else {
-                return false;
-            }
+            return ((createDateYearInt >= yearInt) && (createDateMonthInt >= monthInt) && (createDateDayInt >= dayInt));
         } catch (Exception e) {
             Log.d("Exception", "Could not parse the date.");
         }

@@ -16,8 +16,14 @@ import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 
 public class DaterActivity extends AppCompatActivity {
 
-    private Spinner startYear, startMonth, endYear, endMonth;
-    private int startYearInt, startMonthInt, endYearInt, endMonthInt;
+    private Spinner startYear;
+    private Spinner startMonth;
+    private Spinner endYear;
+    private Spinner endMonth;
+    private int startYearInt;
+    private int startMonthInt;
+    private int endYearInt;
+    private int endMonthInt;
     public static String[] monthsArray = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     public static final int minYear  = 1990;

@@ -17,7 +17,10 @@ public class GraphLogic {
 
     private String[] allDates;
     private LineDataSet dataSet;
-    private int startYear, endYear, startMonthInt, endMonthInt;
+    private int startYear;
+    private int endYear;
+    private int startMonthInt;
+    private int endMonthInt;
 
 
     public GraphLogic(int startYear, int startMonth, int endYear, int endMonth){
