@@ -28,6 +28,13 @@
     <string name="text_incident_city">Incident City</string>
     <string name="spinner_borough">Borough</string>
     <string name="view_on_map">View On Map</string>
+    <string name="rat_map">Rat Map</string>
+    <string name="pick_starting_date">Pick Starting Date</string>
+    <string name="read_csv">Read CSV</string>
+    <string name="reload">Reload</string>
+    <string name="add_rat">Add Rat</string>
+    <string name="admin">Admin</string>
+    <string name="toggle_button">ToggleButton</string>
 
     <string-array name="location_types">
         <item>Family Dwelling</item>
@@ -48,7 +55,7 @@
         <item>Bronx</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
-    <string name="ratdata">Rat Data</string>
+    <string name="rat_data">Rat Data</string>
     <string name="year">Year</string>
     <string name="graph_range">Graph Date Range</string>
     <string name="starting_month">Starting Month</string>

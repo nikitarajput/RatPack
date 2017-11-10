@@ -7,29 +7,29 @@
         android:id="@+id/toggleButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:text="@string/toggle_button" />
 
     <ToggleButton
         android:id="@+id/toggleButton2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:text="@string/toggle_button" />
 
     <ToggleButton
         android:id="@+id/toggleButton3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:text="@string/toggle_button" />
 
     <ToggleButton
         android:id="@+id/toggleButton4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:text="@string/toggle_button" />
 
     <ToggleButton
         android:id="@+id/toggleButton5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:text="@string/toggle_button" />
 </LinearLayout>

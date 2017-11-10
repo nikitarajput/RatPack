@@ -12,6 +12,7 @@
 
     <EditText
         android:id="@+id/register_username_editText"
+        android:labelFor="@+id/register_username_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -29,6 +30,7 @@
 
     <EditText
         android:id="@+id/register_password_editText"
+        android:labelFor="@+id/register_password_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -46,6 +48,7 @@
 
     <EditText
         android:id="@+id/confirm_password_editText"
+        android:labelFor="@+id/confirm_password_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -92,7 +95,6 @@
         android:id="@+id/textView2"
         android:layout_width="151dp"
         android:layout_height="46dp"
-        android:layout_marginLeft="12dp"
         android:layout_marginTop="12dp"
         android:text="@string/button_register"
         android:textAlignment="textStart"
@@ -106,7 +108,6 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:text="@string/email_address"
         android:textSize="18sp"
@@ -119,7 +120,6 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/pass_word"
@@ -131,7 +131,6 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/button_confirm_password"
@@ -143,9 +142,9 @@
         android:id="@+id/isAdmin_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="19dp"
-        android:text="Admin"
+        android:text="@string/admin"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 

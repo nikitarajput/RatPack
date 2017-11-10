@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/lib/edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rat_scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/lib/edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_rat_sightings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -28,16 +24,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="reload"
-            android:text="Reload" />
+            android:text="@string/reload" />
 
         <Button
             android:id="@+id/add_rat_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="0dp"
             android:layout_weight="0.01"
             android:onClick="addRat"
-            android:text="Add Rat" />
+            android:text="@string/add_rat" />
 
     </LinearLayout>
 </ScrollView>
