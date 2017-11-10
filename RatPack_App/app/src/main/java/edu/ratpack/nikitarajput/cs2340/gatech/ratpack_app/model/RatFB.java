@@ -15,17 +15,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RatFB {
-    private static FirebaseDatabase fbDB;
     private static DatabaseReference dbRef;
     private static  Map<String, Object> masterMap;
     private static Rat[] allRats;
     private static Boolean firstCall;
 
+    /**
+     * Creates initial Firebase references.
+     */
     public static void init(){
         Log.d("TEST", "Called constructor for RatFB");
-        fbDB = FirebaseDatabase.getInstance();
+        FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
         dbRef = fbDB.getReference();
-        masterMap = new HashMap<String, Object>();
+        masterMap = new HashMap<>();
         allRats = new Rat[0];
         firstCall = true;
         Log.d("TEST","initialized all variables");
@@ -59,7 +61,7 @@ public class RatFB {
     /**
      * Adds a listener to the rats database that calls makeList() every time data is updated
      */
-    public static void addListener(){
+    private static void addListener(){
         DatabaseReference dbTemp = FirebaseDatabase.getInstance().getReference().child("rats");
         //only way i could find to get data from fireBase
         dbTemp.addValueEventListener(new ValueEventListener() {
@@ -80,7 +82,7 @@ public class RatFB {
      */
     private static void makeList(DataSnapshot data){
         Log.d("TEST", "MakeList called");
-        Map<String, Object> m = new HashMap<String, Object>();
+        Map<String, Object> m = new HashMap<>();
         Rat[] rats = new Rat[(int) data.getChildrenCount()];
         int i = 0;
         for (DataSnapshot snap : data.getChildren()) {

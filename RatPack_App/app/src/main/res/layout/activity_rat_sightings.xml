@@ -28,12 +28,12 @@
 
         <Button
             android:id="@+id/add_rat_button"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.01"
+            android:layout_height="wrap_content"
             android:onClick="addRat"
-            android:text="@string/add_rat" />
+            android:text="@string/add_rat"
+            android:textAppearance="@android:style/TextAppearance.Widget.Button"
+            android:visibility="visible" />
 
     </LinearLayout>
 </ScrollView>

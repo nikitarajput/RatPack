@@ -20,10 +20,7 @@ import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 public class Rat_Sightings_Activity extends AppCompatActivity {
     private static Rat[] ratList =new Rat[0];
 
-    /**
-     * Creates all of the widgets on the screen. run on startup of activity.
-     * @param savedInstanceState instance state that has been saved.
-     */
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings);
@@ -114,7 +111,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
      * Shows rat details.
      * @param v the current view that the data is coming from.
      */
-    public void viewRat(View v) {
+    private void viewRat(View v) {
         if (v.getVisibility() == View.GONE) {
             v.setVisibility(View.VISIBLE);
         }
@@ -127,7 +124,7 @@ public class Rat_Sightings_Activity extends AppCompatActivity {
     /**
      * Shows first 50 entries of rat sightings.
      */
-    public static void updateRatList() {
+    private static void updateRatList() {
 
         Log.d("TEST", "entered updateRatList()");
         final int max = 50;

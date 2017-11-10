@@ -21,17 +21,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.User;
 
-
+/**
+ * Class that registers a user.
+ */
 public class Register_Activity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference dbRef;
     private static final String TAG = "Registration";
     private static final String TAG2 = "AddToDatabase";
 
-    EditText username, password, confirmPassword;
-    Switch isAdmin;
+    private EditText username;
+    private EditText password;
+    private EditText confirmPassword;
+    private Switch isAdmin;
     private String userID;
 
     @Override
@@ -43,7 +46,7 @@ public class Register_Activity extends AppCompatActivity {
         confirmPassword = (EditText)findViewById(R.id.confirm_password_editText);
         mAuth = FirebaseAuth.getInstance();
         isAdmin = (Switch)findViewById(R.id.isAdmin_switch);
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         dbRef = mFirebaseDatabase.getReference();
     }
 
@@ -135,6 +138,10 @@ public class Register_Activity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Takes user to Welcome Screen
+     * @param v current view
+     */
     public void toWelcomeActivity(View v){
         startActivity(new Intent(Register_Activity.this, Welcome_Activity.class));
     }

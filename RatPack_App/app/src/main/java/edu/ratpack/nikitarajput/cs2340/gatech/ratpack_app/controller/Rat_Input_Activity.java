@@ -26,16 +26,22 @@ import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Reader;
 
+/**
+ * Class that records rat sighting.
+ */
 public class Rat_Input_Activity extends AppCompatActivity {
 
 
-    EditText ratName, address, zipCode, city;
+    private EditText ratName;
+    private EditText address;
+    private EditText zipCode;
+    private EditText city;
 
 
     private Spinner locationTypeSpinner;
     private Spinner boroughSpinner;
     private static final String TAG = "AddToDatabase";
-    public Geocoder geocoder;
+    private Geocoder geocoder;
     private Rat rat;
 
     @Override
@@ -101,7 +107,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
      * makes Google Map's API call to geocode rat location
      * @param url custom url used to make API call
      */
-    public void geocode(String url) {
+    private void geocode(String url) {
         RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
@@ -109,8 +115,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("TAG", response.toString());
-                        JSONObject locationDetails = response;
-                        geocoder.parseData(locationDetails);
+                        geocoder.parseData(response);
                         rat.setLatitude(geocoder.getLat());
                         rat.setLongitude(geocoder.getLong());
                         Log.d("LATITUDE of rat", "" + rat.getLatitude());
@@ -136,8 +141,6 @@ public class Rat_Input_Activity extends AppCompatActivity {
      * @return a message saying what went wrong. Returns "" if there was a success.
      */
     private boolean isValid(){
-        String goodmsg = "";
-
         if(ratName.getText().toString().matches("") || address.getText().toString().matches("") ||
                 zipCode.getText().toString().matches("") || city.getText().toString().matches("")) {
             return false;
@@ -148,7 +151,7 @@ public class Rat_Input_Activity extends AppCompatActivity {
     /**
      * Takes user to rat sightings page.
      */
-    public void toSightingsActivity(){
+    private void toSightingsActivity(){
         startActivity(new Intent(Rat_Input_Activity.this, Rat_Sightings_Activity.class));
     }
 }

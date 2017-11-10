@@ -9,19 +9,24 @@ public class User {
     private boolean isLocked;
     private boolean isAdmin;
 
-    public User() {
-
-    }
-
-    public User(String username, String password) {
-        this(username, password, false, false);
-    }
-
+    /**
+     * Creates user object.
+     * @param username user's username
+     * @param password user's password
+     * @param isAdmin user's admins status
+     */
     public User(String username, String password, boolean isAdmin) {
         this(username, password, false, isAdmin);
     }
 
-    public User(String username, String password,boolean isLocked, boolean isAdmin) {
+    /**
+     * Creates user object.
+     * @param username user's username
+     * @param password user's password
+     * @param isLocked whether or not user's account is locked
+     * @param isAdmin user's admins status
+     */
+    public User(String username, String password, boolean isLocked, boolean isAdmin) {
         this.username = username;
         this.password = password;
         this.isLocked = isLocked;

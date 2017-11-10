@@ -148,15 +148,15 @@
 
     <EditText
         android:id="@+id/incident_zip_editText"
-        android:labelFor="@+id/incident_zip_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:ems="10"
         android:inputType="number"
-        android:layout_marginTop="0dp"
+        android:labelFor="@+id/incident_zip_editText"
         android:maxLength="5"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
         android:id="@+id/read_CSV_button"

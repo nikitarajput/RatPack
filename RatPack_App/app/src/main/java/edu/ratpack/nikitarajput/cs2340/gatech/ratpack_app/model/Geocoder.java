@@ -29,9 +29,7 @@ public class Geocoder {
      * @return formatted url with passed information
      */
     public String buildURL(String address, String city) {
-        String newURL =  url + address + "," + city + ",NY" + APIkey;
-        return newURL;
-
+        return url + address + "," + city + ",NY" + APIkey;
     }
 
     /**
