@@ -146,7 +146,7 @@ public class GraphLogic {
         String lastMonth = DaterActivity.monthsArray[endMonthInt - 1];
         ArrayList<String> xFormat = new ArrayList<String>();
         xFormat.add(firstMonth);
-        int counter = getNumberMonths(endYear, startYear, endMonthInt, startMonthInt) - 1;// for counting purposes. only testing
+        int counter = getNumberMonths() - 1;// for counting purposes. only testing
         if(endYear - startYear >= 2) {//full year between starting year and ending year
             for (int i = startMonthInt + 1; i <= 12; i++) {
                 xFormat.add("");
@@ -202,7 +202,7 @@ public class GraphLogic {
 
         counter--;
         Log.d("counter", "formatXAxis: " + counter);
-        int labelCount = getNumberMonths(endYear, startYear, endMonthInt, startMonthInt);
+        int labelCount = getNumberMonths();
         xAxis.setLabelCount(labelCount);
         xAxis.setValueFormatter(new XAxisFormatter(xFormat.toArray(new String[0])));
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -212,7 +212,7 @@ public class GraphLogic {
      *
      * @return the total number of months in the data set
      */
-    private int getNumberMonths(int endYear, int startYear, int endMonthInt, int startMonthInt){
+    public int getNumberMonths(){
         int dif = endYear - startYear;
         if (dif == 0) {
             return endMonthInt - startMonthInt;
