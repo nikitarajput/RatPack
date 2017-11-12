@@ -2,14 +2,9 @@ package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.GraphLogic;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
@@ -85,7 +80,5 @@ public class getNumberMonthsTester {
         int expected = 29;
         assertEquals(expected, actual);
     }
-
-
 
 }
