@@ -104,10 +104,5 @@ public class makeRatTester {
         input = new String[8];
     }
 
-    @AfterClass
-    public static void tearDown(){
-        test = null;
-        input = null;
-    }
 
 }
