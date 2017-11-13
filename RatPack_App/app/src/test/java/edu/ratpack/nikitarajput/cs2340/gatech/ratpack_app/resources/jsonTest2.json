@@ -1,0 +1,64 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "Rat Island",
+               "short_name" : "Rat Island",
+               "types" : [ "establishment", "natural_feature" ]
+            },
+            {
+               "long_name" : "Bronx",
+               "short_name" : "Bronx",
+               "types" : [ "political", "sublocality", "sublocality_level_1" ]
+            },
+            {
+               "long_name" : "Bronx County",
+               "short_name" : "Bronx County",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "New York",
+               "short_name" : "NY",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : [ "country", "political" ]
+            }
+         ],
+         "formatted_address" : "Rat Island, Bronx, NY, USA",
+         "geometry" : {
+            "bounds" : {
+               "northeast" : {
+                  "lat" : 40.8555241,
+                  "lng" : -73.7806489
+               },
+               "southwest" : {
+                  "lat" : 40.8548566,
+                  "lng" : -73.7813134
+               }
+            },
+            "location" : {
+               "lat" : 40.8551994,
+               "lng" : -73.78097199999999
+            },
+            "location_type" : "APPROXIMATE",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 40.8565393302915,
+                  "lng" : -73.77963216970849
+               },
+               "southwest" : {
+                  "lat" : 40.8538413697085,
+                  "lng" : -73.7823301302915
+               }
+            }
+         },
+         "place_id" : "ChIJl_SM2m-MwokR6fmZK39S_eU",
+         "types" : [ "establishment", "natural_feature" ]
+      }
+   ],
+   "status" : "OK"
+}

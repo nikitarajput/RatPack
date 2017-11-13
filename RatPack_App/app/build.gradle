@@ -36,11 +36,13 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
     testCompile 'junit:junit:4.12'
     testCompile 'org.powermock:powermock-api-mockito:1.6.1'
     testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.1'
     testCompile 'org.powermock:powermock-module-junit4-rule:1.6.1'
     testCompile 'org.powermock:powermock-module-junit4:1.6.1'
+    testCompile 'org.json:json:20171018'
 }
 
 

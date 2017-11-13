@@ -38,14 +38,14 @@ public class Geocoder {
      */
     public void parseData(JSONObject data) {
         try {
-            JSONArray aTemp = (JSONArray)data.get("results");
-            JSONObject oTemp = aTemp.getJSONObject(0);
-            JSONObject oTemp1 = oTemp.getJSONObject("geometry");
-            JSONObject oTemp2 = oTemp1.getJSONObject("location");
+            JSONArray results = (JSONArray)data.get("results");
+            JSONObject main = results.getJSONObject(0);
+            JSONObject geometry = main.getJSONObject("geometry");
+            JSONObject location = geometry.getJSONObject("location");
 
-            lat = oTemp2.getDouble("lat");
+            lat = location.getDouble("lat");
 
-            lng = oTemp2.getDouble("lng");
+            lng = location.getDouble("lng");
 
             Log.d("latitude", "" + lat);
             Log.d("longitude", "" + lng);
@@ -53,6 +53,14 @@ public class Geocoder {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public void setLong(double lng) {
+        this.lng = lng;
     }
 
     /**

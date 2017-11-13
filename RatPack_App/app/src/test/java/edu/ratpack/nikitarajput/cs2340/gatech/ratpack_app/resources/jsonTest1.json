@@ -1,0 +1,79 @@
+{
+  "results" : [
+    {
+      "address_components" : [
+        {
+          "long_name" : "529",
+          "short_name" : "529",
+          "types" : [ "street_number" ]
+        },
+        {
+          "long_name" : "Broome Street",
+          "short_name" : "Broome St",
+          "types" : [ "route" ]
+        },
+        {
+          "long_name" : "Manhattan",
+          "short_name" : "Manhattan",
+          "types" : [ "political", "sublocality", "sublocality_level_1" ]
+        },
+        {
+          "long_name" : "New York",
+          "short_name" : "New York",
+          "types" : [ "locality", "political" ]
+        },
+        {
+          "long_name" : "New York County",
+          "short_name" : "New York County",
+          "types" : [ "administrative_area_level_2", "political" ]
+        },
+        {
+          "long_name" : "New York",
+          "short_name" : "NY",
+          "types" : [ "administrative_area_level_1", "political" ]
+        },
+        {
+          "long_name" : "United States",
+          "short_name" : "US",
+          "types" : [ "country", "political" ]
+        },
+        {
+          "long_name" : "10013",
+          "short_name" : "10013",
+          "types" : [ "postal_code" ]
+        }
+      ],
+      "formatted_address" : "529 Broome St, New York, NY 10013, USA",
+      "geometry" : {
+        "bounds" : {
+          "northeast" : {
+            "lat" : 40.7239269,
+            "lng" : -74.0041468
+          },
+          "southwest" : {
+            "lat" : 40.7237109,
+            "lng" : -74.00447819999999
+          }
+        },
+        "location" : {
+          "lat" : 40.7238189,
+          "lng" : -74.0043125
+        },
+        "location_type" : "ROOFTOP",
+        "viewport" : {
+          "northeast" : {
+            "lat" : 40.7251678802915,
+            "lng" : -74.00296351970849
+          },
+          "southwest" : {
+            "lat" : 40.7224699197085,
+            "lng" : -74.00566148029149
+          }
+        }
+      },
+      "place_id" : "ChIJNdx1g4xZwokRQmPDgCnVADo",
+      "types" : [ "premise" ]
+    }
+  ],
+  "status" : "OK"
+}
