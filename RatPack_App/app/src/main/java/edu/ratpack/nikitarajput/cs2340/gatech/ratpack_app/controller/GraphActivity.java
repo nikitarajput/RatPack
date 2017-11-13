@@ -1,5 +1,6 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,6 +12,9 @@ import com.github.mikephil.charting.data.LineData;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.GraphLogic;
 
+/**
+ *
+ */
 public class GraphActivity extends AppCompatActivity {
 
     @Override
@@ -20,7 +24,10 @@ public class GraphActivity extends AppCompatActivity {
 
         LineChart chart = (LineChart) findViewById(R.id.chart);
 
-        Bundle extras = getIntent().getExtras();
+        Intent current = getIntent();
+        Bundle extras = current.getExtras();
+
+        assert extras != null;
         int startYear = extras.getInt("startYear");
         int startMonth = extras.getInt("startMonth");
         int endYear = extras.getInt("endYear");
