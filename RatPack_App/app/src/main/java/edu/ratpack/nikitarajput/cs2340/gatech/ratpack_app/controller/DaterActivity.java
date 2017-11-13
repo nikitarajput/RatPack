@@ -14,20 +14,19 @@ import java.util.Calendar;
 
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.R;
 
+/**
+ * Activity Viewer for activity_dater
+ */
 public class DaterActivity extends AppCompatActivity {
 
     private Spinner startYear;
     private Spinner startMonth;
     private Spinner endYear;
     private Spinner endMonth;
-    private int startYearInt;
-    private int startMonthInt;
-    private int endYearInt;
-    private int endMonthInt;
-    public static String[] monthsArray = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    public static final String[] monthsArray = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-    public static final int minYear  = 1990;
-    public static final int maxYear  = Calendar.getInstance().get(Calendar.YEAR);
+    private static final int minYear  = 1990;
+    private static final int maxYear  = Calendar.getInstance().get(Calendar.YEAR);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,74 +38,73 @@ public class DaterActivity extends AppCompatActivity {
         endYear = (Spinner) findViewById(R.id.endYear);
         endMonth = (Spinner) findViewById(R.id.endMonth);
 
-        ArrayList<Integer> years = new ArrayList<Integer>();
+        ArrayList<Integer> years = new ArrayList<>();
         for(int i = minYear; i <= maxYear; i++){
             years.add(i);
         }
 
-        ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<Integer>(
+        ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, years);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         startYear.setAdapter(yearAdapter);
         endYear.setAdapter(yearAdapter);
 
 
-        ArrayList<String> months = new ArrayList<String>(Arrays.asList(monthsArray));
+        ArrayList<String> months = new ArrayList<>(Arrays.asList(monthsArray));
 
-        ArrayAdapter<String> monthAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, months);
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         startMonth.setAdapter(monthAdapter);
         endMonth.setAdapter(monthAdapter);
 
-        startYear.setSelection(27);
-        endYear.setSelection(27);
-        endMonth.setSelection(9);
+
+        final int thisYear = 27;
+        startYear.setSelection(thisYear);
+        endYear.setSelection(thisYear);
+
+        final int thisMonth = 9;
+        endMonth.setSelection(thisMonth);
 
 
     }
 
-
+    /**
+     * Returns what month the string corresponds to
+     * @param month the string name for month
+     * @return the int index of the month. starts at 1
+     */
     private int parseMonth(String month){
-        if(month.contains("Jan")) {
-            return 1;
-        } else if(month.contains("Feb")) {
-            return 2;
-        } else if(month.contains("Mar")) {
-            return 3;
-        } else if(month.contains("Apr")) {
-            return 4;
-        } else if(month.contains("May")) {
-            return 5;
-        } else if(month.contains("Jun")) {
-            return 6;
-        } else if(month.contains("Jul")) {
-            return 7;
-        } else if(month.contains("Aug")) {
-            return 8;
-        } else if(month.contains("Sep")) {
-            return 9;
-        } else if(month.contains("Oct")) {
-            return 10;
-        } else if(month.contains("Nov")) {
-            return 11;
-        } else {
-            return 12;
-        }
 
+        final int numMonthsInYear = 12;
+        for(int i = 1; i <= numMonthsInYear; i++) {
+            if(month.contains(monthsArray[i - 1])) {
+                return i;
+            }
+        }
+        return 0;
     }
 
 
+    /**
+     * Goes to Graph activity, but also puts in some preliminary data
+     * @param v Goes to this activity
+     */
+    public void toGraph(@SuppressWarnings("unused") View v){
 
-    public void toGraph(View v){
-        startYearInt = Integer.parseInt(startYear.getSelectedItem().toString());
-        startMonthInt = parseMonth(startMonth.getSelectedItem().toString());
-        endYearInt = Integer.parseInt(endYear.getSelectedItem().toString());
-        endMonthInt = parseMonth(endMonth.getSelectedItem().toString());
+        Object startYearItem = startYear.getSelectedItem();
+        Object startMonthItem = startMonth.getSelectedItem();
+        Object endYearItem = endYear.getSelectedItem();
+        Object endMonthItem = endMonth.getSelectedItem();
+        int startYearInt = Integer.parseInt(startYearItem.toString());
+        int startMonthInt = parseMonth(startMonthItem.toString());
+        int endYearInt = Integer.parseInt(endYearItem.toString());
+        int endMonthInt = parseMonth(endMonthItem.toString());
 
-        if(startYearInt * 100 + startMonthInt >= endYearInt * 100 + endMonthInt){
-            Toast.makeText(DaterActivity.this, "Can't go backwards!",
-                    Toast.LENGTH_SHORT).show();
+        if(((startYearInt * 100) + startMonthInt) >= ((endYearInt * 100) + endMonthInt)){
+            Toast msg = Toast.makeText(DaterActivity.this, "Can't go backwards!",
+                    Toast.LENGTH_SHORT);
+            msg.show();
         }
         else {
             Intent intent = new Intent(DaterActivity.this, GraphActivity.class);

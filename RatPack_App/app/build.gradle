@@ -17,7 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    testOptions {git
+    testOptions {
         unitTests.returnDefaultValues = true
     }
 }
