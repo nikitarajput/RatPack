@@ -147,9 +147,9 @@ public final class GraphLogic {
     /**
      * Adds labels to xFormat
      * @param xFormat List of strings from which the label is made
-     * @return xFormat for testing purposes
+     *
      */
-    private Collection<String> addLabels(Collection<String> xFormat) {
+    private void addLabels(Collection<String> xFormat) {
         String firstMonth = monthsArray[startMonthInt - 1];
         String lastMonth = monthsArray[endMonthInt - 1];
         xFormat.add(firstMonth);
@@ -184,7 +184,7 @@ public final class GraphLogic {
 
 
         }
-        return xFormat;
+
     }
 
     /**
@@ -193,10 +193,10 @@ public final class GraphLogic {
      * @param startYear year at which data starts
      * @param endYear year at which data ends
      * @param xFormat List of strings from which the label is made
-     * @return xFormat for testing purposes
+     *
      */
-    private Collection<String> fillYears(int startYear, int endYear, Collection<String> xFormat) {
-        if(endYear - startYear > 1) {
+    private void fillYears(int startYear, int endYear, Collection<String> xFormat) {
+        if((endYear - startYear) > 1) {
             int j;
             String yearAbr;
             for (j = startYear + 1; j < endYear; j++) {
@@ -210,7 +210,7 @@ public final class GraphLogic {
             yearAbr = String.valueOf(j);
             xFormat.add("'" + yearAbr.substring(2));
         }
-        return xFormat;
+
     }
 
     /**
@@ -219,7 +219,7 @@ public final class GraphLogic {
      * @param xFormat List of strings from which the label is made
      */
     public void oddMonth(int monthInd, Collection<String> xFormat) {
-        if(monthInd > 1 && monthInd <= numMonthInYear) {
+        if((monthInd > 1) && (monthInd <= numMonthInYear)) {
             if ((monthInd % 2) == 1) {//every second month
                 xFormat.add(monthsArray[monthInd - 1]);
             } else {
