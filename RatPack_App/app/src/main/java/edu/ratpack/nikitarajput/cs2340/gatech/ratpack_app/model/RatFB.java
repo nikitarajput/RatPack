@@ -1,8 +1,6 @@
 package edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model;
 
-/**
- * Created by aaron on 10/13/17.
- */
+
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,6 +12,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Created by aaron on 10/13/17.
+ **/
 public class RatFB {
     private static DatabaseReference dbRef;
     private static  Map<String, Object> masterMap;

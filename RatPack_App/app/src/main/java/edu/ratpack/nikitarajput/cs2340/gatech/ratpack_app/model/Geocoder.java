@@ -55,10 +55,18 @@ public class Geocoder {
         }
     }
 
+    /**
+     * sets the latitude.
+     * @param lat the latitude to be set.
+     */
     public void setLat(double lat) {
         this.lat = lat;
     }
 
+    /**
+     * sets the longitude.
+     * @param lng the longitude to be set.
+     */
     public void setLong(double lng) {
         this.lng = lng;
     }

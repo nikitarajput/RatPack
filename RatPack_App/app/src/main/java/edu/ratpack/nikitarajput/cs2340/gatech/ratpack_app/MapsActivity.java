@@ -27,6 +27,9 @@ import java.util.Date;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.Rat;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.model.RatFB;
 
+/**
+ * MapsActivity class
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private static final double nycLat = 40.7829;
