@@ -91,7 +91,8 @@ public class RatFB {
             String key = ((Rat) value).getUniqueKey();
             if (key == null) {
                 key = "invalidInput";
-                Log.d("TEST", "Found a pesky rat. ID: " + ((Rat) value).getUniqueKey() + "\nnumber: " + i);
+                Log.d("TEST", "Found a pesky rat. ID: "
+                        + ((Rat) value).getUniqueKey() + "\nnumber: " + i);
             }
             m.put(key, value);
             //Log.d("TEST", "successful put #"+i);

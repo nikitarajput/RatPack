@@ -52,6 +52,8 @@ public class Welcome_Activity extends AppCompatActivity {
         DatabaseReference dbR = db.getReference();
         DatabaseReference dbRef = dbR.child("users");
         try {
+            //noinspection ConstantConditions
+            @SuppressWarnings("ConstantConditions")
             String current = mAuth.getCurrentUser().getUid();
             if (dbRef.child(current) != null) {
                 RatFB.init();

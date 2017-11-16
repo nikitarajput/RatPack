@@ -126,7 +126,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             int createDateYearInt = Integer.parseInt(createDateYear);
             int createDateMonthInt = Integer.parseInt(createDateMonth);
             int createDateDayInt = Integer.parseInt(createDateDay);
-            return ((createDateYearInt >= yearInt) && (createDateMonthInt >= monthInt) && (createDateDayInt >= dayInt));
+            return ((createDateYearInt >= yearInt)
+                    && (createDateMonthInt >= monthInt) && (createDateDayInt >= dayInt));
         } catch (Exception e) {
             Log.d("Exception", "Could not parse the date.");
         }

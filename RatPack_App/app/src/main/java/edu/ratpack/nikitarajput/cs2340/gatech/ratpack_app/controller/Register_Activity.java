@@ -57,26 +57,33 @@ public class Register_Activity extends AppCompatActivity {
      */
     public void register(View v) {
         if (verifyUsernameLength() && verifyPasswordLength() && verifyConfirmPassword()) {
-            mAuth.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            mAuth.createUserWithEmailAndPassword(username.getText().toString(),
+                    password.getText().toString()).addOnCompleteListener(this,
+                    new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                //noinspection ConstantConditions
                                 userID = user.getUid();
-                                writeNewUser(username.getText().toString(), password.getText().toString(), isAdmin.isChecked());
+                                writeNewUser(username.getText().toString(),
+                                        password.getText().toString(), isAdmin.isChecked());
                                 Log.d(TAG, TAG2 + "createdUser");
-                                Toast.makeText(Register_Activity.this, "Registration successful!.",
+                                Toast.makeText(Register_Activity.this,
+                                        "Registration successful!.",
                                         Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Register_Activity.this, Login_Activity.class));
+                                startActivity(new Intent(Register_Activity.this,
+                                        Login_Activity.class));
                             } else {
-                                Toast.makeText(Register_Activity.this, "Authentication failed. Please try again.",
+                                Toast.makeText(Register_Activity.this,
+                                        "Authentication failed. Please try again.",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         } else {
-            Toast.makeText(getApplicationContext(), "Registration unsuccessful. Please try again.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),
+                    "Registration unsuccessful. Please try again.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -99,7 +106,8 @@ public class Register_Activity extends AppCompatActivity {
      */
     private boolean verifyUsernameLength() {
         if (username.getText().toString().length() < 3){
-            Toast.makeText(getApplicationContext(), "Email must contain at least 3 characters.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),
+                    "Email must contain at least 3 characters.", Toast.LENGTH_SHORT).show();
             username.requestFocus();
             return false;
         }
@@ -114,7 +122,8 @@ public class Register_Activity extends AppCompatActivity {
      */
     private boolean verifyPasswordLength() {
         if (password.getText().toString().length() < 6) {
-            Toast.makeText(getApplicationContext(), "Password must have at least 6 characters.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),
+                    "Password must have at least 6 characters.", Toast.LENGTH_SHORT).show();
             password.requestFocus();
             return false;
         }
@@ -129,7 +138,8 @@ public class Register_Activity extends AppCompatActivity {
      */
     private boolean verifyConfirmPassword() {
         if (!password.getText().toString().equals(confirmPassword.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "Passwords do not match.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),
+                    "Passwords do not match.",Toast.LENGTH_SHORT).show();
             password.setText("");
             confirmPassword.setText("");
             password.requestFocus();
