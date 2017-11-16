@@ -18,6 +18,7 @@ import java.util.Map;
 public class Reader {
 
 
+    @SuppressWarnings("FieldCanBeLocal")
     private static Map<String, Object> map = new HashMap<>();
 
 

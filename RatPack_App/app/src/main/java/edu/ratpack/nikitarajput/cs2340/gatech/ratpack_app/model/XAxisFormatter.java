@@ -8,6 +8,7 @@ import java.util.Arrays;
 /**
  * Used by Graph Tool to create XAxis
  */
+@SuppressWarnings("WeakerAccess")
 public class XAxisFormatter implements IAxisValueFormatter {
     private final String[] months;
 

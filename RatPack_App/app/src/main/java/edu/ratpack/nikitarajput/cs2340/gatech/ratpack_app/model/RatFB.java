@@ -132,6 +132,7 @@ public class RatFB {
      * Sets allRats to the given Rat[]
      * @param r Array of rats to set allRats to
      */
+    @SuppressWarnings("WeakerAccess")
     public static void setAllRats(Rat[] r) {allRats = r;}
 
     /**
