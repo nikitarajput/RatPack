@@ -12,7 +12,7 @@ import android.widget.DatePicker;
 import edu.ratpack.nikitarajput.cs2340.gatech.ratpack_app.MapsActivity;
 
 /**
- * Created by soniaggarwal on 10/23/17.
+ *
  */
 
 public class DatePickerFragment extends DialogFragment

@@ -227,6 +227,7 @@ public final class GraphLogic {
             }
         }
     }
+
     /**
      * @return the total number of months in the data set
      */

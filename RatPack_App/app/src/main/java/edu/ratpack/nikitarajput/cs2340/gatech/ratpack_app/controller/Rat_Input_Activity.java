@@ -62,10 +62,10 @@ public class Rat_Input_Activity extends AppCompatActivity {
         locationTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationTypeSpinner.setAdapter(locationTypeAdapter);
 
-        ArrayAdapter<CharSequence> boroughAdapater = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> Adapter = ArrayAdapter.createFromResource(this,
                 R.array.boroughs, android.R.layout.simple_spinner_item);
-        boroughAdapater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        boroughSpinner.setAdapter(boroughAdapater);
+        Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        boroughSpinner.setAdapter(Adapter);
 
         geocoder = new Geocoder();
 

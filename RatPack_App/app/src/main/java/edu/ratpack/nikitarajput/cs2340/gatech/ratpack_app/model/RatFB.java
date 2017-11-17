@@ -111,7 +111,7 @@ public class RatFB {
 
     /**
      * Retrieves a rat from the database with the given uniqueID
-     * @param key The nuique ID of the rat to be retrieved
+     * @param key The unique ID of the rat to be retrieved
      * @return The rat who has the given unique ID
      */
     public static Rat getRat(String key) {return (Rat)masterMap.get(key);}
