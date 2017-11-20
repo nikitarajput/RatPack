@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+
 /**
  * Class used for location services.
  */
@@ -40,19 +42,71 @@ public class Geocoder {
         try {
             JSONArray results = (JSONArray)data.get("results");
             JSONObject main = results.getJSONObject(0);
-            JSONObject geometry = main.getJSONObject("geometry");
-            JSONObject location = geometry.getJSONObject("location");
-
-            lat = location.getDouble("lat");
-
-            lng = location.getDouble("lng");
-
-            Log.d("latitude", "" + lat);
-            Log.d("longitude", "" + lng);
-
+            String address = main.getString("formatted_address");
+            if (validateCountry(address)) {
+                if (validateCity(address)) {
+                    JSONObject geometry = main.getJSONObject("geometry");
+                    JSONObject location = geometry.getJSONObject("location");
+                    if (validateLatLong(location.getDouble("lat"), location.getDouble("lng"))) {
+                        lat = location.getDouble("lat");
+                        lng = location.getDouble("lng");
+                    }
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    private boolean validateLatLong(double lat, double lng) {
+        boolean checkLatLong = false;
+        try {
+            if (lat > -85.05115 && lat <= 85) {
+                checkLatLong = true;
+            } else {
+                checkLatLong = false;
+                throw new Exception("Latitude out of bounds.");
+            }
+            if (lng > -180 && lng <= 180) {
+                checkLatLong = true;
+            } else {
+                checkLatLong = false;
+                throw new Exception("Longitude out of bounds.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return checkLatLong;
+    }
+
+    private boolean validateCountry(String address) {
+        boolean checkCountry = false;
+        try {
+            if (address.contains("USA")) {
+                checkCountry = true;
+            } else {
+                throw new Exception("Country out of bounds.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return checkCountry;
+    }
+
+    private boolean validateCity(String address) {
+        boolean checkCity = false;
+        try {
+            if (address.contains("NY")) {
+                checkCity = true;
+            } else {
+                throw new Exception("City out of bounds.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return checkCity;
     }
 
     /**

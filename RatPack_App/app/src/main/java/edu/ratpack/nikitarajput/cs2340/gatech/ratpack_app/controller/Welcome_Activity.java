@@ -46,7 +46,7 @@ public class Welcome_Activity extends AppCompatActivity {
     /**
      * Automatically attempts login on start if the user is logged in on Firebase
      */
-    public void autoLogin(){
+    private void autoLogin(){
         FirebaseAuth mAuth =FirebaseAuth.getInstance();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference dbR = db.getReference();

@@ -120,8 +120,8 @@ public class Rat_Input_Activity extends AppCompatActivity {
      * makes Google Map's API call to geocode rat location
      * @param url custom url used to make API call
      */
-    private void geocode(String url) {
-        RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
+    public void geocode(String url) {
+        RequestQueue mQueue = Volley.newRequestQueue(Rat_Input_Activity.this);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
                 new Response.Listener<JSONObject>() {
@@ -144,7 +144,6 @@ public class Rat_Input_Activity extends AppCompatActivity {
             }
         }) {
         };
-
         mQueue.add(jsonObjectRequest);
     }
 

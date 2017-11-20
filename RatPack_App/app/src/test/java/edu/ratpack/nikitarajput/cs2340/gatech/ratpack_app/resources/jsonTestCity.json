@@ -1,0 +1,64 @@
+{
+  "results" : [
+    {
+      "address_components" : [
+        {
+          "long_name" : "2346",
+          "short_name" : "2346",
+          "types" : [ "street_number" ]
+        },
+        {
+          "long_name" : "New York Street",
+          "short_name" : "New York St",
+          "types" : [ "route" ]
+        },
+        {
+          "long_name" : "Jay",
+          "short_name" : "Jay",
+          "types" : [ "locality", "political" ]
+        },
+        {
+          "long_name" : "Santa Rosa County",
+          "short_name" : "Santa Rosa County",
+          "types" : [ "administrative_area_level_2", "political" ]
+        },
+        {
+          "long_name" : "Florida",
+          "short_name" : "FL",
+          "types" : [ "administrative_area_level_1", "political" ]
+        },
+        {
+          "long_name" : "United States",
+          "short_name" : "US",
+          "types" : [ "country", "political" ]
+        },
+        {
+          "long_name" : "32565",
+          "short_name" : "32565",
+          "types" : [ "postal_code" ]
+        }
+      ],
+      "formatted_address" : "2346 New York St, Jay, FL 32565, USA",
+      "geometry" : {
+        "location" : {
+          "lat" : 30.8396157,
+          "lng" : -87.220468
+        },
+        "location_type" : "ROOFTOP",
+        "viewport" : {
+          "northeast" : {
+            "lat" : 30.8409646802915,
+            "lng" : -87.2191190197085
+          },
+          "southwest" : {
+            "lat" : 30.8382667197085,
+            "lng" : -87.22181698029151
+          }
+        }
+      },
+      "place_id" : "ChIJ270H5jT1kIgR9ujIUVg2jR8",
+      "types" : [ "street_address" ]
+    }
+  ],
+  "status" : "OK"
+}
